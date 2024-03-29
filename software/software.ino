@@ -4,6 +4,13 @@
 #include "Vector2D.h"
 #include "Block.h"
 #include "PlayingField.h"
+#include "TetrisDisplay.h"
+#include "PlayingField.h"
+#include "Tetromino.h"
+#include "StraightTetromino.h"
+#include <vector>
+#include <memory>
+
 
 #define TFT_SCK 18  // CLK
 #define TFT_MOSI 23 // DIN
@@ -11,18 +18,20 @@
 #define TFT_CS 22
 #define TFT_DC 21
 #define TFT_RESET 17
-#define LEFT_BUTTON 15
-#define RIGHT_BUTTON 4
+#define LEFT_BUTTON 4
+#define RIGHT_BUTTON 15
 #define JOYSTIC_X 13
 #define JOYSTIC_Y 12
 #define JOYSTIC_BUTTON 14
 
+   PlayingField playingField = PlayingField();
+
 
 void setup()
 {
+
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
-    PlayingField playingField = PlayingField();
 
     Serial.begin(115200);
 
@@ -34,39 +43,38 @@ void setup()
     display.fillScreen(GREEN);
     display.fillScreen(color);  // Ustawienie ekranu na czerwony
 
-
-    for (int x = 0; x < 20; x++) {
-      for (int y = 0; y < 10; y++) {
-          display.drawRect(x * 12, 308 - y * 12, 12, 12, BLACK);
-          display.fillRect(x * 12 + 1, 308 - y * 12 + 1, 10, 10, WHITE);
-      }
-    }
-    
+    Vector2D initalPosition = Vector2D(4, 4);
+    StraightTetromino straightTetromino = StraightTetromino(initalPosition, playingField);
+    TetrisDisplay tetrisDisplay = TetrisDisplay(display);
 
     UserInput* userInput = UserInput::getInstance();
 
     while (true) {
-      delay(100);
+        //init plansza xd
+        tetrisDisplay.drawPlayinFieldWithPositions();
+        tetrisDisplay.drawBlocks(straightTetromino.getBlocks());
+
+      delay(150);
       if (userInput->isPressedLeftButton()) {
-        display.fillScreen(BLACK);
+          straightTetromino.rotateClockwise();
       }
       if (userInput->isPressedRightButton()) {
-        display.fillScreen(WHITE);
+        
       }
       if (userInput->isPressedJoysticUp()) {
-        display.fillScreen(GREEN);
+            straightTetromino.move(0, -1);
       }
       if (userInput->isPressedJoysticDown()) {
-        display.fillScreen(BLUE);
+            straightTetromino.move(0, 1);
       }
       if (userInput->isPressedJoysticLeft()) {
-        display.fillScreen(ORANGE);
+            straightTetromino.move(-1, 0);
       }
       if (userInput->isPressedJoysticRight()) {
-        display.fillScreen(BLACK);
+          straightTetromino.move(1, 0);
       }
       if (userInput->isPressedJoysticButton()) {
-        display.fillScreen(WHITE);
+       
       }
     }
 }
