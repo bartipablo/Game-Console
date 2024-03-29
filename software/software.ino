@@ -7,9 +7,18 @@
 #include "TetrisDisplay.h"
 #include "PlayingField.h"
 #include "Tetromino.h"
-#include "StraightTetromino.h"
+#include "TetrominoStraight.h"
+#include "TetrominoT.h"
 #include <vector>
 #include <memory>
+#include "TetrominoSquare.h"
+#include "TetrominoL2.h"
+#include "TetrominoL1.h"
+#include "TetrominoSkew1.h"
+#include "TetrominoSkew2.h"
+
+
+
 
 
 #define TFT_SCK 18  // CLK
@@ -44,7 +53,7 @@ void setup()
     display.fillScreen(color);  // Ustawienie ekranu na czerwony
 
     Vector2D initalPosition = Vector2D(4, 4);
-    StraightTetromino straightTetromino = StraightTetromino(initalPosition, playingField);
+    TetrominoSkew2 straightTetromino = TetrominoSkew2(initalPosition, playingField, 2);
     TetrisDisplay tetrisDisplay = TetrisDisplay(display);
 
     UserInput* userInput = UserInput::getInstance();

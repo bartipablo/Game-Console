@@ -1,17 +1,17 @@
-#ifndef StraightTetromino_H
-#define StraightTetromino_H
+#ifndef TetrominoStraight_H
+#define TetrominoStraight_H
 
 #include "Tetromino.h"
 
-class StraightTetromino : public Tetromino
+class TetrominoStraight : public Tetromino
 {
 public:
-    StraightTetromino(Vector2D initialPosition, PlayingField& playingField)
+    TetrominoStraight(Vector2D initialPosition, PlayingField& playingField, int color)
         : Tetromino(playingField) {
 
         for (int i = 0; i < MAX_BLOCKS; ++i) {
             Vector2D blockPosition = Vector2D(initialPosition.x() + i, initialPosition.y());
-            Block newBlock(2, blockPosition);
+            Block newBlock(color, blockPosition);
             blocks[i] = newBlock;
         }
     }
