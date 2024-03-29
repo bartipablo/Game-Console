@@ -12,6 +12,8 @@ class PlayingField
 public:
     PlayingField();        
   
+    bool isEmpty(Vector2D position);
+
 private:
     std::map < Vector2D, tl::optional<Block> > fields;
 };

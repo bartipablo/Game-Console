@@ -8,3 +8,7 @@ int Block::getColor() {
 Vector2D Block::getPosition() {
     return this->position;
 }
+
+void Block::updatePosition(const Vector2D newPosition) {
+    position = newPosition;
+}

@@ -8,3 +8,7 @@ PlayingField::PlayingField() {
     }
   }
 }
+
+bool PlayingField::isEmpty(Vector2D position) {
+    return fields[position] == tl::nullopt;
+}

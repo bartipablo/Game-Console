@@ -6,27 +6,35 @@
 class Vector2D
 {
 public:        
-  const int x;
+  Vector2D() : x_(0), y_(0) {}
 
-  const int y;
+  Vector2D(int x, int y) : x_(x), y_(y) {}  
 
-  Vector2D() : x(0), y(0) {}
+  int x() const {
+      return x_;
+  }
 
-  Vector2D(int x, int y) : x(x), y(y) {}  
+  int y() const {
+      return y_;
+  }
 
   bool operator==(const Vector2D& other) const {
-      return x == other.x && y == other.y;
+      return x_ == other.x() && y_ == other.y();
   }
 
   bool operator<(const Vector2D& other) const {
-      if (x == other.x) {
-          return y < other.y;
+      if (x_ == other.x()) {
+          return y_ < other.y();
       }
-      return x < other.x;
-    }
-  
-private:
+      return x_ < other.x();
+  }
 
+private:
+    int x_;
+
+    int y_;
+
+  
 };
 
 #endif
