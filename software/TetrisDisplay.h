@@ -11,10 +11,11 @@
 #include "Arduino.h"
 #include "Block.h"
 #include <vector>
+#include "./src/DigitalLCD.h"
 
 class TetrisDisplay {
 public:    
-    TetrisDisplay(Arduino_ILI9341 display);
+    TetrisDisplay();
 
     void drawBlock(Block block);
 
@@ -23,7 +24,7 @@ public:
     void drawPlayinFieldWithPositions();
 
 private:
-    Arduino_ILI9341 display;
+    Arduino_ILI9341* display;
 };
 
 

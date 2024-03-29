@@ -1,6 +1,8 @@
 #include <Arduino_GFX_Library.h>
 
 #include "./src/UserInput.h"
+#include "./src/DigitalLCD.h"
+
 #include "Vector2D.h"
 #include "Block.h"
 #include "PlayingField.h"
@@ -42,22 +44,23 @@ void setup()
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
-
-    Serial.begin(115200);
-
     Arduino_ESP32SPI bus = Arduino_ESP32SPI(TFT_DC, TFT_CS, TFT_SCK, TFT_MOSI, TFT_MISO);
-    Arduino_ILI9341 display = Arduino_ILI9341(&bus, TFT_RESET);
 
-    int color = display.color565(255, 0, 0);
-    display.begin();
-    display.fillScreen(GREEN);
+    DigitalLCD::init(&bus, TFT_RESET);
+
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+
+    int color = display->color565(255, 0, 0);
+    display->begin();
+    display->fillScreen(GREEN);
 
     Vector2D initalPosition = Vector2D(4, 4);
     TetrominoFactory factory = TetrominoFactory(playingField);
     Tetromino* t = factory.getRandomTetromino();
 
     TetrominoL2 straightTetromino = TetrominoL2(initalPosition, playingField, 2);
-    TetrisDisplay tetrisDisplay = TetrisDisplay(display);
+    TetrisDisplay tetrisDisplay = TetrisDisplay();
 
     UserInput* userInput = UserInput::getInstance();
 
