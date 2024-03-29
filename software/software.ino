@@ -16,6 +16,7 @@
 #include "TetrominoL1.h"
 #include "TetrominoSkew1.h"
 #include "TetrominoSkew2.h"
+#include "TetrominoFactory.h"
 
 
 
@@ -50,9 +51,11 @@ void setup()
     int color = display.color565(255, 0, 0);
     display.begin();
     display.fillScreen(GREEN);
-    display.fillScreen(color);  // Ustawienie ekranu na czerwony
 
     Vector2D initalPosition = Vector2D(4, 4);
+    TetrominoFactory factory = TetrominoFactory(playingField);
+    Tetromino* t = factory.getRandomTetromino();
+
     TetrominoL2 straightTetromino = TetrominoL2(initalPosition, playingField, 2);
     TetrisDisplay tetrisDisplay = TetrisDisplay(display);
 
@@ -61,31 +64,32 @@ void setup()
     while (true) {
         //init plansza xd
         tetrisDisplay.drawPlayinFieldWithPositions();
-        tetrisDisplay.drawBlocks(straightTetromino.getBlocks());
+        tetrisDisplay.drawBlocks(t->getBlocks());
 
-      delay(150);
+      delay(200);
       if (userInput->isPressedLeftButton()) {
-          straightTetromino.rotateClockwise();
+          t->rotateClockwise();
       }
       if (userInput->isPressedRightButton()) {
         
       }
       if (userInput->isPressedJoysticUp()) {
-            straightTetromino.move(0, -1);
+            t->move(0, -1);
       }
       if (userInput->isPressedJoysticDown()) {
-            straightTetromino.move(0, 1);
+            t->move(0, 1);
       }
       if (userInput->isPressedJoysticLeft()) {
-            straightTetromino.move(-1, 0);
+            t->move(-1, 0);
       }
       if (userInput->isPressedJoysticRight()) {
-          straightTetromino.move(1, 0);
+          t->move(1, 0);
       }
       if (userInput->isPressedJoysticButton()) {
        
       }
     }
+    delete t;
 }
 
 void loop()
