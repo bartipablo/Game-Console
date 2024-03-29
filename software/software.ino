@@ -53,7 +53,7 @@ void setup()
     display.fillScreen(color);  // Ustawienie ekranu na czerwony
 
     Vector2D initalPosition = Vector2D(4, 4);
-    TetrominoSkew2 straightTetromino = TetrominoSkew2(initalPosition, playingField, 2);
+    TetrominoL2 straightTetromino = TetrominoL2(initalPosition, playingField, 2);
     TetrisDisplay tetrisDisplay = TetrisDisplay(display);
 
     UserInput* userInput = UserInput::getInstance();
