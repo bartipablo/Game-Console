@@ -2,13 +2,13 @@
 
 TetrominoFactory::TetrominoFactory(PlayingField& playingField)
     : playingField(playingField) {
-        randomSeed(analogRead(18));
+        randomSeed(analogRead(23));
     }
 
 
 Tetromino* TetrominoFactory::getRandomTetromino() {
     int color = getRandomColor();
-    int randomNumber = getRandomNumber(7);
+    int randomNumber = getRandomNumber(8);
     switch (randomNumber) {
         case 1: {
             return new TetrominoL1(Vector2D(4, 0), playingField, color);

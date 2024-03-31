@@ -4,8 +4,7 @@
 #include <Arduino_GFX_Library.h>
 #include "Arduino.h"
 
-class DigitalLCD
-{
+class DigitalLCD {
 public:
     DigitalLCD(const DigitalLCD&) = delete;
 

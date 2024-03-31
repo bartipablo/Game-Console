@@ -1,46 +1,39 @@
 #include "Tetromino.h"
 
-std::vector<Block> Tetromino::getBlocks()
-{
-    return std::vector<Block>(blocks, blocks + MAX_BLOCKS);
+std::vector<Block> Tetromino::getBlocks() {
+        return std::vector<Block>(blocks, blocks + MAX_BLOCKS);
 }
 
-void Tetromino::move(int x, int y)
-{
-    for (auto &block : blocks)
-    {
+std::vector<Vector2D> Tetromino::getPositions() {
+    std::vector<Vector2D> positions;
+    for (const auto &block : blocks) {
+        positions.push_back(block.getPosition());
+    }
+    return positions;
+}
+
+
+void Tetromino::move(int x, int y, const PlayingField& playingField) {
+
+
+    for (auto &block : blocks) {
         Vector2D actualPosition = block.getPosition();
         Vector2D newPosition = Vector2D(actualPosition.x() + x, actualPosition.y() + y);
 
-        if (newPosition.x() < TetrisProperties::minX || newPosition.x() > TetrisProperties::maxX || newPosition.y() < TetrisProperties::minY || newPosition.y() > TetrisProperties::maxY || !playingField.isEmpty(newPosition))
-        {
+        if (newPosition.x() < TetrisProperties::minX || newPosition.x() > TetrisProperties::maxX || newPosition.y() < TetrisProperties::minY || newPosition.y() > TetrisProperties::maxY || !playingField.isEmpty(newPosition)) {
             return;
         }
     }
 
-    for (auto &block : blocks)
-    {
+    for (auto &block : blocks) {
         Vector2D actualPosition = block.getPosition();
         Vector2D newPosition = Vector2D(actualPosition.x() + x, actualPosition.y() + y);
         block.updatePosition(newPosition);
     }
 }
 
-bool Tetromino::isReadyToSettle()
-{
-    for (auto &block : blocks)
-    {
-        Vector2D actualPosition = block.getPosition();
-        Vector2D bottomPosition = Vector2D(actualPosition.x(), actualPosition.y() - 1);
-        if (!playingField.isEmpty(bottomPosition))
-        {
-            return false;
-        }
-    }
-    return true;
-}
 
-void Tetromino::rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4]) {
+void Tetromino::rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField) {
         Vector2D prevPositions[MAX_BLOCKS];
 
         for (int i = 0; i < MAX_BLOCKS; ++i) {
@@ -79,7 +72,6 @@ void Tetromino::rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4]
                 return;
             } 
         }
-        direction = nextDirection(direction);
 
         for (int i = 0; i < MAX_BLOCKS; i++) {
             blocks[i].updatePosition(newPositions[i]);

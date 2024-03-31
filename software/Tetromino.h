@@ -8,18 +8,20 @@
 #include "PlayingField.h"
 #include <vector>
 
-class Tetromino
-{
+class Tetromino {
 public:
     Tetromino(PlayingField& field) : playingField(field), direction(Direction::Up) {}
 
-    virtual void rotateClockwise() = 0;
+    virtual void rotateClockwise(const PlayingField& playingField) = 0;
+
+    virtual void rotateAntiClockwise(const PlayingField& playingField) = 0;
 
     std::vector<Block> getBlocks();
 
-    void move(int x, int y);
+    std::vector<Vector2D> getPositions();
 
-    bool isReadyToSettle();
+    void move(int x, int y, const PlayingField& playingField);
+
 
 protected:
     static constexpr int MAX_BLOCKS = 4;
@@ -30,7 +32,7 @@ protected:
 
     Direction direction;
 
-    void rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4]);
+    void rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField);
 };
 
 #endif

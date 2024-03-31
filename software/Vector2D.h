@@ -3,8 +3,7 @@
 
 #include "Arduino.h"
 
-class Vector2D
-{
+class Vector2D {
 public:        
   Vector2D() : x_(0), y_(0) {}
 

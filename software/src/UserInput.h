@@ -11,8 +11,7 @@
  * such as buttons and joystick, on the Arduino platform.
  * The class uses the "Singleton" design pattern
  */
-class UserInput
-{
+class UserInput {
 public:        
     UserInput(const UserInput&) = delete;
 

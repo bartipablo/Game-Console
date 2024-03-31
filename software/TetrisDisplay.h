@@ -13,15 +13,27 @@
 #include <vector>
 #include "./src/DigitalLCD.h"
 
+#include "PlayingField.h"
+
 class TetrisDisplay {
 public:    
     TetrisDisplay();
 
     void drawBlock(Block block);
 
+    void clearAtPosition(Vector2D position);
+
+    void clearAtPositions(std::vector<Vector2D> position);
+
     void drawBlocks(const std::vector<Block>& blocks);
 
+    void displayPlayingField(const PlayingField& playingField);
+
     void drawPlayinFieldWithPositions();
+
+    void test();
+
+    void test1();
 
 private:
     Arduino_ILI9341* display;

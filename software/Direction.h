@@ -10,4 +10,6 @@ enum class Direction {
 
 Direction nextDirection(Direction currentDirection);
 
+Direction previousDirection(Direction currentDirection);
+
 #endif

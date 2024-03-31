@@ -3,8 +3,7 @@
 
 #include "Tetromino.h"
 
-class TetrominoSquare : public Tetromino
-{
+class TetrominoSquare : public Tetromino {
 public:
     TetrominoSquare(Vector2D initialPosition, PlayingField& playingField, int color)
         : Tetromino(playingField) {
@@ -15,7 +14,11 @@ public:
         blocks[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y() + 1));
     }
 
-    virtual void rotateClockwise() override {
+    virtual void rotateClockwise(const PlayingField& playingField) override {
+        return;
+    }
+
+    virtual void rotateAntiClockwise(const PlayingField& playingField) override { 
         return;
     }
 

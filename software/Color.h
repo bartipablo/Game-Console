@@ -1,8 +1,7 @@
 #ifndef Color_H
 #define Color_H
 
-class Color
-{
+class Color {
 public:
   const static int YELLOW_;
 

@@ -4,8 +4,7 @@
 #include "Arduino.h"
 #include "Vector2D.h"
 
-class Block
-{
+class Block {
 public:
   Block() : color(0), position(Vector2D()) {}
 
@@ -14,7 +13,7 @@ public:
 
   int getColor();
 
-  Vector2D getPosition();
+  Vector2D getPosition() const;
 
   void updatePosition(const Vector2D newPosition);
 

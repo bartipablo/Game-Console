@@ -3,13 +3,14 @@
 
 #include "Tetromino.h"
 
-class TetrominoStraight : public Tetromino
-{
+class TetrominoStraight : public Tetromino {
 public:
     TetrominoStraight(Vector2D initialPosition, PlayingField& playingField, int color)
         : Tetromino(playingField),
           xRotate({{2, 1, 0, -1}, {1, 0, -1, -2}, {-2, -1, 0, 1}, {-1, 0, 1, 2}}),
-          yRotate({{-1, 0, 1, 2}, {2, 1, 0, -1}, {1, 0, -1, -2}, {-2,-1, 0, 1}}) {
+          yRotate({{-1, 0, 1, 2}, {2, 1, 0, -1}, {1, 0, -1, -2}, {-2,-1, 0, 1}}),
+          xAntiRotate({{-2, -1, 0, 1}, {-1, 0, 1, 2}, {2, 1, 0, -1}, {1, 0, -1, -2}}),
+          yAntiRotate({{1, 0, -1, -2}, {-2,-1, 0, 1}, {-1, 0, 1, 2}, {2, 1, 0, -1}}) {
 
         blocks[0] = Block(color, Vector2D(initialPosition.x() - 1, initialPosition.y()));
         blocks[1] = Block(color, Vector2D(initialPosition.x(), initialPosition.y()));
@@ -17,14 +18,25 @@ public:
         blocks[3] = Block(color, Vector2D(initialPosition.x() + 2, initialPosition.y()));
     }
 
-    virtual void rotateClockwise() override {
-        rotateForSpecyficTetrominos(xRotate, yRotate);
+    virtual void rotateClockwise(const PlayingField& playingField) override {
+        rotateForSpecyficTetrominos(xRotate, yRotate, playingField);
+        direction = nextDirection(direction);
+
+    }
+
+    virtual void rotateAntiClockwise(const PlayingField& playingField) override {
+        rotateForSpecyficTetrominos(xAntiRotate, yAntiRotate, playingField);
+        direction = previousDirection(direction);
     }
 
 private:
     int xRotate[4][4];
     
     int yRotate[4][4];
-
+    
+    int xAntiRotate[4][4];
+    
+    int yAntiRotate[4][4];
 };
+
 #endif

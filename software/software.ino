@@ -19,6 +19,7 @@
 #include "TetrominoSkew1.h"
 #include "TetrominoSkew2.h"
 #include "TetrominoFactory.h"
+#include "Engine.h"
 
 
 
@@ -39,8 +40,7 @@
    PlayingField playingField = PlayingField();
 
 
-void setup()
-{
+void setup() {
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
@@ -50,49 +50,16 @@ void setup()
 
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
+    Engine engine;
 
-    int color = display->color565(255, 0, 0);
     display->begin();
     display->fillScreen(GREEN);
 
-    Vector2D initalPosition = Vector2D(4, 4);
-    TetrominoFactory factory = TetrominoFactory(playingField);
-    Tetromino* t = factory.getRandomTetromino();
+    engine.run();
 
-    TetrominoL2 straightTetromino = TetrominoL2(initalPosition, playingField, 2);
-    TetrisDisplay tetrisDisplay = TetrisDisplay();
+    display->fillScreen(RED);
 
-    UserInput* userInput = UserInput::getInstance();
 
-    while (true) {
-        //init plansza xd
-        tetrisDisplay.drawPlayinFieldWithPositions();
-        tetrisDisplay.drawBlocks(t->getBlocks());
-
-      delay(200);
-      if (userInput->isPressedLeftButton()) {
-          t->rotateClockwise();
-      }
-      if (userInput->isPressedRightButton()) {
-        
-      }
-      if (userInput->isPressedJoysticUp()) {
-            t->move(0, -1);
-      }
-      if (userInput->isPressedJoysticDown()) {
-            t->move(0, 1);
-      }
-      if (userInput->isPressedJoysticLeft()) {
-            t->move(-1, 0);
-      }
-      if (userInput->isPressedJoysticRight()) {
-          t->move(1, 0);
-      }
-      if (userInput->isPressedJoysticButton()) {
-       
-      }
-    }
-    delete t;
 }
 
 void loop()

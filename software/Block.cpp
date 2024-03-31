@@ -5,7 +5,7 @@ int Block::getColor() {
     return this->color;
 }
 
-Vector2D Block::getPosition() {
+Vector2D Block::getPosition() const {
     return this->position;
 }
 

@@ -17,8 +17,7 @@
 #include <random>
 
 
-class TetrominoFactory
-{
+class TetrominoFactory {
 public:
     TetrominoFactory(PlayingField& playingField);
 
