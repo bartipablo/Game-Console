@@ -9,8 +9,9 @@ public:
         : Tetromino(playingField),
           xRotate({{1, 0, 1, 0}, {1, 0, -1, -2}, {-1, 0, -1, 0}, {-1, 0, 1, 2}}),
           yRotate({{-1, 0, 1, 2}, {1, 0, 1, 0}, {1, 0, -1, -2}, {-1, 0, -1, 0}}),
-          xAntiRotate({{-1, 0, -1, 0}, {-1, 0, 1, 2}, {1, 0, 1, 0}, {1, 0, -1, -2}}),
-          yAntiRotate({{1, 0, -1, -2}, {-1, 0, -1, 0}, {-1, 0, 1, 2}, {1, 0, 1, 0}}) {
+
+          xAntiRotate({{1, 0, -1, -2}, {1, 0, -1, 0}, {-1, 0, 1, 2}, {1, 0, 1, 0}}),
+          yAntiRotate({{1, 0, 1, 0}, {1, 0, -1, -2}, {-1, 0, -1, 0}, {-1, 0, 1, 2}}) {
 
         blocks[0] = Block(color, Vector2D(initialPosition.x() - 1, initialPosition.y() + 1));
         blocks[1] = Block(color, Vector2D(initialPosition.x(), initialPosition.y() + 1));
