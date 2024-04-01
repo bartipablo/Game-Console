@@ -18,10 +18,10 @@ void Engine::run() {
     Tetromino* actualTetromino = nullptr;
     Tetromino* nextTetromino = tetrominoFactory.getRandomTetromino();
 
-    tetrisDisplay.displayFieldsDescription();
-    tetrisDisplay.displayScore(result.getScore());
-    tetrisDisplay.displayLevel(result.getLevel());
-    tetrisDisplay.displayPlayingField(playingField);
+    tetrisDisplay.drawFieldsDescription();
+    tetrisDisplay.drawScore(result.getScore());
+    tetrisDisplay.drawLevel(result.getLevel());
+    tetrisDisplay.drawPlayingField(playingField);
 
     while (!gameover) {
 
@@ -29,7 +29,7 @@ void Engine::run() {
         nextTetromino = tetrominoFactory.getRandomTetromino();
 
         tetrisDisplay.clearNext();
-        tetrisDisplay.displayNext(nextTetromino->getBlocks());
+        tetrisDisplay.drawNext(nextTetromino->getBlocks());
 
         if (isGameOver(actualTetromino->getPositions())) {
             gameover = true;
@@ -83,18 +83,17 @@ void Engine::run() {
                 std::vector<int> linesToClear = findLinesToClear();
 
                 if (!linesToClear.empty()) {
-                    //display special effects about clearing lines.
                     playingField.clearLines(linesToClear);
                     playingField.dropFloatingBlocks();
-                    tetrisDisplay.displayPlayingField(playingField);
+                    tetrisDisplay.drawPlayingField(playingField);
                     result.increase(linesToClear.size());
                     tetrisDisplay.clearScore();
                     tetrisDisplay.clearLevel();
-                    tetrisDisplay.displayScore(result.getScore());
-                    tetrisDisplay.displayLevel(result.getLevel());
+                    tetrisDisplay.drawScore(result.getScore());
+                    tetrisDisplay.drawLevel(result.getLevel());
                 }
 
-                tetrisDisplay.displayPlayingField(playingField);
+                tetrisDisplay.drawPlayingField(playingField);
                 break;
             }
 

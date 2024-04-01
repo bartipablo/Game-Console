@@ -10,8 +10,21 @@ void TetrisDisplay::drawBlock(Block block) {
     int y = block.getPosition().y();
     int color = block.getColor();
 
-    display->drawRect(PLAYING_FIELD_BEGIN_X + y * 12, PLAYING_FIELD_BEGIN_Y - x * 12, SQUARE_SIZE, SQUARE_SIZE, BLACK);
-    display->fillRect(PLAYING_FIELD_BEGIN_X + y * 12 + 1, PLAYING_FIELD_BEGIN_Y  - x * 12 + 1, SQUARE_SIZE - 2, SQUARE_SIZE - 2, color);
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3); 
+
+    display->drawRect(X_PLAYING_FIELD + x * 12,
+                      Y_PLAYING_FIELD + y * 12,
+                      SQUARE_SIZE,
+                      SQUARE_SIZE,
+                      BLACK);
+    display->fillRect(X_PLAYING_FIELD + x * 12 + 1,
+                      y * 12 + 1,
+                      SQUARE_SIZE - 2,
+                      SQUARE_SIZE - 2,
+                      color);
+
+    display->setRotation(originalRotation);
 }
 
 void TetrisDisplay::drawBlocks(const std::vector<Block>& blocks) {
@@ -20,8 +33,7 @@ void TetrisDisplay::drawBlocks(const std::vector<Block>& blocks) {
     }
 }
 
-
-void TetrisDisplay::drawPlayinFieldWithPositions() {
+void TetrisDisplay::drawEmptyPlayingField() {
     for (int x = 0; x < 10; x++) {
         for (int y = 0; y < 20; y++) {
             clearAtPosition(Vector2D(x, y));
@@ -30,13 +42,9 @@ void TetrisDisplay::drawPlayinFieldWithPositions() {
 }
 
 void TetrisDisplay::clearAtPosition(Vector2D position) {
-    int x = position.x();
-    int y = position.y();
-    display->drawRect(PLAYING_FIELD_BEGIN_X + y * 12, PLAYING_FIELD_BEGIN_Y - x * 12, SQUARE_SIZE, SQUARE_SIZE, BLACK);
-    display->fillRect(PLAYING_FIELD_BEGIN_X + y * 12 + 1, PLAYING_FIELD_BEGIN_Y - x * 12 + 1, 10, 10, WHITE);
-
+    Block emptyField = Block(WHITE, position);
+    drawBlock(emptyField); 
 }
-
 
 void TetrisDisplay::clearAtPositions(std::vector<Vector2D> positions) {
     for (const Vector2D& pos : positions) {
@@ -44,9 +52,8 @@ void TetrisDisplay::clearAtPositions(std::vector<Vector2D> positions) {
     }
 }
 
-
-void TetrisDisplay::displayPlayingField(const PlayingField& playingField) {
-    std::vector<Vector2D> positions = playingField.getAllKeys();
+void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
+    std::vector<Vector2D> positions = playingField.getAllPositions();
 
     for (const Vector2D& pos : positions) {
         if (playingField.isEmpty(pos)) {
@@ -58,7 +65,7 @@ void TetrisDisplay::displayPlayingField(const PlayingField& playingField) {
     }
 }
 
-void TetrisDisplay::displayFieldsDescription() {
+void TetrisDisplay::drawFieldsDescription() {
     display->fillScreen(BLACK);
     display->setTextColor(WHITE);
     display->setTextSize(2);
@@ -78,7 +85,6 @@ void TetrisDisplay::displayFieldsDescription() {
 }
 
 void TetrisDisplay::clearScore() {
-    
     int x = 10; 
     int y = 60; 
     int width = 70; 
@@ -120,7 +126,7 @@ void TetrisDisplay::clearNext() {
     display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::displayScore(int score) {
+void TetrisDisplay::drawScore(int score) {
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 
 
@@ -136,7 +142,7 @@ void TetrisDisplay::displayScore(int score) {
     display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::displayLevel(int level) {
+void TetrisDisplay::drawLevel(int level) {
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 
 
@@ -152,7 +158,7 @@ void TetrisDisplay::displayLevel(int level) {
     display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::displayNext(std::vector<Block> blocks) {
+void TetrisDisplay::drawNext(std::vector<Block> blocks) {
     int minX = blocks[0].getPosition().x();
     int maxX = blocks[0].getPosition().x();
     int minY = blocks[0].getPosition().y();
@@ -217,7 +223,6 @@ void TetrisDisplay::displayNext(std::vector<Block> blocks) {
 
     display->setRotation(originalRotation);
 }
-
 
 void TetrisDisplay::displayGameOver(int score, int level) {
     uint8_t originalRotation = display->getRotation();

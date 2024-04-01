@@ -1,15 +1,18 @@
 #ifndef Block_H
 #define Block_H
 
-#include "Arduino.h"
 #include "Vector2D.h"
 
+
+/**
+ * @brief Class representing a single block in tetris.
+ * 
+ */
 class Block {
 public:
   Block() : color(0), position(Vector2D()) {}
 
-  Block(int color, Vector2D position) : color(color), position(position) {
-  }
+  Block(int color, Vector2D position) : color(color), position(position) {}
 
   int getColor() const;
 
@@ -19,7 +22,6 @@ public:
 
 private:
   int color;
-
   Vector2D position;
 };
 

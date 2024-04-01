@@ -1,5 +1,6 @@
 #include "Result.h"
 
+
 Result::Result() {
     this->score = 0;
     this->clearingLinesNo = 0;

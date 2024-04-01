@@ -121,13 +121,9 @@ private:
 	static UserInput* userInput_;
 
 	int leftButtonPin_;
-
 	int rightButtonPin_;
-
 	int joysticXPin_;
-
 	int joysticYPin_;
-
 	int joysticButtonPin_;
 };
 

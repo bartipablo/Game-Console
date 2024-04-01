@@ -1,5 +1,6 @@
 #include "InputBlocking.h"
 
+
 InputBlocking::InputBlocking() {
     counter = 0;    
 }

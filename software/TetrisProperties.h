@@ -3,10 +3,10 @@
 
 class TetrisProperties {
 public:
-    const static int minX;
-    const static int maxX;
-    const static int minY;
-    const static int maxY;
+    const static int minX;  ///< min x coordinate
+    const static int maxX;  ///< max x coordinate
+    const static int minY;  ///< min y coordinate
+    const static int maxY;  ///< max y coordinate
 };
 
 #endif

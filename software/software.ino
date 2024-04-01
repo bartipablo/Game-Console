@@ -2,27 +2,7 @@
 
 #include "./src/UserInput.h"
 #include "./src/DigitalLCD.h"
-
-#include "Vector2D.h"
-#include "Block.h"
-#include "PlayingField.h"
-#include "TetrisDisplay.h"
-#include "PlayingField.h"
-#include "Tetromino.h"
-#include "TetrominoStraight.h"
-#include "TetrominoT.h"
-#include <vector>
-#include <memory>
-#include "TetrominoSquare.h"
-#include "TetrominoL2.h"
-#include "TetrominoL1.h"
-#include "TetrominoSkew1.h"
-#include "TetrominoSkew2.h"
-#include "TetrominoFactory.h"
 #include "Engine.h"
-
-
-
 
 
 #define TFT_SCK 18  // CLK
@@ -37,8 +17,6 @@
 #define JOYSTIC_Y 12
 #define JOYSTIC_BUTTON 14
 
-   PlayingField playingField = PlayingField();
-
 
 void setup() {
 
@@ -49,19 +27,14 @@ void setup() {
     DigitalLCD::init(&bus, TFT_RESET);
 
     Arduino_ILI9341* display = DigitalLCD::getInstance();
-
-    Engine engine;
-
     display->begin();
-    display->fillScreen(GREEN);
 
-    engine.run();
-
-    display->fillScreen(RED);
-
-
+    while (true) {
+        Engine* engine = new Engine();
+        engine->run();
+        delete engine;
+    }
 }
 
-void loop()
-{
-}
+
+void loop() {}

@@ -1,9 +1,9 @@
-#include "Arduino.h"
 #include "PlayingField.h"
 
+
 PlayingField::PlayingField() {
-  for (int x = 0; x < 10; x++) {
-    for (int y = 0; y < 20; y++) {
+  for (int x = TetrisProperties::minX; x <= TetrisProperties::maxX; x++) {
+    for (int y = TetrisProperties::minY; y <= TetrisProperties::maxY; y++) {
         fields[Vector2D(x, y)] = tl::nullopt;
     }
   }
@@ -41,8 +41,8 @@ void PlayingField::insertBlocks(std::vector<Block> blocks) {
 }
 
 void PlayingField::clearLine(int line) {
-    for (int j = 0; j < 10; j++) {
-        fields[Vector2D(j, line)] = tl::nullopt;
+    for (int x = 0; x <= TetrisProperties::maxX; x++) {
+        fields[Vector2D(x, line)] = tl::nullopt;
     }
 }
 
@@ -52,19 +52,17 @@ void PlayingField::clearLines(std::vector<int> lines) {
     }
 }
 
-
 void PlayingField::dropFloatingBlocks() {
-    int previousLinePtr = 19;
-    int nextLinePtr = 18;
+    int previousLinePtr = TetrisProperties::maxY;
+    int nextLinePtr = TetrisProperties::maxY - 1;
 
-
-    while (nextLinePtr >= 0) {
-          if (lineIsEmpty(previousLinePtr) && !lineIsEmpty(nextLinePtr)) { //ok.
+    while (nextLinePtr >= TetrisProperties::minY) {
+          if (lineIsEmpty(previousLinePtr) && !lineIsEmpty(nextLinePtr)) { 
               swapTwoLines(previousLinePtr, nextLinePtr);
               previousLinePtr--;
               nextLinePtr--;
           }
-          else if (lineIsEmpty(previousLinePtr) && lineIsEmpty(nextLinePtr)) { //ok.
+          else if (lineIsEmpty(previousLinePtr) && lineIsEmpty(nextLinePtr)) { 
               nextLinePtr--;
           }
           else if (!lineIsEmpty(previousLinePtr) && lineIsEmpty(nextLinePtr)) {
@@ -77,10 +75,9 @@ void PlayingField::dropFloatingBlocks() {
     }
 }
 
-
 void PlayingField::swapTwoLines(int i, int j) {
 
-    for (int k = 0; k < 10; k++) {
+    for (int k = TetrisProperties::minX; k <= TetrisProperties::maxX; k++) {
         tl::optional<Block>& block1 = fields[Vector2D(k, i)];
         tl::optional<Block>& block2 = fields[Vector2D(k, j)];
         
@@ -98,12 +95,10 @@ void PlayingField::swapTwoLines(int i, int j) {
             fields[Vector2D(k, i)] = block2;        
             fields[Vector2D(k, j)] = tl::nullopt;
         }
-        
-        
     }
 }
 
-std::vector<Vector2D> PlayingField::getAllKeys() const {
+std::vector<Vector2D> PlayingField::getAllPositions() const {
     std::vector<Vector2D> keys;
     for (const auto& pair : fields) {
         keys.push_back(pair.first);
@@ -111,12 +106,10 @@ std::vector<Vector2D> PlayingField::getAllKeys() const {
     return keys;
 }
 
-
 Block PlayingField::getFromPosition(Vector2D position) const {
     auto it = fields.find(position);
     return it->second.value(); 
 }
-
 
 bool PlayingField::lineIsEmpty(int lineNo) {
     for (int x = 0; x < 10; x++) {

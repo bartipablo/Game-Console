@@ -1,6 +1,11 @@
 #ifndef Color_H
 #define Color_H
 
+
+/**
+ * @brief Class representing colours in the format RGB565.
+ * 
+ */
 class Color {
 public:
   const static int YELLOW_;

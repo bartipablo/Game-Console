@@ -1,5 +1,6 @@
 #include "Direction.h"
 
+
 Direction nextDirection(Direction currentDirection) {
     switch(currentDirection) {
         case Direction::Up:
