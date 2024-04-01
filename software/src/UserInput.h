@@ -2,7 +2,6 @@
 #define UserInput_H
 
 #include "Arduino.h"
-#include <stdexcept>
 
 /**
  * @brief Class for handling user input such as buttons and joystick.
@@ -11,8 +10,7 @@
  * such as buttons and joystick, on the Arduino platform.
  * The class uses the "Singleton" design pattern
  */
-class UserInput
-{
+class UserInput {
 public:        
     UserInput(const UserInput&) = delete;
 
@@ -122,13 +120,9 @@ private:
 	static UserInput* userInput_;
 
 	int leftButtonPin_;
-
 	int rightButtonPin_;
-
 	int joysticXPin_;
-
 	int joysticYPin_;
-
 	int joysticButtonPin_;
 };
 

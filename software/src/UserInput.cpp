@@ -37,19 +37,17 @@ bool UserInput::isPressedJoysticLeft() {
 }
 
 bool UserInput::isPressedJoysticRight() {
-    return getXJoysticVal() < 2;
+    return getXJoysticVal() < 1;
 }
 
 bool UserInput::isPressedJoysticButton() {
     return digitalRead(joysticButtonPin_) == LOW;
 }
 
-// 0-255
 int UserInput::getXJoysticVal() {
     return (analogRead(joysticXPin_) >> 4);
 }
 
-// 0-255
 int UserInput::getYJoysticVal() {
     return (analogRead(joysticYPin_) >> 4);
 }
