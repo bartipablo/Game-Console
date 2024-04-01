@@ -2,7 +2,7 @@
 
 #include "./src/UserInput.h"
 #include "./src/DigitalLCD.h"
-#include "Engine.h"
+#include "TetrisEngine.h"
 
 
 #define TFT_SCK 18  // CLK
@@ -30,7 +30,7 @@ void setup() {
     display->begin();
 
     while (true) {
-        Engine* engine = new Engine();
+        TetrisEngine* engine = new TetrisEngine();
         engine->run();
         delete engine;
     }

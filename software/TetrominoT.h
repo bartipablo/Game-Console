@@ -5,8 +5,8 @@
 
 class TetrominoT : public Tetromino {
 public:
-    TetrominoT(Vector2D initialPosition, PlayingField& playingField, int color)
-        : Tetromino(playingField),
+    TetrominoT(Vector2D initialPosition, int color)
+        :
           xRotate({{1, 1, 0, -1}, {-1, 1, 0, -1}, {-1, -1, 0, 1}, {1, -1, 0, 1}}),
           yRotate({{1, -1, 0, 1}, {1, 1, 0, -1}, {-1, 1, 0, -1}, {-1, -1, 0, 1}}),
 

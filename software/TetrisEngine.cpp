@@ -1,9 +1,9 @@
-#include "Engine.h"
+#include "TetrisEngine.h"
 
 
-Engine::Engine() : 
+TetrisEngine::TetrisEngine() : 
         playingField(), 
-        tetrominoFactory(playingField), 
+        tetrominoFactory(), 
         tetrisDisplay(), 
         userInput(UserInput::getInstance()), 
         loopCounter(0), 
@@ -13,7 +13,7 @@ Engine::Engine() :
         result(),
         inputBlocking() {}
 
-void Engine::run() {
+void TetrisEngine::run() {
 
     Tetromino* actualTetromino = nullptr;
     Tetromino* nextTetromino = tetrominoFactory.getRandomTetromino();
@@ -105,15 +105,15 @@ void Engine::run() {
     delete nextTetromino;
 
     tetrisDisplay.displayGameOver(result.getScore(), result.getLevel());
+    delay(1500);
     while (true) {
-         delay(1500);
          if (userInput->isPressedLeftButton() || userInput->isPressedRightButton()) {
             return;
          }
     }
 }
 
-bool Engine::isTetrominoPlaced(std::vector<Vector2D> positions) {
+bool TetrisEngine::isTetrominoPlaced(std::vector<Vector2D> positions) {
     if (!playingField.isEmptyPositionsBelow(positions)) {
         return true;
     } 
@@ -126,11 +126,11 @@ bool Engine::isTetrominoPlaced(std::vector<Vector2D> positions) {
     return false; 
 }
 
-bool Engine::isGameOver(std::vector<Vector2D> positions) {
+bool TetrisEngine::isGameOver(std::vector<Vector2D> positions) {
     return !playingField.isEmptyPositions(positions);
 }
 
-std::vector<int> Engine::findLinesToClear() {
+std::vector<int> TetrisEngine::findLinesToClear() {
     std::vector<int> linesToClear;
 
     for (int i = 19; i >= 0; i--) {
@@ -152,7 +152,7 @@ std::vector<int> Engine::findLinesToClear() {
 }
 
 
-bool Engine::shouldAutoMoveDown() {
+bool TetrisEngine::shouldAutoMoveDown() {
     int speed = result.getSpeed();
     if (loopCounter >= speed) {
         loopCounter = 0;
@@ -161,21 +161,21 @@ bool Engine::shouldAutoMoveDown() {
     return false;
 }
 
-void Engine::moveTetromino(Tetromino* tetromino, int x, int y) {
+void TetrisEngine::moveTetromino(Tetromino* tetromino, int x, int y) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());
     tetromino->move(x, y, playingField);
     tetrisDisplay.drawBlocks(tetromino->getBlocks());
     inputBlocking.startBlocking(10);
 }
 
-void Engine::rotateClockwiseTetromino(Tetromino* tetromino) {
+void TetrisEngine::rotateClockwiseTetromino(Tetromino* tetromino) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());
     tetromino->rotateClockwise(playingField);
     tetrisDisplay.drawBlocks(tetromino->getBlocks()); 
     inputBlocking.startBlocking(10);   
 }
 
-void Engine::rotateAntiClockwiseTetromino(Tetromino* tetromino) {
+void TetrisEngine::rotateAntiClockwiseTetromino(Tetromino* tetromino) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());
     tetromino->rotateAntiClockwise(playingField);
     tetrisDisplay.drawBlocks(tetromino->getBlocks());
