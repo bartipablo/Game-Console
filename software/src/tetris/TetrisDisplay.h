@@ -8,11 +8,11 @@
 #define Y_PLAYING_FIELD 0
 
 #include "Block.h"
-#include <vector>
-#include "./src/DigitalLCD.h"
-
-#include "Color.h"
+#include "../DigitalLCD.h"
+#include "../Color.h"
 #include "PlayingField.h"
+
+#include <vector>
 
 /**
  * @brief Class representing a display for Tetris game.

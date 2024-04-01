@@ -2,7 +2,7 @@
 
 #include "./src/UserInput.h"
 #include "./src/DigitalLCD.h"
-#include "TetrisEngine.h"
+#include "./src/tetris/TetrisEngine.h"
 
 
 #define TFT_SCK 18  // CLK

@@ -5,8 +5,8 @@
 #include <vector>
 
 #include "Block.h"
-#include "Vector2D.h"
-#include "optional.hpp"
+#include "../Vector2D.h"
+#include "../optional.hpp"
 #include "TetrisProperties.h"
 
 /**

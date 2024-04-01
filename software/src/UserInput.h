@@ -2,7 +2,6 @@
 #define UserInput_H
 
 #include "Arduino.h"
-#include <stdexcept>
 
 /**
  * @brief Class for handling user input such as buttons and joystick.
