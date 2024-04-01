@@ -44,7 +44,7 @@ void Result::updateScore(int clearingLines) {
 }
 
 void Result::updateClearingLinesNo(int clearingLines) {
-    clearingLinesNo += clearingLinesNo;
+    clearingLinesNo += clearingLines;
 }
 
 void Result::updateLevel() {

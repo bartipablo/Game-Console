@@ -10,6 +10,8 @@ public:
   const static int GREEN_;
 
   const static int RED_;
+
+  const static int GRAY_;
 };
 
 #endif

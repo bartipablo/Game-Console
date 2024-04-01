@@ -8,6 +8,7 @@
 #include "Tetromino.h"
 #include "TetrominoFactory.h"
 #include "TetrisDisplay.h"
+#include "InputBlocking.h"
 #include "Arduino.h"
 #include "./src/UserInput.h"
 
@@ -33,6 +34,8 @@ private:
     void rotateClockwiseTetromino(Tetromino* tetromino);
 
     void rotateAntiClockwiseTetromino(Tetromino* tetromino);
+
+    InputBlocking inputBlocking;
 
     Result result;
 

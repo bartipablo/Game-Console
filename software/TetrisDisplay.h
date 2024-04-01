@@ -13,6 +13,7 @@
 #include <vector>
 #include "./src/DigitalLCD.h"
 
+#include "Color.h"
 #include "PlayingField.h"
 
 class TetrisDisplay {
@@ -31,9 +32,21 @@ public:
 
     void drawPlayinFieldWithPositions();
 
-    void test();
+    void displayFieldsDescription();
 
-    void test1();
+    void clearScore();
+
+    void clearLevel();
+
+    void clearNext();
+
+    void displayScore(int score);
+
+    void displayLevel(int level);
+
+    void displayNext(std::vector<Block> blocks);
+
+    void displayGameOver(int score, int level);
 
 private:
     Arduino_ILI9341* display;

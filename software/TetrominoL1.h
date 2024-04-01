@@ -20,14 +20,12 @@ public:
     }
 
     virtual void rotateClockwise(const PlayingField& playingField) override {
-        rotateForSpecyficTetrominos(xRotate, yRotate, playingField);
-        direction = nextDirection(direction);
+        rotateForSpecyficTetrominos(xRotate, yRotate, playingField, nextDirection);
 
     }
 
     virtual void rotateAntiClockwise(const PlayingField& playingField) override {
-        rotateForSpecyficTetrominos(xAntiRotate, yAntiRotate, playingField);
-        direction = previousDirection(direction);
+        rotateForSpecyficTetrominos(xAntiRotate, yAntiRotate, playingField, previousDirection);
     }
 
 

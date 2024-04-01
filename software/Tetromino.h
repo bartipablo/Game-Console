@@ -32,7 +32,7 @@ protected:
 
     Direction direction;
 
-    void rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField);
+    void rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField, Direction (*newDirection)(Direction));
 };
 
 #endif

@@ -11,7 +11,7 @@ public:
   Block(int color, Vector2D position) : color(color), position(position) {
   }
 
-  int getColor();
+  int getColor() const;
 
   Vector2D getPosition() const;
 

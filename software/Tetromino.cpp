@@ -33,7 +33,7 @@ void Tetromino::move(int x, int y, const PlayingField& playingField) {
 }
 
 
-void Tetromino::rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField) {
+void Tetromino:: rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField, Direction (*newDirection)(Direction)) {
         Vector2D prevPositions[MAX_BLOCKS];
 
         for (int i = 0; i < MAX_BLOCKS; ++i) {
@@ -76,4 +76,6 @@ void Tetromino::rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4]
         for (int i = 0; i < MAX_BLOCKS; i++) {
             blocks[i].updatePosition(newPositions[i]);
         }
+
+        direction = newDirection(direction);
 }
