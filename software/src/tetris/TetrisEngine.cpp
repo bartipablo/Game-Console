@@ -107,6 +107,7 @@ void TetrisEngine::run() {
     tetrisDisplay.displayGameOver(result.getScore(), result.getLevel());
     delay(1500);
     while (true) {
+        delay(100);
          if (userInput->isPressedLeftButton() || userInput->isPressedRightButton()) {
             return;
          }
