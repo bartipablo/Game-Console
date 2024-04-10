@@ -104,7 +104,8 @@ void Keyboard::initCapitalizeKeys() {
 
 void Keyboard::initSpecialKeys() {
     backspace = Key('\b', "Backspace", Vector2D(4, 0), 2);
-    space = Key(' ', "Space", Vector2D(4, 2), 6);
+    capsLck = Key(7, "CapsLk", Vector2D(4, 2), 2);
+    space = Key(' ', "Space", Vector2D(4, 4), 4);
     enter = Key('\n', "Enter", Vector2D(4, 8), 2);
 }
 
@@ -128,7 +129,10 @@ void Keyboard::cursorLeft() {
     }
     else if (cursorPosition.x() == 4) {
         if (cursorPosition.y() >= 8) {
-            cursorPosition = Vector2D(4, 8);
+            cursorPosition = Vector2D(4, 6);
+        }
+        else if (cursorPosition.y() >= 4) {
+            cursorPosition = Vector2D(4, 3);
         }
         else if (cursorPosition.y() >= 2) {
             cursorPosition = Vector2D(4, 1);
@@ -147,6 +151,9 @@ void Keyboard::cursorRight() {
         if (cursorPosition.y() <= 1) {
             cursorPosition = Vector2D(4, 2);
         }
+        else if (cursorPosition.y() <= 3) {
+            cursorPosition = Vector2D(4, 5);
+        }
         else if (cursorPosition.y() <= 7) {
             cursorPosition = Vector2D(4, 8);
         }
@@ -163,13 +170,16 @@ Key Keyboard::getCurrentKey() {
         }
     }
     else if (cursorPosition.x() == 4) {
-        if (cursorPosition.y() < 2) {
+        if (cursorPosition.y() <= 1) {
             return backspace;
         }
-        else if (cursorPosition.y() >= 2 && cursorPosition.y() <= 8) {
+        else if (cursorPosition.y() >= 2 && cursorPosition.y() <= 3) {
+            return capsLck;
+        }
+        else if (cursorPosition.y() >= 4 && cursorPosition.y() <= 7) {
             return space;
         }
-        else if (cursorPosition.y() > 8) {
+        else if (cursorPosition.y() >= 8) {
             return enter;
         }
     }
@@ -195,6 +205,7 @@ std::vector<Key> Keyboard::getKeys() {
     }
 
     keys.push_back(backspace);
+    keys.push_back(capsLck);
     keys.push_back(space);
     keys.push_back(enter);
     return keys;

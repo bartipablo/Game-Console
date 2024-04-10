@@ -1,8 +1,10 @@
 #include "Key.h"
 
 Key::Key(char character, std::string stringRepresentation, Vector2D position, int width) {
-    Key(character, position, width);
+    this->character = character;
     this->stringRepresentation = stringRepresentation;
+    this->position = position;
+    this->width = width;
 }
 
 Key::Key(char character, Vector2D position, int width) {
@@ -13,7 +15,7 @@ Key::Key(char character, Vector2D position, int width) {
 }
 
 Key::Key() {
-    this->character = ' ';
+    this->character = 0;
     this->stringRepresentation = "DEFAULT";
     this->position = Vector2D(0, 0);
     this->width = 1;

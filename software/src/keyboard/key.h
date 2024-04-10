@@ -16,16 +16,16 @@ public:
      * @brief Construct a new Key object.
      * @param character Key character. This field works like key (button) identifier.
      * @param stringRepresentation key string representation. This field works like key (button) label. For example "SPACE" for ' '.
-     * @param position Position of the key on the keyboard.
-     * @param width Width of the key.
+     * @param position Position of the key on the keyboard. Used by display.
+     * @param width Width of the key. Used by the display.
      */
     Key(char character, std::string stringRepresentation, Vector2D position, int width);
 
     /**
      * @brief Construct a new Key object.
      * @param character Key character. This field works like key (button) identifier.
-     * @param position Position of the key on the keyboard.
-     * @param width Width of the key.
+     * @param position Position of the key on the keyboard. Used by display.
+     * @param width Width of the key. Used by the display.
      * String represenation is set to character.
      */
     Key(char character, Vector2D position, int width);
@@ -43,10 +43,25 @@ public:
      */
     std::string toString();
 
+    /**
+     * @brief Get key character.
+     * 
+     * @return char Key character.
+     */
     char getCharacter();
 
+    /**
+     * @brief Get key position on keyboard. Used by the display.
+     * 
+     * @return Vector2D Key position.
+     */
     Vector2D getPosition();
 
+    /**
+     * @brief Get key width. Used by the display.
+     * 
+     * @return int Key width.
+     */
     int getWidth();
 
 private:

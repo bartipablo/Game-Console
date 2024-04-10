@@ -29,12 +29,19 @@ void setup() {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     display->begin();
 
-    while (true) {
-        TetrisEngine* engine = new TetrisEngine();
-        engine->run();
-        delete engine;
-    }
+    display->fillScreen(BLACK);
+
+    while (true) {}
 }
 
+    
 
 void loop() {}
+
+
+
+void tetrisExample() {
+    TetrisEngine* engine = new TetrisEngine();
+    engine->run();
+    delete engine;
+}

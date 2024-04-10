@@ -9,6 +9,11 @@
 /**
  * @brief Class representing keyboard.
  * The keyboard is represented in a QWERTY layout with several special characters.
+ * 
+ *  Coordinates representation:
+ *  (0,0) → y
+ *    ↓
+ *    x
  */
 class Keyboard {
 
@@ -53,6 +58,13 @@ public:
  */
     std::vector<Key> getKeys();
 
+/**
+ * @brief capitalize the keyboard.
+ * @param isCapitalized - flag indicating if keyboard is capitalized.
+ * If true, the keyboard will be capitalized.
+ */
+    void setCapitalized(bool isCapitalized);
+
 private:
     bool isCapitalized; /**< Flag indicating if keyboard is capitalized. */
 
@@ -64,11 +76,11 @@ private:
 
     Key backspace;
 
+    Key capsLck;
+
     Key space;
 
     Key enter;
-
-    void setCapitalized(bool isCapitalized);
 
     void initLowercaseKeys();
 
