@@ -1,4 +1,4 @@
-#include "keyboard.h"
+#include "Keyboard.h"
 
 Keyboard::Keyboard() {
     initLowercaseKeys();
@@ -173,7 +173,7 @@ Key Keyboard::getCurrentKey() {
             return enter;
         }
     }
-    return Key(' ', " ", Vector2D(0, 0), 1);
+    return Key();
 }
 
 std::vector<Key> Keyboard::getKeys() {

@@ -4,44 +4,69 @@
 #include <map>
 #include <vector>
 
-
-#include "key.h"
+#include "Key.h"
 
 /**
  * @brief Class representing keyboard.
- * 
+ * The keyboard is represented in a QWERTY layout with several special characters.
  */
 class Keyboard {
 
 public:
+/**
+ * @brief Construct a new Keyboard object.
+ * This constructor initializes lowercaseKeys, capitalizeKeys and special keys.
+*/
     Keyboard();
 
+/**
+ * @brief Move cursor up.
+ * For example from key 'a' to key 'q'.
+*/
     void cursorUp();
 
+/**
+ * @brief Move cursor down.
+ * For example from key 'q' to key 'a'.
+*/
     void cursorDown();
 
+/**
+ * @brief Move cursor left.
+ * For example from key 's' to key 'a'.
+ */
     void cursorLeft();
 
+/**
+ * @brief Move cursor right.
+ * For example from key 's' to key 'd'.
+ */
     void cursorRight();
 
+/**
+ * @brief Get the current key the user is pointing to
+ */ 
     Key getCurrentKey();
 
+/**
+ * @brief Get all keys on the keyboard.
+ */
     std::vector<Key> getKeys();
 
 private:
     bool isCapitalized; /**< Flag indicating if keyboard is capitalized. */
 
-    Vector2D cursorPosition; /**< Position of the cursor. */
+    Vector2D cursorPosition; /**< Position of the user cursor. */
 
     Key lowercaseKeys[5][10]; /**< Array of lowercase keys. */
 
     Key capitalizeKeys[5][10]; /**< Array of capitalized keys. */
 
-    Key backspace; /**< Backspace key. */
+    Key backspace;
 
-    Key space; /**< Space key. */
+    Key space;
 
-    Key enter; /**< Enter key. */
+    Key enter;
 
     void setCapitalized(bool isCapitalized);
 
@@ -50,7 +75,6 @@ private:
     void initCapitalizeKeys();
 
     void initSpecialKeys();
+};
 
-
-}
 #endif
