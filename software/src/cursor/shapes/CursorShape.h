@@ -5,6 +5,11 @@
 
 #include "../../Pixel.h"
 
+/**
+ * Represents a cursor shape.
+ * For example a cursor shape could be a Windows arrow.
+ * The cursor shape is represented by a vector of pixels.
+*/
 class CursorShape {
 
 public:

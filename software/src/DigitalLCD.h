@@ -34,6 +34,10 @@ public:
      */
     static void init(Arduino_ESP32SPI* bus, int TFT_RESET);
 
+    static const int X_BOUNDARY = 320;
+
+    static const int Y_BOUNDARY = 240;
+
 private:
 	static Arduino_ILI9341* digitalLCD_;
 };

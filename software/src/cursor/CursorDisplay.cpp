@@ -1,6 +1,6 @@
 #include "CursorDisplay.h"
 
-CursorDisplay::CursorDisplay(const Cursor& cursor) : cursor(cursor) {}
+CursorDisplay::CursorDisplay(Cursor& cursor) : cursor(cursor) {}
 
 void CursorDisplay::drawCursor() {    
     CursorShape cursorShape = cursor.getCursorShape();
