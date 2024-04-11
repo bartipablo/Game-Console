@@ -17,7 +17,19 @@ public:
         return pixels;
     }
 
+    int getHeightPx() {
+        return heightPx;
+    }
+
+    int getWidthPx() {
+        return widthPx;
+    }
+
 protected:
+    int heightPx;
+
+    int widthPx;
+
     std::vector<Pixel> pixels;
 };
 

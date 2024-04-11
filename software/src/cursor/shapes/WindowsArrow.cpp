@@ -1,6 +1,10 @@
 #include "WindowsArrow.h"
 
 WindowsArrow::WindowsArrow() {
+
+    this->widthPx = 12;
+    this->heightPx = 19;
+
     for (int y = 0; y < 19; y++) {
         for (int x = 0; x < 12; x++) {
             char c = arrowCharRepresentation[y][x];
