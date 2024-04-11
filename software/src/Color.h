@@ -17,6 +17,10 @@ public:
   const static int RED_;
 
   const static int GRAY_;
+
+  const static int BLACK_;
+
+  const static int WHITE_;
 };
 
 #endif
