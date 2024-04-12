@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "../Vector2D.h"
+#include "../common/Vector2D.h"
 
 /**
  * @brief Class representing single key on keyboard.

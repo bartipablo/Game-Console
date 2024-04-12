@@ -8,9 +8,9 @@
 #include "Tetromino.h"
 #include "TetrominoFactory.h"
 #include "TetrisDisplay.h"
-#include "../InputBlocking.h"
+#include "../utils/InputBlocking.h"
 #include "Arduino.h"
-#include "../UserInput.h"
+#include "../utils/UserInput.h"
 
 
 /**

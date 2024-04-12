@@ -91,14 +91,16 @@ public:
 
     /**
      * @brief Gets the X-axis analog value of the joystick.
-     * 
+     *  range: 0-255. 255 for full left, 0 for full right,
+     *  115-116 for neutral position during serial test.
      * @return The X-axis value of the joystick.
      */
     int getXJoysticVal();
 
     /**
      * @brief Gets the Y-axis analog value of the joystick.
-     * 
+     * range: 0-255. 255 for full down, 0 for up right,
+     * 114-115 for neutral position during serial test.
      * @return The Y-axis value of the joystick.
      */
     int getYJoysticVal();

@@ -8,8 +8,8 @@
 #define Y_PLAYING_FIELD 0
 
 #include "Block.h"
-#include "../DigitalLCD.h"
-#include "../Color.h"
+#include "../utils/DigitalLCD.h"
+#include "../common/Color.h"
 #include "PlayingField.h"
 
 #include <vector>

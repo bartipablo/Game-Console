@@ -4,10 +4,12 @@ Keyboard::Keyboard() {
     initLowercaseKeys();
     initCapitalizeKeys();
     initSpecialKeys();
+
+    capitalized = false;
 }
 
-void Keyboard::setCapitalized(bool isCapitalized) {
-    this->isCapitalized = isCapitalized;
+void Keyboard::setCapitalized(bool capitalized) {
+    this->capitalized = capitalized;
 }
 
 void Keyboard::initLowercaseKeys() {
@@ -162,7 +164,7 @@ void Keyboard::cursorRight() {
 
 Key Keyboard::getCurrentKey() {
     if (cursorPosition.x() < 4) {
-        if (isCapitalized) {
+        if (capitalized) {
             return capitalizeKeys[cursorPosition.x()][cursorPosition.y()];
         }
         else {
@@ -189,7 +191,7 @@ Key Keyboard::getCurrentKey() {
 std::vector<Key> Keyboard::getKeys() {
     std::vector<Key> keys;
     
-    if (isCapitalized) {
+    if (capitalized) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 10; j++) {
                 keys.push_back(capitalizeKeys[i][j]);
@@ -209,4 +211,12 @@ std::vector<Key> Keyboard::getKeys() {
     keys.push_back(space);
     keys.push_back(enter);
     return keys;
+}
+
+bool Keyboard::isCapitalized() {
+    return capitalized;
+}
+
+void Keyboard::changeCapitalization() {
+    capitalized = !capitalized;
 }

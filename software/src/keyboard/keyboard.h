@@ -60,13 +60,17 @@ public:
 
 /**
  * @brief capitalize the keyboard.
- * @param isCapitalized - flag indicating if keyboard is capitalized.
+ * @param capitalized - flag indicating if keyboard is capitalized.
  * If true, the keyboard will be capitalized.
  */
-    void setCapitalized(bool isCapitalized);
+    void setCapitalized(bool capitalized);
+
+    bool isCapitalized();
+
+    void changeCapitalization();
 
 private:
-    bool isCapitalized; /**< Flag indicating if keyboard is capitalized. */
+    bool capitalized; /**< Flag indicating if keyboard is capitalized. */
 
     Vector2D cursorPosition; /**< Position of the user cursor. */
 

@@ -17,6 +17,20 @@ public:
   const static int RED_;
 
   const static int GRAY_;
+
+  const static int BLACK_;
+
+  const static int WHITE_;
+
+  Color();
+
+  Color(int colorRGB565);
+
+  int getColorRGB565();
+
+private:
+  int colorRGB565;
+
 };
 
 #endif

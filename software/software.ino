@@ -1,8 +1,7 @@
 #include <Arduino_GFX_Library.h>
 
-#include "./src/UserInput.h"
-#include "./src/DigitalLCD.h"
-#include "./src/tetris/TetrisEngine.h"
+#include "./src/utils/DigitalLCD.h"
+#include "./src/menu/Menu.h"
 
 
 #define TFT_SCK 18  // CLK
@@ -29,19 +28,12 @@ void setup() {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     display->begin();
 
-    display->fillScreen(BLACK);
+    Menu* menu = new Menu();
+    menu->start();
 
-    while (true) {}
+    delete menu;
 }
 
     
 
 void loop() {}
-
-
-
-void tetrisExample() {
-    TetrisEngine* engine = new TetrisEngine();
-    engine->run();
-    delete engine;
-}

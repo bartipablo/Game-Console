@@ -23,7 +23,8 @@ void KeyboardDisplay::drawKey(Key key, int color) {
     int y = getYPx(key.getPosition());
 
     uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
+    display->setRotation(3);
+    display->setTextSize(1);
 
     display->fillRect(y, x, key.getWidth() * KEY_WIDTH, KEY_HEIGHT, BLACK);
     display->fillRect(y + 1, x + 1, key.getWidth() * KEY_WIDTH - 2, KEY_HEIGHT - 2, color);
