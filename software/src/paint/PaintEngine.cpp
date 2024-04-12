@@ -26,6 +26,7 @@ void PaintEngine::run() {
     cursor->setSensitive(50);
 
     paintDisplay->drawCanvas(*canvas);
+    delay(300);
 
     while(!shutdown) {
         delay(50);
@@ -34,14 +35,15 @@ void PaintEngine::run() {
             delay(200);
             if (userInput->isPressedLeftButton() && userInput->isPressedRightButton() && userInput->isPressedJoysticButton()) {
                 shutdown = true;
+                break;
             }
         }
 
-        if (userInput->isPressedLeftButton()) {
+        if (userInput->isPressedLeftButton() && !userInput->isPressedJoysticButton()) {
             canvas->drawPixel(cursor->getPosition(), colorBox->getSelectedColor().getColorRGB565());
         }
 
-        if (userInput->isPressedRightButton()) {
+        if (userInput->isPressedRightButton() && !userInput->isPressedJoysticButton()) {
             runColorSelection();
             paintDisplay->drawCanvas(*canvas);
         }

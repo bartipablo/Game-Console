@@ -23,6 +23,8 @@ void TetrisEngine::run() {
     tetrisDisplay.drawLevel(result.getLevel());
     tetrisDisplay.drawPlayingField(playingField);
 
+    inputBlocking.startBlocking(40);
+
     while (!gameover) {
 
         actualTetromino = nextTetromino;
