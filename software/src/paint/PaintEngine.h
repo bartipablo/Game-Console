@@ -4,11 +4,13 @@
 #include "Arduino.h"
 #include "Canvas.h"
 #include "PaintDisplay.h"
+#include "ColorBox.h"
 #include "../UserInput.h"
 #include "../cursor/Cursor.h"
 #include "../cursor/CursorDisplay.h"
 #include "../cursor/shapes/WindowsArrow.h"
 #include "../Color.h"
+#include "../InputBlocking.h"
 
 class PaintEngine {
 
@@ -28,11 +30,15 @@ private:
 
     CursorDisplay* cursorDisplay;
 
+    ColorBox* colorBox;
+
+    InputBlocking* inputBlocking;
+
     UserInput* userInput = UserInput::getInstance();
 
     bool shutdown;
 
-    int selectedColor = Color::GREEN_;
+    void runColorSelection();
 };
 
 

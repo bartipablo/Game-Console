@@ -5,6 +5,8 @@ PaintEngine::PaintEngine() {
     this->paintDisplay = new PaintDisplay();
     this->cursor = new Cursor(WindowsArrow());
     this->cursorDisplay = new CursorDisplay(*this->cursor);
+    this->colorBox = new ColorBox();
+    this->inputBlocking = new InputBlocking();
 
     this->shutdown = false;
 
@@ -15,6 +17,8 @@ PaintEngine::~PaintEngine() {
     delete this->paintDisplay;
     delete this->cursor;
     delete this->cursorDisplay;
+    delete this->colorBox;
+    delete this->inputBlocking;
 }
 
 //TODO
@@ -25,13 +29,20 @@ void PaintEngine::run() {
 
     while(!shutdown) {
         delay(50);
-        
+
+        if (userInput->isPressedLeftButton() && userInput->isPressedRightButton() && userInput->isPressedJoysticButton()) {
+            delay(200);
+            if (userInput->isPressedLeftButton() && userInput->isPressedRightButton() && userInput->isPressedJoysticButton()) {
+                shutdown = true;
+            }
+        }
+
         if (userInput->isPressedLeftButton()) {
-            canvas->drawPixel(cursor->getPosition(), selectedColor);
+            canvas->drawPixel(cursor->getPosition(), colorBox->getSelectedColor().getColorRGB565());
         }
 
         if (userInput->isPressedRightButton()) {
-            canvas->clear();
+            runColorSelection();
             paintDisplay->drawCanvas(*canvas);
         }
         
@@ -40,6 +51,39 @@ void PaintEngine::run() {
         cursor->move(userInput->getXJoysticVal(), userInput->getYJoysticVal());
 
         cursorDisplay->drawCursor();
+    }
+}
+
+void PaintEngine::runColorSelection() {
+    paintDisplay->drawColorBox(*colorBox);
+    inputBlocking->startBlocking(10);
+
+    while (true) {
+        delay(20);
+        if (!inputBlocking->isBlocked()) {
+            
+            if (userInput->isPressedJoysticLeft()) {
+                colorBox->previousColor();
+                paintDisplay->drawColorBox(*colorBox);
+                inputBlocking->startBlocking(10);
+
+            }
+            else if (userInput->isPressedJoysticRight()) {
+                colorBox->nextColor();
+                paintDisplay->drawColorBox(*colorBox);
+                inputBlocking->startBlocking(10);
+            }
+            else if (userInput->isPressedLeftButton()) {
+                colorBox->selectColor();
+                delay(20);
+                return;
+            }
+            else if (userInput->isPressedRightButton()) {
+                delay(20);
+                return;
+            }
+        }
+        inputBlocking->decrement();
     }
 }
 

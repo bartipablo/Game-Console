@@ -46,3 +46,16 @@ void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx
         }
     }
 }
+
+void PaintDisplay::drawColorBox(ColorBox& colorBox) {
+    Color actualColor = colorBox.getActualColor();
+
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3);
+
+    display->fillScreen(Color::BLACK_);
+    display->fillRect(105, 65, 110, 110, actualColor.WHITE_);
+    display->fillRect(110, 70, 100, 100, actualColor.getColorRGB565());
+
+    display->setRotation(originalRotation);
+}

@@ -1,7 +1,7 @@
 #include "Cursor.h"
 
 Cursor::Cursor(CursorShape cursorShape) {
-    position = Vector2D(0, 0);
+    position = Vector2D(100, 100);
     this->cursorShape = cursorShape;
     this->sensitivity = 30;
 }
