@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "./paint/PaintApplication.h"
 #include "./tetris/TetrisApplication.h"
+#include "./notepad/NotepadApplication.h"
 #include "MenuDisplay.h"
 #include "Icon.h"
 #include "../utils/UserInput.h"

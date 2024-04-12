@@ -6,6 +6,7 @@ Menu::Menu() {
     inputBlocking = new InputBlocking();
 
     applications.push_back(new TetrisApplication());
+    applications.push_back(new NotepadApplication());
     applications.push_back(new PaintApplication());
 
     applicationsQuantity = applications.size();
