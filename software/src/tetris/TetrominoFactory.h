@@ -2,8 +2,8 @@
 #define TetrominoFactory_H
 
 #include "Tetromino.h"
-#include "../Color.h"
-#include "../Vector2D.h"
+#include "../common/Color.h"
+#include "../common/Vector2D.h"
 #include "PlayingField.h"
 #include "Arduino.h"
 

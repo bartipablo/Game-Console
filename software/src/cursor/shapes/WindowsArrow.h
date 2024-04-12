@@ -2,7 +2,7 @@
 #define WindowsArrow_H
 
 #include "CursorShape.h"
-#include "../../Color.h"
+#include "../../common/Color.h"
 
 /**
  * @brief Class representing a Windows arrow cursor.

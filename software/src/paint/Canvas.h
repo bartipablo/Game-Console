@@ -1,8 +1,8 @@
 #ifndef Canvas_H
 #define Canvas_H
 
-#include "../Vector2D.h"
-#include "../Color.h"
+#include "../common/Vector2D.h"
+#include "../common/Color.h"
 
 class Canvas {
 

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../../Pixel.h"
+#include "../../common/Pixel.h"
 
 /**
  * Represents a cursor shape.

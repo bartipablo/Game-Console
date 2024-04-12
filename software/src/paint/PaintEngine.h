@@ -5,12 +5,12 @@
 #include "Canvas.h"
 #include "PaintDisplay.h"
 #include "ColorBox.h"
-#include "../UserInput.h"
+#include "../utils/UserInput.h"
 #include "../cursor/Cursor.h"
 #include "../cursor/CursorDisplay.h"
 #include "../cursor/shapes/WindowsArrow.h"
-#include "../Color.h"
-#include "../InputBlocking.h"
+#include "../common/Color.h"
+#include "../utils/InputBlocking.h"
 
 class PaintEngine {
 

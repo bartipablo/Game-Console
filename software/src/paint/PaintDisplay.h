@@ -3,11 +3,11 @@
 
 #include <vector>
 
-#include "../DigitalLCD.h"
-#include "../Vector2D.h"
+#include "../utils/DigitalLCD.h"
+#include "../common/Vector2D.h"
 #include "Canvas.h"
 #include "ColorBox.h"
-#include "../Color.h"
+#include "../common/Color.h"
 
 class PaintDisplay {
 

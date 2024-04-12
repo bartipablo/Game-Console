@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "Keyboard.h"
-#include "../DigitalLCD.h"
-#include "../Color.h"
+#include "../utils/DigitalLCD.h"
+#include "../common/Color.h"
 
 /**
  * @brief Class representing single key.

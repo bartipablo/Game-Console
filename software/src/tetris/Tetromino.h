@@ -2,8 +2,8 @@
 #define Tetromino_H
 
 #include "Block.h"
-#include "../Vector2D.h"
-#include "../Direction.h"
+#include "../common/Vector2D.h"
+#include "../common/Direction.h"
 #include "TetrisProperties.h"
 #include "PlayingField.h"
 #include <vector>

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../DigitalLCD.h"
+#include "../utils/DigitalLCD.h"
 #include "./shapes/CursorShape.h"
 #include "Cursor.h"
 

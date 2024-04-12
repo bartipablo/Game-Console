@@ -4,10 +4,10 @@
 #include <vector>
 #include <algorithm>
 
-#include "../Vector2D.h"
+#include "../common/Vector2D.h"
 #include "./shapes/CursorShape.h"
-#include "../Pixel.h"
-#include "../DigitalLCD.h"
+#include "../common/Pixel.h"
+#include "../utils/DigitalLCD.h"
 
 /**
  * @brief Class representing a user cursor.
