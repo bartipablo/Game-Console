@@ -65,8 +65,17 @@ public:
  */
     void setCapitalized(bool capitalized);
 
+/**
+ * @brief Check if the keyboard is capitalized.
+ * @return true if the keyboard is capitalized, false otherwise.
+ */
     bool isCapitalized();
 
+/**
+ * @brief change the capitalization of the keyboard.
+ * If the keyboard is capitalized, it will be changed to lowercase.
+ * If the keyboard is lowercase, it will be changed to capitalized.
+ */
     void changeCapitalization();
 
 private:

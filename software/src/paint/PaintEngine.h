@@ -19,6 +19,9 @@ public:
 
     ~PaintEngine();
 
+    /**
+     * Start the paint enigne.
+     */
     void run();
 
 private:

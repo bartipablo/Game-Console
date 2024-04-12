@@ -65,7 +65,7 @@ private:
     /**
      * @brief Method to create an L2 shape (L-shaped tetromino) Tetromino.
      * 
-     *      ⬛
+     *    ⬛
      * ⬛⬛⬛
      * @param initialPosition The initial position of the Tetromino.
      * @param color The color of the Tetromino.
@@ -76,7 +76,7 @@ private:
     /**
      * @brief Method to create an Skew1 shape (S-shaped tetromino) Tetromino.
      * 
-     *    ⬛⬛
+     *   ⬛⬛
      * ⬛⬛
      * @param initialPosition The initial position of the Tetromino.
      * @param color The color of the Tetromino.
@@ -88,7 +88,7 @@ private:
      * @brief Method to create an Skew2 shape (S-shaped tetromino) Tetromino.
      * 
      * ⬛⬛
-     *    ⬛⬛
+     *   ⬛⬛
      * @param initialPosition The initial position of the Tetromino.
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type Skew2.
