@@ -17,6 +17,9 @@ class CursorDisplay {
 public:
     CursorDisplay(Cursor& cursor);
 
+    /**
+     * @brief Draw the cursor on the screen.
+     */
     void drawCursor();
 
 private:

@@ -19,6 +19,9 @@ public:
     }
 
 private:
+/**
+ * Icon 20x20 represented by a 2D array of RGB565 values.
+*/
     const unsigned short bitmap[20][20] = {
         {33808, 33808, 33808, 31695, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {31727, 31695, 31695, 27501, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},

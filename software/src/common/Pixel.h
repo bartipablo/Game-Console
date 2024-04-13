@@ -15,6 +15,9 @@ public:
 
     Pixel(Vector2D initPosition, int initColor);
 
+/** Pixel position on LCD screen 320x240.
+ *  @return the position of the pixel.
+*/
     Vector2D getPosition();
 
     int getColor();

@@ -53,8 +53,6 @@ void Menu::previousApplication() {
     currentApplication = applications[currentApplicationIndex];
 }
 
-
-// MAIN SYSTEM FUNCTION
 void Menu::start() {
     displayApplication(currentApplication);
 

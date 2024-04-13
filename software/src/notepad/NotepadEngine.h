@@ -15,9 +15,25 @@ public:
 
     ~NotepadEngine();
 
+/**
+ * Starts the notepad application.
+*/
     void run();
 
-private:
+private:  
+/**
+ * Updates the key on the screen.
+ * @param previousKey the previous key.
+ * @param currentKey the current key.
+*/
+    void updateKey(Key previousKey, Key currentKey);
+
+/**
+ * Push-button operation.
+ * @param key the key to serve.
+ */
+    void serveKey(Key key);
+
     bool shutdown;
 
     Text* text;
@@ -32,9 +48,6 @@ private:
 
     UserInput* userInput = UserInput::getInstance();
 
-    void updateKey(Key previousKey, Key currentKey);
-
-    void serveKey(Key key);
 };
 
 
