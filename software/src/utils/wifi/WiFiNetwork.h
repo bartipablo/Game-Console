@@ -5,6 +5,9 @@
 
 #include "WiFiEncriptionType.h"
 
+/**
+ * @brief A class that represents a wifi network.
+ */
 class WiFiNetwork {
 
 public:

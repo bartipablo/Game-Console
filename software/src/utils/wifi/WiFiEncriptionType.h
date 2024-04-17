@@ -3,10 +3,14 @@
 
 #include <string>
 
+/**
+ * @brief An enum class that represents the different types of wifi encription.
+ 
+*/
 enum class WiFiEncriptionType {
-    TKIP,
-    WEP,
-    CCMP,
+    TKIP, /// (WPA)
+    WEP,  
+    CCMP, /// (WPA)
     NONE,
     AUTO,
     OTHER
