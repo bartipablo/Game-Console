@@ -1,10 +1,10 @@
-#include "MenuDisplay.h"
+#include "MainMenuDisplay.h"
 
-void MenuDisplay::clear() {
+void MainMenuDisplay::clear() {
     display->fillScreen(Color::BLACK_);
 }
 
-void MenuDisplay::drawIcon(Icon& icon) {
+void MainMenuDisplay::drawIcon(Icon& icon) {
 
     int pixelSize = icon.getPixelSize();
 
@@ -29,7 +29,7 @@ void MenuDisplay::drawIcon(Icon& icon) {
     display->setRotation(originalRotation);
 }
 
-void MenuDisplay::drawTitle(std::string title) {
+void MainMenuDisplay::drawTitle(std::string title) {
 
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 
@@ -42,7 +42,7 @@ void MenuDisplay::drawTitle(std::string title) {
     display->setRotation(originalRotation);
 }
 
-void MenuDisplay::drawButtonInfo() {
+void MainMenuDisplay::drawButtonInfo() {
 
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 

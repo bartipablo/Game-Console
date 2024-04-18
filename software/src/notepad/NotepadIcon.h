@@ -1,7 +1,7 @@
 #ifndef NotepadIcon_H
 #define NotepadIcon_H
 
-#include "../Icon.h"
+#include "../common/Icon.h"
 
 class NotepadIcon : public Icon {
 public:

@@ -71,7 +71,7 @@ void AppMenu::start() {
             inputBlocking->startBlocking(20);
         }
 
-        if (userInput->isPressedRightButton()) {
+        if (userInput->isPressedRightButton() && !blockExit) {
             return;
         }
     }

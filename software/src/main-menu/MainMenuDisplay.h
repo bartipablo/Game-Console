@@ -1,13 +1,13 @@
-#ifndef MenuDisplay_H
-#define MenuDisplay_H
+#ifndef MainMenuDisplay_H
+#define MainMenuDisplay_H
 
 #include <string>
 
 #include "../utils/DigitalLCD.h"
 #include "../common/Color.h"
-#include "Icon.h"
+#include "../common/Icon.h"
 
-class MenuDisplay {
+class MainMenuDisplay {
 
 public:
 /**
