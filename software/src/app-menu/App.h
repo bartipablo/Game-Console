@@ -9,6 +9,8 @@
 class App {
 public:
     virtual void start() = 0;
+
+    virtual void display() = 0;
 };
 
 #endif

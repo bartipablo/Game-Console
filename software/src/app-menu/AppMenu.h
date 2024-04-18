@@ -5,7 +5,6 @@
 #include "Arduino.h"
 
 #include "App.h"
-#include "AppDisplay.h"
 #include "../utils/InputBlocking.h"
 #include "../utils/UserInput.h"
 
@@ -15,12 +14,7 @@
  */
 class AppMenu {
 public:
-    template<typename... Args>
-    AppMenu(AppDisplay* appDisplay, Args&&... apps) : 
-        appDisplay(appDisplay), 
-        appList{std::forward<Args>(apps)...} {
-            inputBlocking = new InputBlocking();
-        };
+    AppMenu(std::vector<App*> apps);
 
     ~AppMenu();
 
@@ -43,11 +37,9 @@ private:
 
     InputBlocking* inputBlocking;
 
-    UserInput* userInput = UserInput::getInstance();
+    UserInput* userInput;
 
     App* currentApplication;
-
-    AppDisplay* appDisplay;
 
     std::vector<App*> appList;
 };

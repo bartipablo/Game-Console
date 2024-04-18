@@ -1,10 +1,15 @@
 #include "AppMenu.h"
 
+AppMenu::AppMenu(std::vector<App*> apps) {
+    appList = apps;
+    inputBlocking = new InputBlocking();
+    userInput = UserInput::getInstance();
+}
+
 AppMenu::~AppMenu() {
     for (App* app : appList) {
         delete app;
     }
-    delete appDisplay;
     delete inputBlocking;
 }
 
@@ -39,7 +44,7 @@ void AppMenu::start() {
 
     currentApplication = appList[currentApplicationIndex];
 
-    appDisplay->display(*currentApplication);
+    currentApplication->display();
 
     while (true) {
         delay(20);
@@ -50,24 +55,23 @@ void AppMenu::start() {
 
         if (userInput->isPressedJoysticLeft()) {
             previousApplication();
-            appDisplay->display(*currentApplication);
+            currentApplication->display();
             inputBlocking->startBlocking(10);
         }
 
         if (userInput->isPressedJoysticRight()) {
             nextApplication();
-            appDisplay->display(*currentApplication);
+            currentApplication->display();
             inputBlocking->startBlocking(10);
         }
 
         if (userInput->isPressedLeftButton()) {
             currentApplication->start();
-            appDisplay->display(*currentApplication);
+            currentApplication->display();
             inputBlocking->startBlocking(20);
         }
 
         if (userInput->isPressedRightButton()) {
-            inputBlocking->startBlocking(20);
             return;
         }
     }
