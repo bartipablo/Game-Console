@@ -1,7 +1,7 @@
 #ifndef WiFiNetwork_H
 #define WiFiNetwork_H
 
-#include <string>
+#include <cstring>
 
 #include "WiFiEncriptionType.h"
 

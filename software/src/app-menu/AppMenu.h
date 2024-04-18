@@ -39,6 +39,12 @@ public:
     void setBlockExit(bool blockExit);
 
 /**
+ * Sets whether the menu should exit automatically or not.
+ * If the menu exits automatically, the menu will exit after the user has finished using the application.
+ */
+    void setAutoExit(bool autoExit);
+
+/**
  * run the menu.
  */
     void start();
@@ -59,6 +65,8 @@ private:
     bool blockExit = false;
 
     bool loopedMenu = false;
+
+    bool autoExit = false;
 
     InputBlocking* inputBlocking;
 

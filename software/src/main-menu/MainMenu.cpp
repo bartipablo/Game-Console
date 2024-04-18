@@ -7,6 +7,7 @@ MainMenu::MainMenu() {
     apps.push_back(new TetrisApplication(menuDisplay));
     apps.push_back(new PaintApplication(menuDisplay));
     apps.push_back(new NotepadApplication(menuDisplay));
+    apps.push_back(new WiFiApplication(menuDisplay));
 
     appMenu = new AppMenu(apps);
     appMenu->setBlockExit(true);

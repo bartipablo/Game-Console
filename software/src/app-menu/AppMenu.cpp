@@ -21,6 +21,10 @@ void AppMenu::setBlockExit(bool blockExit) {
     this->blockExit = blockExit;
 }
 
+void AppMenu::setAutoExit(bool autoExit) {
+    this->autoExit = autoExit;
+}
+
 void AppMenu::nextApplication() {
     currentApplicationIndex++;
     if (currentApplicationIndex >= appList.size() || currentApplicationIndex < 0) {
@@ -45,6 +49,7 @@ void AppMenu::start() {
     currentApplication = appList[currentApplicationIndex];
 
     currentApplication->display();
+    inputBlocking->startBlocking(20);
 
     while (true) {
         delay(20);
@@ -67,6 +72,7 @@ void AppMenu::start() {
 
         if (userInput->isPressedLeftButton()) {
             currentApplication->start();
+            if (autoExit) return;
             currentApplication->display();
             inputBlocking->startBlocking(20);
         }

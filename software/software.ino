@@ -1,7 +1,8 @@
 #include <Arduino_GFX_Library.h>
 
 #include "./src/utils/DigitalLCD.h"
-#include "./src/menu/Menu.h"
+#include "./src/main-menu/MainMenu.h"
+#include "./src/utils/wifi/WiFiConnection.h"
 
 
 #define TFT_SCK 18  // CLK
@@ -12,14 +13,16 @@
 #define TFT_RESET 17
 #define LEFT_BUTTON 4
 #define RIGHT_BUTTON 15
-#define JOYSTIC_X 13
-#define JOYSTIC_Y 12
-#define JOYSTIC_BUTTON 14
+#define JOYSTIC_X 34//13
+#define JOYSTIC_Y 39//12
+#define JOYSTIC_BUTTON 32//36//14
 
 
 void setup() {
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
+
+    WiFiConnection::init();
 
     Arduino_ESP32SPI bus = Arduino_ESP32SPI(TFT_DC, TFT_CS, TFT_SCK, TFT_MOSI, TFT_MISO);
 
@@ -28,7 +31,7 @@ void setup() {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     display->begin();
 
-    Menu* menu = new Menu();
+    MainMenu* menu = new MainMenu();
     menu->start();
 
     delete menu;
