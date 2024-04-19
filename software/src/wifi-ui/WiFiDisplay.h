@@ -8,6 +8,9 @@
 #include "../utils/wifi/WiFiNetwork.h"
 #include "../utils/wifi/WiFiEncriptionType.h"
 
+/**
+ * Class to display the WiFi connection status and information.
+ */
 class WiFiDisplay {
 public:
     void clear();
@@ -16,7 +19,7 @@ public:
 
     void displayConnetionStatus(bool connected, const char* ssid);
 
-    void displayLoading();
+    void displayStatus(std::string message);
 
     void displayWEPInformation();
 

@@ -16,7 +16,9 @@ void WiFiUI::run() {
     inputBlocking->startBlocking(30);
     while (true) {
         if (!inputBlocking->isBlocked()) {
+            
             bool newConnectionStatus = wifiConnection->isConnected();
+
             if (newConnectionStatus != previousConnectionStatus) {
                 refreshConnectionStatus();
             }
@@ -27,26 +29,12 @@ void WiFiUI::run() {
 
             if (userInput->isPressedLeftButton()) {
                 
+                // If we have a saved network, we disconnect it 
                 if (strcmp("", wifiConnection->getLastSSID()) != 0) {
                     wifiConnection->disconnect();
                 }
                 else {
-                    display->clear();
-                    display->displayLoading();
-                    std::vector<WiFiNetwork> networks = wifiConnection->scanNetworks();
-                    std::vector<App*> networkUIs;
-                    
-                    for (WiFiNetwork network : networks) {
-                        networkUIs.push_back(new WiFiNetworkUI(display, network));
-                    }
-
-                    AppMenu* findedNetworksMenu = new AppMenu(networkUIs);
-                    findedNetworksMenu->setAutoExit(true);
-                    findedNetworksMenu->setLoopedMenu(true);
-
-                    findedNetworksMenu->start();
-
-                    delete findedNetworksMenu;
+                    runWiFiNetworkSelectionMenu();
                 }
                 refreshConnectionStatus();
                 inputBlocking->startBlocking(20);
@@ -55,24 +43,43 @@ void WiFiUI::run() {
 
         inputBlocking->decrement();
         delay(20);
-
     }
 }
 
 void WiFiUI::runWiFiNetworkSelectionMenu() {
+    display->clear();
+    display->displayStatus("Loading...");
     std::vector<WiFiNetwork> networks = wifiConnection->scanNetworks();
-    for (int i = 0; i < networks.size(); i++) {
-        // display network
+    std::vector<App*> networkUIs;
+
+    if (networks.size() == 0) {
+        display->displayStatus("No networks found.");
+        delay(2000);
+        return;
     }
+    
+    for (WiFiNetwork network : networks) {
+        networkUIs.push_back(new WiFiNetworkUI(display, network));
+    }
+
+    AppMenu* findedNetworksMenu = new AppMenu(networkUIs);
+    findedNetworksMenu->setAutoExit(true);
+    findedNetworksMenu->setLoopedMenu(true);
+
+    findedNetworksMenu->start();
+
+    delete findedNetworksMenu;
 }
 
 void WiFiUI::refreshConnectionStatus() {
-    previousConnectionStatus = wifiConnection->isConnected();
     display->clear();
-    display->displayConnetionStatus(previousConnectionStatus, wifiConnection->getLastSSID());
+
     if (strcmp("", wifiConnection->getLastSSID()) == 0) {
         display->drawBelowMessage("Press left button to scan networks.");
     } else {
         display->drawBelowMessage("Press left button to disable WiFi.");
     }
+
+    previousConnectionStatus = wifiConnection->isConnected();
+    display->displayConnetionStatus(previousConnectionStatus, wifiConnection->getLastSSID());
 }

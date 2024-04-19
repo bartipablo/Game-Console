@@ -1,37 +1,25 @@
 #ifndef WiFiApplication_H
 #define WiFiApplication_H
 
+#include "../main-menu/MainMenuDisplay.h"
 #include "../app-menu/App.h" 
 #include "WiFiUI.h"
 #include "WiFiIcon.h"
 
+/**
+ * Application to manage the WiFi connection
+ * Displays in main menu
+*/
 class WiFiApplication : public App {
-public:        
-    WiFiApplication(MainMenuDisplay* menuDisplay) {
-        title = "WiFi";
-        this->menuDisplay = menuDisplay;
-    }
+public:
+    WiFiApplication(MainMenuDisplay* menuDisplay);
 
-    void start() override {
-        WiFiUI* wifiUI = new WiFiUI();
-        wifiUI->run();
-        delete wifiUI;
-    }
+    void start() override;
 
-    void display() override {
-        Icon* wifiIcon = new WiFiIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*wifiIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete wifiIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
     MainMenuDisplay* menuDisplay;
 };
 

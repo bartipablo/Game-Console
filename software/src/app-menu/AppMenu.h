@@ -41,6 +41,8 @@ public:
 /**
  * Sets whether the menu should exit automatically or not.
  * If the menu exits automatically, the menu will exit after the user has finished using the application.
+ * If the menu does not exit automatically, the menu will not exit after the user has finished using the application.
+ * @param autoExit true if the menu should exit automatically, false otherwise.
  */
     void setAutoExit(bool autoExit);
 

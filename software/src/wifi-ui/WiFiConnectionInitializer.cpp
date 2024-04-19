@@ -1,12 +1,24 @@
 #include "WiFiConnectionInitializer.h"
 
+WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork) 
+    : wifiNetwork(wifiNetwork) {
+    this->display = display;
+    inputBlocking = new InputBlocking();
+    keyboard = new Keyboard();
+    keyboardDisplay = new KeyboardDisplay();
+    wifiConnection = WiFiConnection::getInstance();
+    userInput = UserInput::getInstance();
+    shutdown = false;
+}
+
+WiFiConnectionInitializer::~WiFiConnectionInitializer() {
+    delete inputBlocking;
+    delete keyboard;
+    delete keyboardDisplay;
+}
+
 void WiFiConnectionInitializer::run() {
     WiFiEncriptionType encriptionType = wifiNetwork.getEncryptionType();
-
-    if (encriptionType == WiFiEncriptionType::NONE) {
-        wifiConnection->connectToWiFi(wifiNetwork.getSSID());
-        return;
-    }
 
     if (encriptionType == WiFiEncriptionType::WEP) {
         display->displayWEPInformation();

@@ -13,9 +13,9 @@
 #define TFT_RESET 17
 #define LEFT_BUTTON 4
 #define RIGHT_BUTTON 15
-#define JOYSTIC_X 34//13
-#define JOYSTIC_Y 39//12
-#define JOYSTIC_BUTTON 32//36//14
+#define JOYSTIC_X 34
+#define JOYSTIC_Y 39
+#define JOYSTIC_BUTTON 32
 
 
 void setup() {

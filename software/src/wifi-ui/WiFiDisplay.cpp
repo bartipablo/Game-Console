@@ -32,13 +32,12 @@ void WiFiDisplay::displayConnetionStatus(bool connected, const char* ssid) {
     display->setTextColor(Color::WHITE_);
     display->print("SSID: ");
     display->setTextColor(Color::YELLOW_);
-    //display->setTextSize(1);
     display->print(ssid);
 
     display->setRotation(originalRotation);
 }
 
-void WiFiDisplay::displayLoading() {
+void WiFiDisplay::displayStatus(std::string message) {
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 
 
@@ -46,7 +45,7 @@ void WiFiDisplay::displayLoading() {
     display->setCursor(100, 100);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
-    display->print("Loading...");
+    display->print(message.c_str());
 
     display->setRotation(originalRotation);
 }

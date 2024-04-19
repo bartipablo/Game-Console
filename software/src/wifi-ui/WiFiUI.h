@@ -13,12 +13,18 @@
 #include "../utils/wifi/WiFiEncriptionType.h"
 #include "../utils/wifi/WiFiNetwork.h"
 
+/**
+ * User interface to manage the WiFi connection
+ */
 class WiFiUI {
 public:
     WiFiUI();
 
     ~WiFiUI();
 
+/**
+ * Run the WiFi user interface
+*/
     void run();
 
 private:
@@ -32,8 +38,15 @@ private:
 
     InputBlocking* inputBlocking;
 
+/**
+ * Run the WiFi network selection menu
+ * It will display the available networks and allow the user to select one.
+*/
     void runWiFiNetworkSelectionMenu();
 
+/**
+ * display connection status
+ */
     void refreshConnectionStatus();
 };
 

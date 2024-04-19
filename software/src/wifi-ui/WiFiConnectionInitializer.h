@@ -11,22 +11,21 @@
 #include "../keyboard/KeyboardDisplay.h"
 #include "WiFiDisplay.h"
 
+/**
+ * Class to initialize the WiFi connection.
+ * It will display the password input and connect to the network.
+*/
 class WiFiConnectionInitializer {
 public:
-    WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork) : wifiNetwork(wifiNetwork) {
-        this->display = display;
-        inputBlocking = new InputBlocking();
-        keyboard = new Keyboard();
-        keyboardDisplay = new KeyboardDisplay();
-        shutdown = false;
-    }
+    WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork);
 
-    ~WiFiConnectionInitializer() {
-        delete inputBlocking;
-        delete keyboard;
-        delete keyboardDisplay;
-    }
+    ~WiFiConnectionInitializer();
 
+/**
+ * Run the WiFi connection initializer.
+ * It's main function to run the WiFi connection initializer.
+ * It will display the password input and handle logic to connect to the network.
+*/
     void run();
 
 private:
@@ -48,8 +47,14 @@ private:
 
     bool shutdown;
 
+/**
+ * Updating the key on the display.
+*/
     void updateKey(Key previousKey, Key currentKey);
 
+/**
+ * handle the keyboard input.
+*/
     void serveKey(Key key);
 
 };

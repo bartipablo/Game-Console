@@ -55,6 +55,7 @@ public:
 
     /**
      * @brief Checks if we are connected to a wifi network.
+     * Caution: The method does not check if we have saved the wifi network's credentials.
      * 
      * @return True if we are connected to a wifi network, false otherwise.
      */
@@ -69,6 +70,7 @@ public:
 
     /**
      * @brief Gets the ssid of the last connected wifi network.
+     * if we have not wifi network credentials the method will return an empty string.
      * 
      * @return The ssid of the last connected wifi network.
      */

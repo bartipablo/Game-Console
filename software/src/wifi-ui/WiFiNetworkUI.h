@@ -11,19 +11,23 @@
 #include "WiFiDisplay.h"
 #include "WiFiConnectionInitializer.h"
 
+/**
+ * Represents the single network in the WiFi network selection menu.
+ */
 class WiFiNetworkUI : public App {
 public:
-    WiFiNetworkUI(WiFiDisplay* wifiDisplay, WiFiNetwork wifiNetwork) : wifiNetwork(wifiNetwork) {
-        this->wifiDisplay = wifiDisplay;
-        inputBlocking = new InputBlocking();
-    }
+    WiFiNetworkUI(WiFiDisplay* wifiDisplay, WiFiNetwork wifiNetwork);
 
-    ~WiFiNetworkUI() {
-        delete inputBlocking;
-    }
+    ~WiFiNetworkUI();
 
+/**
+ * It will run when the user selects the network.
+*/
     void start() override;
 
+/**
+ * Display the network information in selection menu.
+ */
     void display() override;
 
 private:
