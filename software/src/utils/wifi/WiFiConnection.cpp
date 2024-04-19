@@ -29,6 +29,7 @@ void WiFiConnection::connectToWiFi(const char* ssid, const char* password) {
 
 void WiFiConnection::disconnect() {
     WiFi.disconnect();
+    strcpy(this->lastSSID, "");
 }
 
 bool WiFiConnection::isConnected() {

@@ -7,6 +7,7 @@
 #include "../tetris/TetrisApplication.h"
 #include "../paint/PaintApplication.h"
 #include "../notepad/NotepadApplication.h"
+#include "../wifi-ui/WiFiApplication.h"
 #include "MainMenuDisplay.h"
 
 /**
