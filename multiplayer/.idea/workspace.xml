@@ -21,11 +21,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e846ee99-f09f-457f-9e9c-4ee21b1657c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/Inc/SocketAddressFactory.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/Src/SocketAddressFactory.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Inc/TCPSocket.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Src/TCPSocket.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/Inc/SocketAddress.h" beforeDir="false" afterPath="$PROJECT_DIR$/common/Inc/SocketAddress.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Inc/SocketAddressFactory.h" beforeDir="false" afterPath="$PROJECT_DIR$/common/Inc/SocketAddressFactory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong/pong-game/Src/Ball.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pong/pong-game/Src/Ball.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pong/pong-game/Src/Paddles.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pong/pong-game/Src/Paddles.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +57,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "CMake Application.multiplayer.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -97,11 +101,16 @@
       <option name="presentableId" value="Default" />
       <updated>1714154394680</updated>
       <workItem from="1714154397610" duration="963000" />
-      <workItem from="1714155953903" duration="8224000" />
+      <workItem from="1714155953903" duration="12290000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
   </component>
 </project>

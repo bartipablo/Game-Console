@@ -6,6 +6,9 @@
 #define MULTIPLAYER_SOCKETADDRESSFACTORY_H
 
 #include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <string>
 
 #include "SocketAddress.h"
 

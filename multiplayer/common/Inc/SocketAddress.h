@@ -11,6 +11,8 @@
 #include <string>
 #include <memory>
 
+#include "TCPSocket.h"
+
 /**
  * @class SocketAddress
  *
@@ -40,6 +42,8 @@ public:
     [[nodiscard]] size_t getSize() const;
 
 private:
+    friend class TCPSocket;
+
     sockaddr mSockAddr;
 
     sockaddr_in* getAsSockAddrIn();
