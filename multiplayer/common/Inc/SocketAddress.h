@@ -44,6 +44,6 @@ private:
 
     sockaddr_in* getAsSockAddrIn();
 };
-typedef std::shared_ptr<SocketAddress> socketAddressPtr;
+typedef std::shared_ptr<SocketAddress> SocketAddressPtr;
 
 #endif //MULTIPLAYER_SOCKETADDRESS_H
