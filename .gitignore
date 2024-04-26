@@ -26,6 +26,12 @@
 *.a
 *.lib
 
+# cmake exe 
+**/cmake-build-debug/
+
+# InteliJ files
+**/.idea/workspace.xml **/.idea/tasks.xml
+
 # Executables
 *.exe
 *.out
