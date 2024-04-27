@@ -67,3 +67,14 @@ TCPSocket::~TCPSocket() {
     close(mSocket);
 }
 
+int TCPSocket::setNonBlockingMode(bool inShouldBeNonBlocking) {
+    int flags = fcntl(mSocket, F_GETFL, 0);
+
+    if (flags < 0) {
+        std::cout << "[SERVER] Error during TCPSocket::setNonBlockingMode." << std::endl;
+        return ERROR;
+    }
+    flags = inShouldBeNonBlocking ? (flags & ~O_NONBLOCK) : (flags | O_NONBLOCK);
+    return (fcntl(mSocket, F_SETFL, flags) == 0);
+}
+

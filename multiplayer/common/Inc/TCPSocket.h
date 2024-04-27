@@ -11,6 +11,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <memory>
+#include <fcntl.h>
 
 #include "./SocketAddress.h"
 
@@ -85,8 +86,10 @@ public:
      */
     int Receive(void* inBuffer, int inLen);
 
+    int setNonBlockingMode(bool inShouldBeNonBlocking);
+
 private:
-    //friend class SocketUtil;
+    friend class SocketUtil;
 
     /**
      * Constructor.
