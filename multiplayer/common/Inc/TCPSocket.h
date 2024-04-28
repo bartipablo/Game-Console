@@ -86,6 +86,15 @@ public:
      */
     int Receive(void* inBuffer, int inLen);
 
+    /**
+ *
+ * This function allows you to set the non-blocking mode for the socket. In non-blocking mode, socket operations such as sending and receiving data will return immediately, even if they would normally block. This can be useful in scenarios where you want to perform other tasks while waiting for socket operations to complete.
+ *
+ * @param inShouldBeNonBlocking A boolean value indicating whether the socket should be set to non-blocking mode (`true`) or blocking mode (`false`).
+ * @return An integer representing the outcome of the operation:
+ *         - `NO_ERROR` if the operation is successful and the socket's blocking mode is set accordingly.
+ *         - `ERROR` if an error occurs during the operation.
+ */
     int setNonBlockingMode(bool inShouldBeNonBlocking);
 
 private:

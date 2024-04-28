@@ -21,12 +21,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e846ee99-f09f-457f-9e9c-4ee21b1657c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/Inc/SocketUtil.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/Src/SocketUtil.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Inc/UDPSocket.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/Src/UDPSocket.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Inc/SocketAddress.h" beforeDir="false" afterPath="$PROJECT_DIR$/common/Inc/SocketAddress.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/Inc/SocketUtil.h" beforeDir="false" afterPath="$PROJECT_DIR$/common/Inc/SocketUtil.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/Inc/TCPSocket.h" beforeDir="false" afterPath="$PROJECT_DIR$/common/Inc/TCPSocket.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/Src/TCPSocket.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/common/Src/TCPSocket.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,7 @@
       <updated>1714154394680</updated>
       <workItem from="1714154397610" duration="963000" />
       <workItem from="1714155953903" duration="12446000" />
-      <workItem from="1714202444095" duration="3425000" />
+      <workItem from="1714202444095" duration="8617000" />
     </task>
     <servers />
   </component>

@@ -12,4 +12,6 @@ add_executable(multiplayer main.cpp pong/pong-game/Inc/Ball.h pong/pong-game/Src
         common/Src/TCPSocket.cpp
         common/Inc/SocketUtil.h
         common/Src/SocketUtil.cpp
+        common/Inc/UDPSocket.h
+        common/Src/UDPSocket.cpp
 )

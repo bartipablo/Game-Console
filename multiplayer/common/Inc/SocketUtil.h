@@ -8,6 +8,10 @@
 #include "TCPSocket.h"
 
 class SocketUtil {
+    /**
+     * static factory method to creating new sockets.
+     * @return TCP socket pointer.
+     */
     static TCPSocketPtr createTCPSocket();
 };
 
