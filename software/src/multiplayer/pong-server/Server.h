@@ -1,6 +1,11 @@
+#ifdef ARDUINO
+ // to ignore by arduino compiler.
+#else
+
 
 #ifndef PONG_SERVER_H
 #define PONG_SERVER_H
+
 
 #include "../pong-game/Communicates.h"
 #include "../sockets/SocketUDP.h"
@@ -151,5 +156,6 @@ private:
 
 }
 
+#endif
 
 #endif //EXAMPLE_SERVER_H

@@ -1,3 +1,8 @@
+#ifdef ARDUINO
+ // to ignore by arduino compiler.
+#else
+
+
 #include "DesktopClient.h"
 
 
@@ -265,3 +270,4 @@ void DesktopClient::closeResources() {
 }
 
 
+#endif

@@ -1,3 +1,8 @@
+#ifdef ARDUINO
+ // to ignore by arduino compiler.
+#else
+
+
 #include "Server.h"
 
 
@@ -293,3 +298,5 @@ void Server::runNextTour() {
 }
 
 }
+
+#endif

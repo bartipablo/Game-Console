@@ -1,3 +1,7 @@
+#ifdef ARDUINO
+ // to ignore by arduino compiler.
+#else
+
 
 #ifndef DESKTOP_CLIENT_H
 #define DESKTOP_CLIENT_H
