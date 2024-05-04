@@ -7,7 +7,7 @@
 #include <algorithm>
 
 /**
- * @brief A class for managing an output memory stream.
+ * @brief The InputMemoryStream class is used to write data to memory buffer.
  * 
  * This class provides functionality for managing an output memory stream,
  * allowing data to be written to a dynamically allocated buffer.
