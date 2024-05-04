@@ -28,6 +28,9 @@ class Server {
 public:
     Server();
 
+    /**
+     * Start the server loop.
+    */
     void start();
 
     static const int PORT = 12345;
@@ -82,35 +85,66 @@ private:
     int centralY = Table::SCORE_HEIGHT + (Table::HEIGHT - Table::SCORE_HEIGHT)/2;
     // game properties --------------------------------
 
+    // others -----------------------------------------
     EXIT_STATUS e;
 
     char nativeBuffer[1024];
 
     static const int nativeBufferSize = 1024;
+    // others -----------------------------------------
 
+    /**
+     * Initialize server TCP, UDP sockets and bind address.
+     * If any error occurs, the program will exit.
+    */
     void initServerSockets();
 
+    /**
+     * This method initializes server loop to handle connections and game session.
+     * This loop will run as long as connections to two clients are not established.
+    */
     void connectionsService();
 
+    /**
+     * This method initializes the game session loop.
+     * This loop will run as long as the game is running or clients are connected.
+    */
     void gameSession();
 
+    /**
+     * This method receives the paddle moves from clients using UDP.
+    */
     void receiveClientsMoves();
 
+    /**
+     * This method sends the game state to clients using UDP.
+    */
     void sendGameStateToClients();
+
+    /**
+     * This message receives messages from clients using TCP.
+    */
+    void handleMessagesFromClients();
 
     void resetGameStates();
 
     void resetGameVariables();
 
-    void handleMessagesFromClients();
-
-    // scheduled tasks
+    // scheduled tasks --------------------------------
+    // variables used to delay the next tour.
     int loopCounter = 0;
 
     const int loopCountToNextTour = 300;
+    // scheduled tasks --------------------------------
 
+    /**
+     * This method is called when client gets a score.
+    */
     void nextTourHandler();
 
+    /**
+     * This method is called when next tour should be run.
+    */
     void runNextTour();
 
 };
