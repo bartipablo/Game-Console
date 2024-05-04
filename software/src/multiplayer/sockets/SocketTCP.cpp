@@ -1,5 +1,7 @@
 #include "SocketTCP.h"
 
+SocketTCP::SocketTCP() {}
+
 SocketTCP::~SocketTCP() {
     close(mSocket);
 }
@@ -28,8 +30,18 @@ EXIT_STATUS SocketTCP::connect_(SocketAddress& address) {
     return OK;
 }
 
+SOCKET SocketTCP::accept_(SocketAddress& address) {
+    socklen_t fromLength = address.addrLen();
+
+    int sck = accept(mSocket, address.addr(), &fromLength);
+    if (sck < 0) {
+        return ERROR;
+    }
+    return sck;
+}
+
 SOCKET SocketTCP::accept_() {
-    int sck = accept(mSocket, NULL, NULL);
+    int sck = accept(mSocket, nullptr, nullptr);
     if (sck < 0) {
         return ERROR;
     }

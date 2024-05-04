@@ -6,6 +6,8 @@
 class SocketTCP : public Socket {
 
 public:
+    SocketTCP();
+
     SocketTCP(SOCKET inSocket);
 
     ~SocketTCP();
@@ -25,6 +27,8 @@ public:
  * @return ERROR if the connection fails.
 */
     SOCKET accept_();
+
+    SOCKET accept_(SocketAddress& address);
 
 /**
  * Send data to the server.

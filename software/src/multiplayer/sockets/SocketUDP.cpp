@@ -9,7 +9,7 @@ EXIT_STATUS SocketUDP::init_() {
         close(mSocket);
     }
 
-    mSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    mSocket = socket(AF_INET, SOCK_DGRAM, 0);
     if (mSocket < 0) {
         return ERROR;
     }

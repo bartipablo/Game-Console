@@ -13,7 +13,7 @@ public:
      * @return ERROR if the socket can't be created.
      * @return OK if the socket is created.
      */
-    virtual EXIT_STATUS init_();
+    virtual EXIT_STATUS init_() = 0;
 
     /**
      * Bind the socket to a specific address.
@@ -29,6 +29,19 @@ public:
      * @param inShouldBeNonBlocking False if the socket should be blocking.
      */
     void setNonBlocking(bool shouldBeBlocking);
+
+    /**
+     * function returns the current address for the specified socket.
+     * @param address to which it will be assigned.
+     * @return EXIT_STATUS
+     */
+    EXIT_STATUS getSocketName_(SocketAddress* address);
+
+    /**
+     * Close the socket.
+     * @return EXIT_STATUS
+     */
+    EXIT_STATUS close_();
 
 protected:
     SOCKET mSocket = -1;
