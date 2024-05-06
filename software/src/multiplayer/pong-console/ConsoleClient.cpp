@@ -57,15 +57,22 @@ void ConsoleClient::start() {
         display->drawPaddles();
         display->drawScoreBoard();
 
-        if (userInput->isPressedJoysticUp()) {
-            sendMove(-3);
+        if (inputBlocking->isBlocked()) {
+            if (userInput->isPressedJoysticUp()) {
+                sendMove(-3);
+                inputBlocking->startBlocking(20);
+            }
+            else if (userInput->isPressedJoysticDown()) {
+                sendMove(3);
+                inputBlocking->startBlocking(20);
+            } else if (userInput->isPressedRightButton()) {
+                clientSocketTCP->sendCommunicate(Communicates::Disconnect);
+                return;
+            }
         }
-        else if (userInput->isPressedJoysticDown()) {
-            sendMove(3);
-        } else if (userInput->isPressedRightButton()) {
-            clientSocketTCP->sendCommunicate(Communicates::Disconnect);
-            return;
-        }
+
+        delay(25);
+        inputBlocking->decrement();
 
         receiveState();
 
@@ -153,6 +160,7 @@ void ConsoleClient::connectionError(std::string message, int time) {
     successfullyConnected = false;
     delay(time);
 }
+
 
 void ConsoleClient::connectionInfo(std::string message, int time) {
     display->clearScreen();

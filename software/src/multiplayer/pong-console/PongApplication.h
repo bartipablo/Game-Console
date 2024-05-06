@@ -8,6 +8,7 @@
 #include "../../main-menu/MainMenuDisplay.h"
 #include "PongIcon.h"
 #include "../common/ServerMetadataInput.h"
+#include "../pong-console/ConsoleClient.h"
 
 
 class PongApplication : public App {
@@ -28,7 +29,9 @@ public:
         delete serverMetadataInput;
 
         if (correctInputProvided) {
-            return;
+            ConsoleClient* client = new ConsoleClient(serverIPv4, serverPort);
+            client->start();
+            delete client;
         }
     }
 
