@@ -157,8 +157,7 @@ bool ServerMetadataInput::isValidIPv4(const std::string& str) {
 
 bool ServerMetadataInput::isValidPort(const std::string& portStr) {
     try {
-        int port = std::stoi(portStr);
-
+        int port = atoi(portStr.c_str());
         return (port > 0 && port <= 65535);
     } catch (...) {
         return false;
