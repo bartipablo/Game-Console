@@ -264,7 +264,6 @@ void DesktopClient::closeResources() {
         std::cout <<"ERROR: cannot close clientSocketUDP" << std::endl;
     }
 
-
 }
 
 }

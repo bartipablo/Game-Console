@@ -8,6 +8,8 @@
 #include "../paint/PaintApplication.h"
 #include "../notepad/NotepadApplication.h"
 #include "../wifi-ui/WiFiApplication.h"
+#include "../multiplayer/pong-console/PongApplication.h"
+
 #include "MainMenuDisplay.h"
 
 /**
