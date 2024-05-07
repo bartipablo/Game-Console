@@ -7,7 +7,7 @@ std::mt19937 gen(rd());
 
 
 Ball::Ball(int x, int y) : initX(x), initY(y) {
-    speed = 3;
+    speed = 6;
     angle = 0.0f;
 
     this->x = x;

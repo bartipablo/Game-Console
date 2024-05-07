@@ -49,7 +49,7 @@ void DesktopClient::start() {
     SetTraceLogLevel(LOG_WARNING);
 
     InitWindow(screenWidth, screenHeight, "PONG DESKTOP");
-    SetTargetFPS(40);
+    SetTargetFPS(30);
 
 
     while (!WindowShouldClose() && running)
@@ -65,11 +65,11 @@ void DesktopClient::start() {
 
         EndDrawing();
 
-        if (IsKeyDown(KEY_UP)) {
-            sendMove(3);
+        if (IsKeyDown(KEY_DOWN)) {
+            sendMove(5);
         }
-        else if (IsKeyDown(KEY_DOWN)) {
-            sendMove(-3);
+        else if (IsKeyDown(KEY_UP)) {
+            sendMove(-5);
         }
 
         receiveState();
@@ -263,7 +263,6 @@ void DesktopClient::closeResources() {
     if (e == ERROR) {
         std::cout <<"ERROR: cannot close clientSocketUDP" << std::endl;
     }
-
 
 }
 

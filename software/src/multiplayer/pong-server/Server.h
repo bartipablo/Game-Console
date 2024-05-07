@@ -139,7 +139,7 @@ private:
     // variables used to delay the next tour.
     int loopCounter = 0;
 
-    const int loopCountToNextTour = 300;
+    const int loopCountToNextTour = 200;
     // scheduled tasks --------------------------------
 
     /**
