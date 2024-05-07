@@ -25,11 +25,13 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     clientTwoPaddle = new Paddle(Table::WIDTH - Paddle::WIDTH, centralY + Paddle::HEIGHT);
 
     display = new ConsoleClientDisplay(clientOneScore, clientTwoScore, ball, clientOnePaddle, clientTwoPaddle);
+    basicDisplay = new BasicDisplay();
 }
 
 ConsoleClient::~ConsoleClient() {
     delete inputBlocking;
     delete display;
+    delete basicDisplay;
 
     delete serverIPv4;
     delete clientIPv4;
@@ -49,29 +51,28 @@ void ConsoleClient::start() {
 
     if (!successfullyConnected) return;
 
-    display->clearScreen();
+    basicDisplay->clearScreen();
     display->drawLine();
+    display->drawBall();
+    display->drawPaddles();
+    display->drawScoreBoard();
 
     while (running) {
-        display->drawBall();
-        display->drawPaddles();
-        display->drawScoreBoard();
 
-        if (inputBlocking->isBlocked()) {
+        if (!inputBlocking->isBlocked()) {
             if (userInput->isPressedJoysticUp()) {
-                sendMove(-3);
-                inputBlocking->startBlocking(20);
+                sendMove(-6);
+                inputBlocking->startBlocking(700);
             }
             else if (userInput->isPressedJoysticDown()) {
-                sendMove(3);
-                inputBlocking->startBlocking(20);
+                sendMove(6);
+                inputBlocking->startBlocking(700);
             } else if (userInput->isPressedRightButton()) {
                 clientSocketTCP->sendCommunicate(Communicates::Disconnect);
                 return;
             }
         }
 
-        delay(25);
         inputBlocking->decrement();
 
         receiveState();
@@ -155,22 +156,22 @@ void ConsoleClient::connect() {
 
 
 void ConsoleClient::connectionError(std::string message, int time) {
-    display->clearScreen();
-    display->drawInfo(message, "ERROR");
+    basicDisplay->clearScreen();
+    basicDisplay->drawInfo(message, "ERROR", Color(Color::WHITE_), Color(Color::RED_));
     successfullyConnected = false;
+    running = false;
     delay(time);
 }
 
 
 void ConsoleClient::connectionInfo(std::string message, int time) {
-    display->clearScreen();
-    display->drawInfo(message, "INFO");
+    basicDisplay->clearScreen();
+    basicDisplay->drawInfo(message, "INFO", Color(Color::WHITE_), Color(Color::YELLOW_));
     delay(time);
 }
 
 
 void ConsoleClient::gameSummary(std::string message, Color color, int time) {
-    display->clearScreen();
     display->drawSummary(message, color);
     running = false;
     delay(time);    
@@ -194,6 +195,11 @@ void ConsoleClient::receiveState() {
         clientOneScore->read(in);
         clientTwoScore->read(in);
 
+        display->drawLine();
+        display->drawBall();
+        display->drawPaddles();
+        display->drawScoreBoard();
+
         receivedStates++;
     }
 }
@@ -214,10 +220,10 @@ void ConsoleClient::handleMessagesFromServer() {
         case Communicates::None:
             break;
         case Communicates::Disconnect:
-            gameSummary("The server requested that the communication be terminated.", Color::YELLOW_, 5000);
+            connectionError("The server requested that the communication be terminated.", 5000);
             break;
         case Communicates::SecondPlayerLeftTheGame:
-            gameSummary("Second player left the game.", Color::YELLOW_, 5000);
+            connectionError("Second player left the game.", 5000);
             break;
         case Communicates::YouLost:
             gameSummary("You lost!", Color::RED_, 5000);

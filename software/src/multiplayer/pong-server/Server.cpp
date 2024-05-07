@@ -182,7 +182,7 @@ void Server::gameSession() {
 
         sendGameStateToClients();
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(15));
+        std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
 }
 

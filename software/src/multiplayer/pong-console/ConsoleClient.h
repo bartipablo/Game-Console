@@ -6,6 +6,7 @@
 #include "ConsoleClientDisplay.h"
 
 #include "../../common/Color.h"
+#include "../../common/BasicDisplay.h"
 
 #include "../../utils/UserInput.h"
 #include "../../utils/InputBlocking.h"
@@ -31,18 +32,40 @@ public:
     void start();
 
 private:
+    /**
+     * Init connection with server.
+    */
     void connect();
 
+    /**
+     * display and handle connection error.
+    */
     void connectionError(std::string message, int time);
 
+    /**
+     * display and handle connection info.
+    */
     void connectionInfo(std::string message, int time);
 
+    /**
+     * display and handle summary after loss/victory.
+    */
     void gameSummary(std::string message, Color color, int time);
 
+    /**
+     * Receive the state of the game from the server by UDP.
+    */
     void receiveState();
 
+    /**
+     * Send player move to the server.
+    */
     void sendMove(int val);
 
+    /**
+     * Handle the messages received from the server by TCP.
+     * If a new game state is received it is drawn on the screen
+    */
     void handleMessagesFromServer();
 
     std::string serverIPv4Str;
@@ -57,6 +80,8 @@ private:
     PongSocketTCP* clientSocketTCP;
 
     SocketUDP* clientSocketUDP;
+
+    BasicDisplay* basicDisplay;
 
     // network properties ----------------------
 

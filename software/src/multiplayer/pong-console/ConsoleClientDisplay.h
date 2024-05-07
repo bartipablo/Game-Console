@@ -17,11 +17,7 @@ class ConsoleClientDisplay {
 public:
     ConsoleClientDisplay(Score* clientOneScore, Score* clientTwoScore, Ball* ball, Paddle* clientOnePaddle, Paddle* clientTwoPaddle);
 
-    void drawInfo(std::string message, std::string title);
-
     void drawSummary(std::string message, Color color);
-
-    void clearScreen();
 
     void drawPaddles();
 

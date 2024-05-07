@@ -3,16 +3,23 @@
 ServerMetadataInput::ServerMetadataInput() {
     display = new ServerMetadataInputDisplay();
     inputBlocking = new InputBlocking();
+    basicDisplay = new BasicDisplay();
 }
 
 
 ServerMetadataInput::~ServerMetadataInput() {
     delete display;
     delete inputBlocking;
+    delete basicDisplay;
 }	
 
 
 void ServerMetadataInput::start() {
+    if (!wifiConnection->isConnected()) {
+        noWifiConnected();
+        return;
+    }
+
     readServerMetadata();
     if (shutdown) {
         return;
@@ -149,11 +156,13 @@ bool ServerMetadataInput::isAvailableCharForPort(char c) {
     return c >= '0' && c <= '9';
 }
 
+
 bool ServerMetadataInput::isValidIPv4(const std::string& str) {
     std::regex pattern("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
 
     return std::regex_match(str, pattern);
 }
+
 
 bool ServerMetadataInput::isValidPort(const std::string& portStr) {
     try {
@@ -167,7 +176,14 @@ bool ServerMetadataInput::isValidPort(const std::string& portStr) {
 
 void ServerMetadataInput::invalidInputCommunicate(int time, std::string message) {
         correctInputProvided = false;
-        display->clearScreen();
-        display->drawCommunicate(message, Color(Color::RED_), true);
+        basicDisplay->clearScreen();
+        basicDisplay->drawInfo(message, "Error", Color::WHITE_, Color::RED_);
         delay(time);
+}
+
+
+void ServerMetadataInput::noWifiConnected() {
+    basicDisplay->clearScreen();
+    basicDisplay->drawInfo("You need to be connected to a wifi network", "Info", Color::WHITE_, Color::YELLOW_);
+    delay(5000);
 }

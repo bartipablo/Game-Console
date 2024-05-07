@@ -20,30 +20,6 @@ ConsoleClientDisplay::ConsoleClientDisplay(Score* clientOneScore, Score* clientT
 }
 
 
-void ConsoleClientDisplay::clearScreen() {
-    display->fillScreen(Color::BLACK_);
-}
-
-
-void ConsoleClientDisplay::drawInfo(std::string message, std::string title) {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
-    display->setTextSize(2);
-    display->fillRect(0, 90, 320, 50, Color::GRAY_);
-    display->setCursor(0, 100);
-    display->setTextColor(Color::WHITE_); 
-    display->print(message.c_str());
-
-    display->setTextSize(3);
-    display->setCursor(100, 10);
-    display->setTextColor(Color::YELLOW_); 
-    display->print(title.c_str());
-
-    display->setRotation(originalRotation);    
-}
-
-
 void ConsoleClientDisplay::drawSummary(std::string message, Color color) {
     uint8_t originalRotation = display->getRotation();
     display->setRotation(3); 
@@ -98,7 +74,7 @@ void ConsoleClientDisplay::drawPaddles() {
     clientOnePaddleYPrevPosition = clientOnePaddle->getY();
 
     clientTwoPaddleXPrevPosition = clientTwoPaddle->getX();
-    clientTwoPaddleYPrevPosition = clientTwoPaddle->getX();
+    clientTwoPaddleYPrevPosition = clientTwoPaddle->getY();
 
     display->setRotation(originalRotation);    
 }
@@ -119,6 +95,9 @@ void ConsoleClientDisplay::drawBall() {
                       Ball::LENGTH,
                       Ball::LENGTH,
                       Color::WHITE_);
+
+    ballXPrevPosition = ball->getX();
+    ballYPrevPosition = ball->getY();
                       
     display->setRotation(originalRotation); 
 }
@@ -130,7 +109,8 @@ void ConsoleClientDisplay::drawScoreBoard() {
 
     std::ostringstream oss;
     oss << clientOneScore->getScore() << "  :  " << clientTwoScore->getScore();
-    display->setCursor(80, 10);
+    display->fillRect(120, 0, 120, 19, Color::BLACK_);
+    display->setCursor(120, 0);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
     display->println(oss.str().c_str());
@@ -140,7 +120,12 @@ void ConsoleClientDisplay::drawScoreBoard() {
 
 
 void ConsoleClientDisplay::drawLine() {
-    display->fillRect(0, 20, 1, 1, Color::WHITE_);
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3); 
+
+    display->fillRect(0, 20, 320, 1, Color::WHITE_);
+
+    display->setRotation(originalRotation);
 }
 
 }

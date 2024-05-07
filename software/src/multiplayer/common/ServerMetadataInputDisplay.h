@@ -16,11 +16,8 @@ public:
 
     void drawInputPort(std::string port);
 
-    void drawCommunicate(std::string message, Color color, bool blocking);
-
-
 private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();    
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
 };
 
 
