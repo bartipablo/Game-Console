@@ -11,6 +11,8 @@
 namespace snake {
 
 class SnakeEngine {
+    
+public:
     SnakeEngine();
 
     ~SnakeEngine();

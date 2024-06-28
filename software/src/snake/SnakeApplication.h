@@ -8,21 +8,23 @@
 #include "SnakeIcon.h"
 #include "SnakeEngine.h"
 
+namespace snake {
+
 class SnakeApplication : public App {
 public:
-    TetrisApplication(MainMenuDisplay* menuDisplay) {
+    SnakeApplication(MainMenuDisplay* menuDisplay) {
         title = "Snake";
         this->menuDisplay = menuDisplay;
     }
 
     void start() override {
-        SnakeEngine* snakeEngine = new SnakeEngine();
+        snake::SnakeEngine* snakeEngine = new snake::SnakeEngine();
         //snakeEngine->run();
         delete snakeEngine;
     }
 
     void display() override {
-        Icon* snakeIcon = new SnakeIcon();
+        Icon* snakeIcon = new snake::SnakeIcon();
 
         menuDisplay->clear();
         menuDisplay->drawIcon(*snakeIcon);
@@ -37,5 +39,7 @@ private:
 
     MainMenuDisplay* menuDisplay;    
 };
+
+}
 
 #endif

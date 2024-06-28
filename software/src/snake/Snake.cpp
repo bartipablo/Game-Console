@@ -77,3 +77,5 @@ void Snake::changeDirection(Direction newDirection) {
 
     direction = newDirection;
 }
+
+}

@@ -28,18 +28,18 @@ void SnakeEngine::run() {
         if (frameTimer->isExpired()) {
 
             if (userInput->isPressedJoysticDown()) {
-                snake->setDirection(Direction::Down);
+                snake->changeDirection(Direction::Down);
             } else if (userInput->isPressedJoysticUp()) {
-                snake->setDirection(Direction::Up);
+                snake->changeDirection(Direction::Up);
             } else if (userInput->isPressedJoysticLeft()) {
-                snake->setDirection(Direction::Left);
+                snake->changeDirection(Direction::Left);
             } else if (userInput->isPressedJoysticRight()) {
-                snake->setDirection(Direction::Right);
+                snake->changeDirection(Direction::Right);
             }
 
             snake->move();
 
-            if (snake->isCollidingWithItself() || area->isOutOfBound(snake->getHead())) {
+            if (snake->isCollidingWithItself() || area->isOutOfBound(snake->getHeadPosition())) {
                 isRunning = false;
             }
 
@@ -48,7 +48,7 @@ void SnakeEngine::run() {
                 fruit->generateAtRandomPosition(snake, area);
             }
 
-            frameTimer->restart();
+            frameTimer->reset();
         }
     }
 
