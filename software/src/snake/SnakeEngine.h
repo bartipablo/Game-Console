@@ -30,6 +30,8 @@ private:
 
     Timer* frameTimer;
 
+    Score* score;
+
     const int FRAME_RATE = 100;
 
     SnakeDisplay* snakeDisplay;

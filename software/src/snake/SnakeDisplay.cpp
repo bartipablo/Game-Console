@@ -82,4 +82,7 @@ void SnakeDisplay::drawRightBoundary() {
     );
 }
 
+void SnakeDisplay::updateScore(Score* score) {
+// TODO: implement this method.
+
 }

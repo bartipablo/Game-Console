@@ -19,6 +19,8 @@ public:
 
     void drawRightBoundary();
 
+    void updateScore(Score* score);
+
 private:
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 };

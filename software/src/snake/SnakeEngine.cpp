@@ -9,6 +9,7 @@ SnakeEngine::SnakeEngine() {
     snakeDisplay = new SnakeDisplay();
     basicDisplay = new BasicDisplay();
     frameTimer = new Timer(FRAME_RATE);
+    score = new Score();
     isRunning = false;
 }
 
@@ -19,6 +20,7 @@ SnakeEngine::~SnakeEngine() {
     delete frameTimer;
     delete basicDisplay;
     delete snakeDisplay;
+    delete score;
 }
 
 /*******************
@@ -60,6 +62,7 @@ void SnakeEngine::run() {
                 snake->grow();
                 fruit->generateAtRandomPosition(snake, area);
                 snakeDisplay->drawFruit(fruit);
+                score->increment();
             }
 
             frameTimer->reset();
