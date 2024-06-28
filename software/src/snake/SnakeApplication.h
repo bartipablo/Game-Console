@@ -19,7 +19,7 @@ public:
 
     void start() override {
         snake::SnakeEngine* snakeEngine = new snake::SnakeEngine();
-        //snakeEngine->run();
+        snakeEngine->run();
         delete snakeEngine;
     }
 

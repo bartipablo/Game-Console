@@ -39,6 +39,8 @@ void SnakeEngine::run() {
                 snake->changeDirection(Direction::Left);
             } else if (userInput->isPressedJoysticRight()) {
                 snake->changeDirection(Direction::Right);
+            } else if (userInput->isPressedRightButton()) {
+                isRunning = false;
             }
 
             snake->move();
