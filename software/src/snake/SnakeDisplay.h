@@ -5,6 +5,7 @@
 #include "Snake.h"
 #include "Fruit.h"
 #include "Area.h"
+#include "Score.h"
 
 namespace snake {
 
@@ -19,7 +20,11 @@ public:
 
     void drawRightBoundary();
 
-    void updateScore(Score* score);
+    void drawScoreTitle();
+
+    void drawScore(Score* score);
+
+    void drawGameOver(Score* score);
 
 private:
     Arduino_ILI9341* display = DigitalLCD::getInstance();

@@ -1,7 +1,6 @@
 #ifndef Score_H
 #define Score_H
 
-
 namespace snake {
 
 class Score {

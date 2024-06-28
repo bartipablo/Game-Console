@@ -1,10 +1,14 @@
 #ifndef SnakeEngine_H
 #define SnakeEngine_H
 
+#include <thread>
+#include <chrono>
+
 #include "Area.h"
 #include "Fruit.h"
 #include "Snake.h"
 #include "SnakeDisplay.h"
+#include "Score.h"
 
 #include "../utils/UserInput.h"
 #include "../common/Timer.h"

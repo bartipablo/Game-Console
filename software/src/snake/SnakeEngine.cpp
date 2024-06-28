@@ -35,6 +35,8 @@ void SnakeEngine::run() {
     snakeDisplay->drawSnake(snake);
     snakeDisplay->drawFruit(fruit);
     snakeDisplay->drawRightBoundary();
+    snakeDisplay->drawScoreTitle();
+    snakeDisplay->drawScore(score);
 
     while (isRunning) {
 
@@ -60,9 +62,16 @@ void SnakeEngine::run() {
 
             if (snake->getHeadPosition() == fruit->getPosition()) {
                 snake->grow();
-                fruit->generateAtRandomPosition(snake, area);
+                bool generatedNewFruit = fruit->generateAtRandomPosition(snake, area);
+
+                if (!generatedNewFruit) {
+                    isRunning = false;
+                    continue;
+                }
+
+                score->incrementScore();
                 snakeDisplay->drawFruit(fruit);
-                score->increment();
+                snakeDisplay->drawScore(score);
             }
 
             frameTimer->reset();
@@ -71,6 +80,11 @@ void SnakeEngine::run() {
         }
     }
 
+    basicDisplay->clearScreen();
+    snakeDisplay->drawGameOver(score);
+
+    std::chrono::milliseconds duration(3000);
+    std::this_thread::sleep_for(duration);
 }
 
 }

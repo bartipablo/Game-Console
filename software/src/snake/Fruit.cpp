@@ -11,7 +11,7 @@ Vector2D Fruit::getPosition() {
     return position;
 }
 
-void Fruit::generateAtRandomPosition(Snake* snake, Area* area) {
+bool Fruit::generateAtRandomPosition(Snake* snake, Area* area) {
     std::vector<int> x;
     std::vector<int> y;
 
@@ -38,11 +38,12 @@ void Fruit::generateAtRandomPosition(Snake* snake, Area* area) {
 
             if (!snake->isAtPosition(newPosition)) {
                 position = newPosition;
-                return;
+                return true;
             }
         }
     }
 
+    return false;
 }
 
 

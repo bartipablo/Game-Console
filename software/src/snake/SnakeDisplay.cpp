@@ -80,9 +80,64 @@ void SnakeDisplay::drawRightBoundary() {
         DigitalLCD::Y_BOUNDARY,
         Color::WHITE_
     );
+
+    display->setRotation(originalRotation); 
 }
 
-void SnakeDisplay::updateScore(Score* score) {
-// TODO: implement this method.
+void SnakeDisplay::drawScoreTitle() {
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3); 
+
+    display->setTextSize(2);
+    display->setCursor(242, 40);
+    display->setTextColor(Color::WHITE_); 
+    display->print("SCORE:");
+    
+    display->setRotation(originalRotation); 
+}
+
+
+void SnakeDisplay::drawScore(Score* score) {
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3);
+
+    display->fillRect(250, 60, 70, 30, Color::BLACK_);
+
+    int scoreQuantity = score->getScore();
+
+    char buffer[5];  
+    sprintf(buffer, "%04d", scoreQuantity);
+
+    display->setTextSize(2);
+    display->setCursor(250, 60);
+    display->setTextColor(Color::WHITE_);
+    display->print(buffer);
+
+    display->setRotation(originalRotation);
+}
+
+
+
+void SnakeDisplay::drawGameOver(Score* score) {
+    uint8_t originalRotation = display->getRotation();
+    display->setRotation(3); 
+
+    int scoreQuantity = score->getScore();
+
+    char buffer[5];
+    sprintf(buffer, "%04d", scoreQuantity);
+
+    display->setTextSize(4);    
+    display->setCursor(60, 30);
+    display->println("GAME OVER");
+
+    display->setTextSize(3);    
+    display->setCursor(50, 90);
+    display->print("SCORE: ");
+    display->println(buffer);
+
+    display->setRotation(originalRotation);    
+}
+
 
 }
