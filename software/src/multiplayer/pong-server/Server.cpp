@@ -155,6 +155,7 @@ void Server::gameSession() {
         receiveClientsMoves();
 
         if (frameTimer->isExpired()) {
+            
             frameTimer->reset();
 
             if (ball->isCollisionWithWall()) {
