@@ -20,6 +20,8 @@
 #include "../pong-game/Paddle.h"
 #include "../pong-game/Move.h"
 
+#include "../../common/Timer.h"
+
 #include <memory>
 #include <iostream>
 #include <thread>
@@ -47,6 +49,8 @@ private:
     std::shared_ptr<SocketUDP> serverUDPSocket;
 
     std::shared_ptr<SocketAddress> serverAddress;
+
+    std::shared_ptr<Timer> frameTimer;
 
 
     // client one variables--------------------------
@@ -86,7 +90,7 @@ private:
 
 
     // game properties --------------------------------
-    int roundNumber = 21;
+    int roundNumber = 10;
 
     int centralX = Table::WIDTH/2;
 

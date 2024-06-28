@@ -107,7 +107,6 @@ void DesktopClient::drawScore() {
 
 
 void DesktopClient::connect() {
-    std::cout << "Connection..." << std::endl;
 
     // UDP ------------------------------------------------------
     e = clientSocketUDP->init_();

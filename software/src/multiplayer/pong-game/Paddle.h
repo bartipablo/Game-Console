@@ -41,11 +41,11 @@ public:
     static int const WIDTH = 6;
 
 private:
-    int x;
-    const int initX;
+    int16_t x;
+    const int16_t initX;
 
-    int y;
-    const int initY;
+    int16_t y;
+    const int16_t initY;
 };
 
 }

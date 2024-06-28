@@ -30,7 +30,7 @@ public:
     void read(InputMemoryStream &stream);
 
 private:
-    int score;
+    int8_t score;
 };
 
 

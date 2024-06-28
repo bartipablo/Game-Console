@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_BUILD_TYPE Debug)
 
 add_executable(pong-server Server.cpp
+        ../../common/Timer.cpp
         ../pong-game/Ball.cpp
         ../pong-game/Communicates.h
         ../pong-game/Move.cpp

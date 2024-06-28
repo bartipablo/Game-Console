@@ -23,7 +23,7 @@ public:
     void read(InputMemoryStream &stream) override;
 
 private:
-    int y;
+    int8_t y;
 };
 
 }
