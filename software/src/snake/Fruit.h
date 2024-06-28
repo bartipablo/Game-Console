@@ -16,6 +16,8 @@ public:
 
     void generateAtRandomPosition(Snake* snake, Area* area);
 
+    const static int SIZE = 5;
+
 private:
     Vector2D position;    
 };

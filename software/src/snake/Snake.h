@@ -28,6 +28,16 @@ public:
         return head;
     }
 
+    Vector2D getTailPosition() {
+        return tail;
+    }
+
+    Vector2D getPreviousTailPosition() {
+        return previousTail;
+    }
+
+    const static int SIZE = 6;
+
 private:
     std::vector<Vector2D> body;
 

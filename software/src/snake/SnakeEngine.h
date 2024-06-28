@@ -4,6 +4,7 @@
 #include "Area.h"
 #include "Fruit.h"
 #include "Snake.h"
+#include "SnakeDisplay.h"
 
 #include "../utils/UserInput.h"
 #include "../common/Timer.h"
@@ -29,6 +30,8 @@ private:
     Timer* frameTimer;
 
     const int FRAME_RATE = 66;
+
+    SnakeDisplay* SnakeDisplay;
 
     UserInput* userInput = UserInput::getInstance();
 

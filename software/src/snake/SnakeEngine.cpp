@@ -6,6 +6,7 @@ SnakeEngine::SnakeEngine() {
     area = new Area();
     snake = new Snake(Vector2D(10, 10), Direction::Right);
     fruit = new Fruit(Vector2D(0, 0));
+    SnakeDisplay = new SnakeDisplay();
     frameTimer = new Timer(FRAME_RATE);
     isRunning = false;
 }
@@ -15,6 +16,7 @@ SnakeEngine::~SnakeEngine() {
     delete snake;
     delete fruit;
     delete frameTimer;
+    delete SnakeDisplay;
 }
 
 /*******************
@@ -23,6 +25,8 @@ SnakeEngine::~SnakeEngine() {
 void SnakeEngine::run() {
     isRunning = true;
     
+    snakeDisplay->drawSnake(snake);
+
     while (isRunning) {
 
         if (frameTimer->isExpired()) {
@@ -43,12 +47,15 @@ void SnakeEngine::run() {
                 isRunning = false;
             }
 
-            if (snake->isAtPosition(fruit->getPosition())) {
+            if (snake->getHeadPosition() == fruit->getPosition()) {
                 snake->grow();
                 fruit->generateAtRandomPosition(snake, area);
+                snakeDisplay->drawFruit(fruit);
             }
 
             frameTimer->reset();
+
+            snakeDisplay->updateSnake(snake);
         }
     }
 
