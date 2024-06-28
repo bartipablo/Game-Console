@@ -90,7 +90,7 @@ private:
 
 
     // game properties --------------------------------
-    int roundNumber = 21;
+    int roundNumber = 10;
 
     int centralX = Table::WIDTH/2;
 
