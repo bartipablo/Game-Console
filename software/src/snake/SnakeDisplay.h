@@ -4,6 +4,7 @@
 #include "../utils/DigitalLCD.h"
 #include "Snake.h"
 #include "Fruit.h"
+#include "Area.h"
 
 namespace snake {
 
@@ -15,6 +16,8 @@ public:
     void updateSnake(Snake* snake);
 
     void drawFruit(Fruit* fruit);
+
+    void drawRightBoundary();
 
 private:
     Arduino_ILI9341* display = DigitalLCD::getInstance();

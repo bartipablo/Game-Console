@@ -8,6 +8,7 @@
 
 #include "../utils/UserInput.h"
 #include "../common/Timer.h"
+#include "../common/BasicDisplay.h"
 
 namespace snake {
 
@@ -29,9 +30,11 @@ private:
 
     Timer* frameTimer;
 
-    const int FRAME_RATE = 66;
+    const int FRAME_RATE = 100;
 
-    SnakeDisplay* SnakeDisplay;
+    SnakeDisplay* snakeDisplay;
+
+    BasicDisplay* basicDisplay;
 
     UserInput* userInput = UserInput::getInstance();
 

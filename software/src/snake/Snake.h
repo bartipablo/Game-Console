@@ -36,6 +36,10 @@ public:
         return previousTail;
     }
 
+    std::vector<Vector2D> getBodyPositions() {
+        return body;
+    }
+
     const static int SIZE = 6;
 
 private:

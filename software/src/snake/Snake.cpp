@@ -23,7 +23,7 @@ void Snake::move() {
             newHead = Vector2D(head.x(), head.y() + 1);
             break;
         case Direction::Left:
-            newHead = Vector2D(head.x() - 1, head.y() + 1);
+            newHead = Vector2D(head.x() - 1, head.y());
             break;
         case Direction::Right:
             newHead = Vector2D(head.x() + 1, head.y());
@@ -31,8 +31,10 @@ void Snake::move() {
     }
 
     body.push_back(newHead);
-    tail = body.front();
     body.erase(body.begin());
+    tail = body.front();
+
+    head = newHead;
 }
 
 void Snake::grow() {

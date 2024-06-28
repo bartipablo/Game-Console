@@ -36,7 +36,7 @@ void Fruit::generateAtRandomPosition(Snake* snake, Area* area) {
         for (int j = 0; j < Area::HEIGHT; j++) {
             Vector2D newPosition(x[i], y[j]);
 
-            if (!snake->isAtPosition(position)) {
+            if (!snake->isAtPosition(newPosition)) {
                 position = newPosition;
                 return;
             }
