@@ -8,9 +8,8 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     this->serverIPv4Str = serverIPv4Str;
     this->serverPort = serverPort;
 
-    inputBlocking = new InputBlocking();
-
     //network variables.
+    packetCounterUDP = new PacketCounterUDP();
     serverIPv4 = new SocketAddress(serverIPv4Str, serverPort);
     clientIPv4 = new SocketAddress();
     clientSocketTCP = new PongSocketTCP();
@@ -18,6 +17,7 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     clientSocketUDP->setNonBlocking(true);
 
     //game variables.
+    frameTimer = new Timer(33);
     clientOneScore = new Score();
     clientTwoScore = new Score();
     ball = new Ball(centralX - Ball::LENGTH/2, centralY - Ball::LENGTH/2);
@@ -29,10 +29,10 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
 }
 
 ConsoleClient::~ConsoleClient() {
-    delete inputBlocking;
     delete display;
     delete basicDisplay;
 
+    delete frameTimer;
     delete serverIPv4;
     delete clientIPv4;
     delete clientSocketTCP;
@@ -59,21 +59,19 @@ void ConsoleClient::start() {
 
     while (running) {
 
-        if (!inputBlocking->isBlocked()) {
+        if (frameTimer->isExpired()) {   
+            frameTimer->reset();
+
             if (userInput->isPressedJoysticUp()) {
                 sendMove(-6);
-                inputBlocking->startBlocking(700);
             }
             else if (userInput->isPressedJoysticDown()) {
                 sendMove(6);
-                inputBlocking->startBlocking(700);
             } else if (userInput->isPressedRightButton()) {
                 clientSocketTCP->sendCommunicate(Communicates::Disconnect);
                 return;
             }
         }
-
-        inputBlocking->decrement();
 
         receiveState();
 
@@ -189,6 +187,15 @@ void ConsoleClient::receiveState() {
             return;
         }
         InputMemoryStream in = InputMemoryStream(nativeBuffer, readBytes);
+        receivedStates++;
+
+        packetCounterUDP->read(in);
+        
+        if (!packetCounterUDP->isPacketNewer()) {
+            continue;
+        }
+        packetCounterUDP->updateLastCounter();
+
         clientOnePaddle->read(in);
         clientTwoPaddle->read(in);
         ball->read(in);
@@ -200,7 +207,6 @@ void ConsoleClient::receiveState() {
         display->drawPaddles();
         display->drawScoreBoard();
 
-        receivedStates++;
     }
 }
 

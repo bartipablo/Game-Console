@@ -7,12 +7,14 @@
 
 #include "../../common/Color.h"
 #include "../../common/BasicDisplay.h"
+#include "../../common/Timer.h"
 
 #include "../../utils/UserInput.h"
-#include "../../utils/InputBlocking.h"
 
 #include "../sockets/SocketAddress.h"
 #include "../sockets/SocketUDP.h"
+#include "../sockets/PacketCounterUDP.h"
+
 #include "../pong-game/PongSocketTCP.h"
 #include "../pong-game/Score.h"
 #include "../pong-game/Ball.h"
@@ -81,11 +83,12 @@ private:
 
     SocketUDP* clientSocketUDP;
 
-    BasicDisplay* basicDisplay;
-
+    PacketCounterUDP* packetCounterUDP;
     // network properties ----------------------
 
     // game variables ---------------------------------
+    Timer* frameTimer;
+
     Score* clientOneScore;
 
     Score* clientTwoScore;
@@ -102,11 +105,11 @@ private:
     // game variables ---------------------------------
 
     // for console service ------------------
-    InputBlocking* inputBlocking;
-
     UserInput* userInput = UserInput::getInstance();
 
     ConsoleClientDisplay* display;
+
+    BasicDisplay* basicDisplay;
     // for console service ------------------
 
     // game state 
