@@ -7,6 +7,7 @@
 
 #include <cmath>
 #include <random>
+#include <cstdint>
 
 namespace pong {
 
@@ -84,11 +85,11 @@ public:
 private:
     float angle;
 
-    int x;
-    const int initX;
+    int16_t x;
+    const int16_t initX;
     
-    int y;
-    const int initY;
+    int16_t y;
+    const int16_t initY;
 
     int dx;
 

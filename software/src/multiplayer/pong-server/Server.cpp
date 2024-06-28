@@ -154,37 +154,38 @@ void Server::gameSession() {
 
         receiveClientsMoves();
 
-        if (ball->isCollisionWithWall()) {
-            ball->bouncesOffWall();
-        }
-        else if (ball->isCollisionWithPaddle(*clientOnePaddle)) {
-            ball->bouncesOffPaddle(*clientOnePaddle);
-        }
-        else if (ball->isCollisionWithPaddle(*clientTwoPaddle)) {
-            ball->bouncesOffPaddle(*clientTwoPaddle);
-        }
-        else if (ball->isBehindPaddle(*clientOnePaddle)) {
-            clientTwoScore->giveScore();
-            nextTourHandler();
-        }
-        else if (ball->isBehindPaddle(*clientTwoPaddle)) {
-            clientOneScore->giveScore();
-            nextTourHandler();
-        }
-
         if (frameTimer->isExpired()) {
+            frameTimer->reset();
+
+            if (ball->isCollisionWithWall()) {
+                ball->bouncesOffWall();
+            }
+            else if (ball->isCollisionWithPaddle(*clientOnePaddle)) {
+                ball->bouncesOffPaddle(*clientOnePaddle);
+            }
+            else if (ball->isCollisionWithPaddle(*clientTwoPaddle)) {
+                ball->bouncesOffPaddle(*clientTwoPaddle);
+            }
+            else if (ball->isBehindPaddle(*clientOnePaddle)) {
+                clientTwoScore->giveScore();
+                nextTourHandler();
+            }
+            else if (ball->isBehindPaddle(*clientTwoPaddle)) {
+                clientOneScore->giveScore();
+                nextTourHandler();
+            }
+        
             if (!waitForNextTour) {
                 ball->update();
             }
             else {
                 if (loopCounter >= loopCountToNextTour) {
-                    runNextTour();
+                runNextTour();
                 } else {
                     loopCounter++;
                 }
             }
             sendGameStateToClients();
-            frameTimer->reset();
         }
     }
 }
