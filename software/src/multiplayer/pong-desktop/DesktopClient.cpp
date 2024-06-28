@@ -216,8 +216,6 @@ void DesktopClient::receiveState() {
         receivedStates++;
 
         packetCounterUDP->read(in);
-
-        std::cout << packetCounterUDP->getCounter() << std::endl;
         
         if (!packetCounterUDP->isPacketNewer()) {
             continue;
