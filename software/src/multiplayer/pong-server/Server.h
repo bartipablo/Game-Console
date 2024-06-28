@@ -9,6 +9,7 @@
 
 #include "../pong-game/Communicates.h"
 #include "../sockets/SocketUDP.h"
+#include "../sockets/PacketCounterUDP.h"
 #include "../pong-game/PongSocketTCP.h"
 #include "../streams/InputMemoryStream.h"
 #include "../streams/OutputMemoryStream.h"
@@ -79,6 +80,8 @@ private:
     std::shared_ptr<Paddle> clientOnePaddle;
 
     std::shared_ptr<Paddle> clientTwoPaddle;
+
+    std::shared_ptr<PacketCounterUDP> packetCounterUDP;
     // game variables ---------------------------------
 
 

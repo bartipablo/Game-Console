@@ -27,6 +27,7 @@ Server::Server() : serverAddress(new SocketAddress(PORT)) {
 
     clientOnePaddle = std::make_shared<Paddle>(0, centralY + Paddle::HEIGHT);
     clientTwoPaddle = std::make_shared<Paddle>(Table::WIDTH - Paddle::WIDTH, centralY + Paddle::HEIGHT);
+    packetCounterUDP = std::make_shared<PacketCounterUDP>();
 
     initServerSockets();
 }
@@ -231,6 +232,8 @@ void Server::resetGameVariables() {
 
     clientOnePaddle->reset();
     clientTwoPaddle->reset();
+
+    packetCounterUDP->reset();
 }
 
 
@@ -263,6 +266,7 @@ void Server::receiveClientsMoves() {
 void Server::sendGameStateToClients() {
     std::shared_ptr<OutputMemoryStream> out = std::make_shared<OutputMemoryStream>();
 
+    packetCounterUDP->write(*out);
     clientOnePaddle->write(*out);
     clientTwoPaddle->write(*out);
     ball->write(*out);
@@ -271,6 +275,8 @@ void Server::sendGameStateToClients() {
 
     serverUDPSocket->sendTo_(out->getBufferPtr(), (int) out->getLength(), *clientOneAddress);
     serverUDPSocket->sendTo_(out->getBufferPtr(), (int) out->getLength(), *clientTwoAddress);
+
+    packetCounterUDP->incrementCounter();
 }
 
 

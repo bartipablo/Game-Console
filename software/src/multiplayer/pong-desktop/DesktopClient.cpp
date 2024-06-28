@@ -167,6 +167,7 @@ void DesktopClient::connect() {
 }
 
 void DesktopClient::initNetworkVariables() {
+    packetCounterUDP = std::make_shared<PacketCounterUDP>();
     serverIPv4 = std::make_shared<SocketAddress>(serverIPv4str, serverPort);
     clientIPv4 = std::make_shared<SocketAddress>();
     clientSocketTCP = std::make_shared<PongSocketTCP>();
@@ -213,13 +214,20 @@ void DesktopClient::receiveState() {
             return;
         }
         InputMemoryStream in = InputMemoryStream(nativeBuffer, readBytes);
+        receivedStates++;
+
+        packetCounterUDP->read(in);
+        
+        if (!packetCounterUDP->isPacketNewer()) {
+            continue;
+        }
+        packetCounterUDP->updateLastCounter();
+
         clientOnePaddle->read(in);
         clientTwoPaddle->read(in);
         ball->read(in);
         clientOneScore->read(in);
         clientTwoScore->read(in);
-
-        receivedStates++;
     }
 }
 

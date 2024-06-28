@@ -21,6 +21,7 @@ add_executable(pong-server Server.cpp
         ../sockets/SocketHeader.h
         ../sockets/SocketTCP.cpp
         ../sockets/SocketUDP.cpp
+        ../sockets/PacketCounterUDP.cpp
         ../streams/InputMemoryStream.cpp
         ../streams/OutputMemoryStream.cpp
         ../streams/Serializable.h)

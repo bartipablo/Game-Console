@@ -38,6 +38,7 @@ add_executable(pong-desktop-client DesktopClient.cpp
         ../sockets/Socket.cpp
         ../sockets/SocketTCP.cpp
         ../sockets/SocketUDP.cpp
+        ../sockets/PacketCounterUDP.cpp
         ../streams/InputMemoryStream.cpp
         ../streams/OutputMemoryStream.cpp)
 

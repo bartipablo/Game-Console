@@ -16,6 +16,7 @@
 #include "../pong-game/Move.h"
 
 #include "../sockets/SocketUDP.h"
+#include "../sockets/PacketCounterUDP.h"
 
 #include <string>
 #include <iostream>
@@ -100,6 +101,7 @@ private:
 
     std::shared_ptr<SocketUDP> clientSocketUDP;
 
+    std::shared_ptr<PacketCounterUDP> packetCounterUDP;
     // network properties ----------------------
 
     // game variables ---------------------------------
