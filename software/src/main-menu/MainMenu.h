@@ -9,6 +9,7 @@
 #include "../notepad/NotepadApplication.h"
 #include "../wifi-ui/WiFiApplication.h"
 #include "../multiplayer/pong-console/PongApplication.h"
+#include "../multiplayer/snake/SnakeApplication.h"
 
 #include "MainMenuDisplay.h"
 
