@@ -25,6 +25,8 @@ Server::Server() : serverAddress(new SocketAddress(PORT)) {
 
     ball = std::make_shared<Ball>(centralX - Ball::LENGTH/2, centralY - Ball::LENGTH/2);
 
+    frameTimer = std::make_shared<Timer>(30);
+
     clientOnePaddle = std::make_shared<Paddle>(0, centralY + Paddle::HEIGHT);
     clientTwoPaddle = std::make_shared<Paddle>(Table::WIDTH - Paddle::WIDTH, centralY + Paddle::HEIGHT);
     packetCounterUDP = std::make_shared<PacketCounterUDP>();
@@ -170,20 +172,20 @@ void Server::gameSession() {
             nextTourHandler();
         }
 
-        if (!waitForNextTour) {
-            ball->update();
-        }
-        else {
-            if (loopCounter >= loopCountToNextTour) {
-                runNextTour();
-            } else {
-                loopCounter++;
+        if (frameTimer->isExpired()) {
+            if (!waitForNextTour) {
+                ball->update();
             }
+            else {
+                if (loopCounter >= loopCountToNextTour) {
+                    runNextTour();
+                } else {
+                    loopCounter++;
+                }
+            }
+            sendGameStateToClients();
+            frameTimer->reset();
         }
-
-        sendGameStateToClients();
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
     }
 }
 

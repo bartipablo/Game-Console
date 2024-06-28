@@ -107,7 +107,6 @@ void DesktopClient::drawScore() {
 
 
 void DesktopClient::connect() {
-    std::cout << "Connection..." << std::endl;
 
     // UDP ------------------------------------------------------
     e = clientSocketUDP->init_();
@@ -217,6 +216,8 @@ void DesktopClient::receiveState() {
         receivedStates++;
 
         packetCounterUDP->read(in);
+
+        std::cout << packetCounterUDP->getCounter() << std::endl;
         
         if (!packetCounterUDP->isPacketNewer()) {
             continue;
