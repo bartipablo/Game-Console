@@ -3,6 +3,9 @@
 
 namespace snake {
 
+/**
+ * Represents the score of the player.
+ */
 class Score {
 
 public:

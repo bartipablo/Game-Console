@@ -23,6 +23,9 @@ public:
 
     ~SnakeEngine();
 
+/**
+ * Starts the game logic and the display.
+ */
     void run();
 
 private:

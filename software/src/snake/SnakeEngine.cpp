@@ -60,8 +60,12 @@ void SnakeEngine::run() {
                 isRunning = false;
             }
 
+            bool fruitEaten = false;
+
             if (snake->getHeadPosition() == fruit->getPosition()) {
+                fruitEaten = true;
                 snake->grow();
+
                 bool generatedNewFruit = fruit->generateAtRandomPosition(snake, area);
 
                 if (!generatedNewFruit) {
@@ -70,13 +74,16 @@ void SnakeEngine::run() {
                 }
 
                 score->incrementScore();
-                snakeDisplay->drawFruit(fruit);
                 snakeDisplay->drawScore(score);
             }
 
             frameTimer->reset();
 
             snakeDisplay->updateSnake(snake);
+
+            if (fruitEaten) {
+                snakeDisplay->drawFruit(fruit);
+            }
         }
     }
 

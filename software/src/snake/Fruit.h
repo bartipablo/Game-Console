@@ -7,6 +7,9 @@
 
 namespace snake {
 
+/**
+ * Represents a fruit that the snake can eat.
+ */
 class Fruit {
 
 public:
@@ -14,6 +17,11 @@ public:
 
     Vector2D getPosition();
 
+    /**
+     * Generates a new fruit at a random position that is not occupied by the snake.
+     * If it is not possible to generate the fruit (because there is no free position), it returns false.
+     * @return true if the fruit was generated, false otherwise.
+     */
     bool generateAtRandomPosition(Snake* snake, Area* area);
 
     const static int SIZE = 6;
