@@ -1,10 +1,6 @@
 #include "NotepadDisplay.h"
 
 void NotepadDisplay::drawRows(std::string* rows, int rowsQuantity) {
-
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
-
     display->fillRect(0, 0, 320, 140, Color::BLACK_);
 
     int y = 0;
@@ -15,6 +11,4 @@ void NotepadDisplay::drawRows(std::string* rows, int rowsQuantity) {
         display->print(rows[i].c_str());
         y += 8;
     }
-
-    display->setRotation(originalRotation);
 }

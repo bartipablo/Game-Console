@@ -1,9 +1,8 @@
 #ifndef TetrisDisplay_H
 #define TetrisDisplay_H
 
-#define LCD_WIDTH 320
-#define LCD_HEIGHT 240
 #define SQUARE_SIZE 12
+
 #define X_PLAYING_FIELD 88
 #define Y_PLAYING_FIELD 0
 

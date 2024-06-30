@@ -1,17 +1,16 @@
 #include "TetrisDisplay.h"
 #include "Block.h"
 
+
 TetrisDisplay::TetrisDisplay() {
     this->display = DigitalLCD::getInstance();
 }
+
 
 void TetrisDisplay::drawBlock(Block block) {
     int x = block.getPosition().x();
     int y = block.getPosition().y();
     int color = block.getColor();
-
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
 
     display->drawRect(X_PLAYING_FIELD + x * 12,
                       Y_PLAYING_FIELD + y * 12,
@@ -23,15 +22,15 @@ void TetrisDisplay::drawBlock(Block block) {
                       SQUARE_SIZE - 2,
                       SQUARE_SIZE - 2,
                       color);
-
-    display->setRotation(originalRotation);
 }
+
 
 void TetrisDisplay::drawBlocks(const std::vector<Block>& blocks) {
     for(const auto& block : blocks) {
         drawBlock(block); 
     }
 }
+
 
 void TetrisDisplay::drawEmptyPlayingField() {
     for (int x = 0; x < 10; x++) {
@@ -41,16 +40,19 @@ void TetrisDisplay::drawEmptyPlayingField() {
     }  
 }
 
+
 void TetrisDisplay::clearAtPosition(Vector2D position) {
     Block emptyField = Block(WHITE, position);
     drawBlock(emptyField); 
 }
+
 
 void TetrisDisplay::clearAtPositions(std::vector<Vector2D> positions) {
     for (const Vector2D& pos : positions) {
         clearAtPosition(pos);
     }
 }
+
 
 void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
     std::vector<Vector2D> positions = playingField.getAllPositions();
@@ -65,14 +67,11 @@ void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
     }
 }
 
+
 void TetrisDisplay::drawFieldsDescription() {
     display->fillScreen(BLACK);
     display->setTextColor(WHITE);
     display->setTextSize(2);
-
-    uint8_t originalRotation = display->getRotation();
-
-    display->setRotation(3); 
 
     display->setCursor(10, 30); 
     display->println("SCORE"); 
@@ -80,9 +79,8 @@ void TetrisDisplay::drawFieldsDescription() {
     display->println("LEVEL"); 
     display->setCursor(240, 30);  
     display->println("NEXT");
-
-    display->setRotation(originalRotation);
 }
+
 
 void TetrisDisplay::clearScore() {
     int x = 10; 
@@ -90,13 +88,9 @@ void TetrisDisplay::clearScore() {
     int width = 70; 
     int height = 30; 
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     display->fillRect(x, y, width, height, BLACK);
-
-    display->setRotation(originalRotation);
 }
+
 
 void TetrisDisplay::clearLevel() {
     int x = 10; 
@@ -104,13 +98,9 @@ void TetrisDisplay::clearLevel() {
     int width = 70; 
     int height = 30; 
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     display->fillRect(x, y, width, height, BLACK);
-
-    display->setRotation(originalRotation);
 }
+
 
 void TetrisDisplay::clearNext() {
     int x = 220; 
@@ -118,18 +108,11 @@ void TetrisDisplay::clearNext() {
     int width = 90; 
     int height = 50; 
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     display->fillRect(x, y, width, height, WHITE);
-
-    display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::drawScore(int score) {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
 
+void TetrisDisplay::drawScore(int score) {
     String scoreString = String(score);
 
     while (scoreString.length() < 6) {
@@ -138,14 +121,10 @@ void TetrisDisplay::drawScore(int score) {
 
     display->setCursor(10, 60);  
     display->println(scoreString); 
-
-    display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::drawLevel(int level) {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
 
+void TetrisDisplay::drawLevel(int level) {
     String levelString = String(level);
 
     while (levelString.length() < 2) {
@@ -154,9 +133,8 @@ void TetrisDisplay::drawLevel(int level) {
 
     display->setCursor(30, 150);  
     display->println(levelString); 
-
-    display->setRotation(originalRotation);
 }
+
 
 void TetrisDisplay::drawNext(std::vector<Block> blocks) {
     int minX = blocks[0].getPosition().x();
@@ -210,9 +188,6 @@ void TetrisDisplay::drawNext(std::vector<Block> blocks) {
             break;
     }
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     for (const auto& block : blocks) {
         int x = block.getPosition().x();
         int y = block.getPosition().y();
@@ -221,13 +196,10 @@ void TetrisDisplay::drawNext(std::vector<Block> blocks) {
         display->fillRect(xPositionPx + x * 12 + 1, yPositionPx + y * 12 + 1, 10, 10, color);
     }
 
-    display->setRotation(originalRotation);
 }
 
-void TetrisDisplay::displayGameOver(int score, int level) {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
 
+void TetrisDisplay::displayGameOver(int score, int level) {
     String scoreString = String(score);
     while (scoreString.length() < 6) {
         scoreString = "0" + scoreString;
@@ -253,6 +225,4 @@ void TetrisDisplay::displayGameOver(int score, int level) {
     display->setTextSize(1);  
     display->setCursor(70, 200);
     display->println("Press any key to continue...");
-
-    display->setRotation(originalRotation);    
 }

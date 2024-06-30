@@ -64,20 +64,20 @@ void AppMenu::start() {
             inputBlocking->startBlocking(10);
         }
 
-        if (userInput->isPressedJoysticRight()) {
+        else if (userInput->isPressedJoysticRight()) {
             nextApplication();
             currentApplication->display();
             inputBlocking->startBlocking(10);
         }
 
-        if (userInput->isPressedLeftButton()) {
+        else if (userInput->isPressedLeftButton()) {
             currentApplication->start();
             if (autoExit) return;
             currentApplication->display();
             inputBlocking->startBlocking(20);
         }
 
-        if (userInput->isPressedRightButton() && !blockExit) {
+        else if (userInput->isPressedRightButton() && !blockExit) {
             return;
         }
     }

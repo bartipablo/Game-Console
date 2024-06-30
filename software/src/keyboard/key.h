@@ -3,6 +3,8 @@
 
 #include <string>
 
+#define CAPS_LOCK 7
+
 #include "../common/Vector2D.h"
 
 /**

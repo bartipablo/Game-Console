@@ -4,9 +4,11 @@ KeyboardDisplay::KeyboardDisplay() {
     this->display = DigitalLCD::getInstance();
 }
 
+
 void KeyboardDisplay::drawKey(Key key) {
     drawKey(key, Color::GRAY_);
 }
+
 
 void KeyboardDisplay::drawKeys(std::vector<Key> keys) {
     for (Key key : keys) {
@@ -14,16 +16,16 @@ void KeyboardDisplay::drawKeys(std::vector<Key> keys) {
     }
 }
 
+
 void KeyboardDisplay::drawSelectedKey(Key key) {
     drawKey(key, Color::GREEN_);
 }
+
 
 void KeyboardDisplay::drawKey(Key key, int color) {
     int x = getXPx(key.getPosition());
     int y = getYPx(key.getPosition());
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
     display->setTextSize(1);
 
     display->fillRect(y, x, key.getWidth() * KEY_WIDTH, KEY_HEIGHT, BLACK);
@@ -32,13 +34,13 @@ void KeyboardDisplay::drawKey(Key key, int color) {
     display->setCursor(y + 16 * key.getWidth() - 3 * key.toString().length(), x + 16 - 8);
     display->setTextColor(WHITE);
     display->println(key.toString().c_str());
-
-    display->setRotation(originalRotation); 
 }
+
 
 int KeyboardDisplay::getXPx(Vector2D position) {
     return KEY_HEIGHT * position.x() + 140;
 }
+
 
 int KeyboardDisplay::getYPx(Vector2D position) {
     return KEY_WIDTH * position.y();

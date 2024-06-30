@@ -9,10 +9,12 @@ void Paddle::write(OutputMemoryStream &stream) {
     stream.write(&x, sizeof(x));
 }
 
+
 void Paddle::read(InputMemoryStream &stream) {
     stream.read(&y, sizeof(y));
     stream.read(&x, sizeof(x)); 
 }
+
 
 void Paddle::move(int y) {
     this->y += y;
@@ -24,6 +26,7 @@ void Paddle::move(int y) {
         this->y = 20;
     }
 }
+
 
 void Paddle::reset() {
     x = initX;

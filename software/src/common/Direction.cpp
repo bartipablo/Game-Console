@@ -16,6 +16,7 @@ Direction nextDirection(Direction currentDirection) {
     }
 }
 
+
 Direction previousDirection(Direction currentDirection) {
     switch(currentDirection) {
         case Direction::Up:

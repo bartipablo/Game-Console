@@ -24,7 +24,6 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 # Our Project
-
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(pong-desktop-client DesktopClient.cpp

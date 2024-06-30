@@ -9,6 +9,7 @@ PongSocketTCP::PongSocketTCP(SOCKET inSocket) {
     mSocket = inSocket;
 }
 
+
 Communicates PongSocketTCP::receiveCommunicate() {
     Communicates reply = Communicates::None;
 
@@ -26,6 +27,7 @@ Communicates PongSocketTCP::receiveCommunicate() {
     return reply;
 }
 
+
 void PongSocketTCP::sendCommunicate(Communicates request) {
     OutputMemoryStream* out = new OutputMemoryStream;
 
@@ -34,6 +36,7 @@ void PongSocketTCP::sendCommunicate(Communicates request) {
 
     delete out;
 }
+
 
 bool PongSocketTCP::receivePortUDP(SocketAddress *socketAddress, int timeout) {
     bool receivedPort = false;
@@ -59,6 +62,7 @@ bool PongSocketTCP::receivePortUDP(SocketAddress *socketAddress, int timeout) {
 
     return receivedPort;
 }
+
 
 void PongSocketTCP::sendPortUDP(int port) {
     OutputMemoryStream* out = new OutputMemoryStream;

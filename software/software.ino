@@ -17,6 +17,7 @@
 #define JOYSTIC_Y 39
 #define JOYSTIC_BUTTON 32
 
+#define DISPLAY_ROTATION 3
 
 void setup() {
 
@@ -30,6 +31,7 @@ void setup() {
 
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     display->begin();
+    display->setRotation(DISPLAY_ROTATION);
 
     MainMenu* menu = new MainMenu();
     menu->start();

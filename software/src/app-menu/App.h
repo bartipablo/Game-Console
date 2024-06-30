@@ -4,7 +4,6 @@
 
 /**
  * @brief Class representing application/option in the AppMenu.
- * 
  */
 class App {
 public:

@@ -6,15 +6,18 @@ Cursor::Cursor(CursorShape cursorShape) {
     this->sensitivity = 30;
 }
 
+
 Cursor::Cursor(CursorShape cursorShape, Vector2D initPosition) {
     position = initPosition;
     this->cursorShape = cursorShape;
     this->sensitivity = 30;
 }
 
+
 Vector2D Cursor::getPosition() {
     return position;
 }
+
 
 void Cursor::setSensitive(int sensitivity) {
     if (sensitivity <= 0) {

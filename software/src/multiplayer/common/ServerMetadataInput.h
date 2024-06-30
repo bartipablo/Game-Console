@@ -13,6 +13,8 @@
 
 #include "../../keyboard/Keyboard.h"
 #include "../../keyboard/KeyboardDisplay.h"
+#include "../../keyboard/KeyboardFactory.h"
+#include "../../keyboard/StandardKeyboardService.h"
 
 #include "ServerMetadataInputDisplay.h"
 
@@ -73,13 +75,15 @@ private:
 
     InputBlocking* inputBlocking;
 
+    KeyboardFactory* keyboardFactory;
+
     Keyboard* keyboard;
 
     KeyboardDisplay* keyboardDisplay;
 
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    StandardKeyboardService* standardKeyboardService;
 
-    void updateKey(Key previousKey, Key currentKey);
+    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
 
     /**
      * Server pressed key.

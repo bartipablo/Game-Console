@@ -21,9 +21,6 @@ ConsoleClientDisplay::ConsoleClientDisplay(Score* clientOneScore, Score* clientT
 
 
 void ConsoleClientDisplay::drawSummary(std::string message, Color color) {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     uint16_t screenWidth = 320;
     uint16_t screenHeight = 240;
 
@@ -36,16 +33,10 @@ void ConsoleClientDisplay::drawSummary(std::string message, Color color) {
     display->setCursor(startX, startY);
     display->setTextColor(color.getColorRGB565()); 
     display->print(message.c_str());
-
-
-    display->setRotation(originalRotation);     
 }
 
 
 void ConsoleClientDisplay::drawPaddles() {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
-
     display->fillRect(clientOnePaddleXPrevPosition,
                       clientOnePaddleYPrevPosition, 
                       Paddle::WIDTH,
@@ -75,15 +66,11 @@ void ConsoleClientDisplay::drawPaddles() {
 
     clientTwoPaddleXPrevPosition = clientTwoPaddle->getX();
     clientTwoPaddleYPrevPosition = clientTwoPaddle->getY();
-
-    display->setRotation(originalRotation);    
 }
 
 
 void ConsoleClientDisplay::drawBall() {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
-
+    
     display->fillRect(ballXPrevPosition,
                       ballYPrevPosition, 
                       Ball::LENGTH,
@@ -97,15 +84,11 @@ void ConsoleClientDisplay::drawBall() {
                       Color::WHITE_);
 
     ballXPrevPosition = ball->getX();
-    ballYPrevPosition = ball->getY();
-                      
-    display->setRotation(originalRotation); 
+    ballYPrevPosition = ball->getY();     
 }
 
 
 void ConsoleClientDisplay::drawScoreBoard() {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
 
     std::ostringstream oss;
     oss << clientOneScore->getScore() << "  :  " << clientTwoScore->getScore();
@@ -115,17 +98,11 @@ void ConsoleClientDisplay::drawScoreBoard() {
     display->setTextSize(2);
     display->println(oss.str().c_str());
                       
-    display->setRotation(originalRotation); 
 }
 
 
 void ConsoleClientDisplay::drawLine() {
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     display->fillRect(0, 20, 320, 1, Color::WHITE_);
-
-    display->setRotation(originalRotation);
 }
 
 }

@@ -1,10 +1,10 @@
 #ifndef Keyboard_H
 #define Keyboard_H
 
-#include <map>
 #include <vector>
 
 #include "Key.h"
+#include "KeySet.h"
 
 /**
  * @brief Class representing keyboard.
@@ -20,9 +20,11 @@ class Keyboard {
 public:
 /**
  * @brief Construct a new Keyboard object.
- * This constructor initializes lowercaseKeys, capitalizeKeys and special keys.
+ * @param standardKeySet Standard key set for the keyboard.
 */
-    Keyboard();
+    Keyboard(KeySet* standardKeySet);
+
+    ~Keyboard();
 
 /**
  * @brief Move cursor up.
@@ -59,33 +61,25 @@ public:
     std::vector<Key> getKeys();
 
 /**
- * @brief capitalize the keyboard.
- * @param capitalized - flag indicating if keyboard is capitalized.
- * If true, the keyboard will be capitalized.
+ * Init backspace, caps lock, space and enter keys (using in all keyboards).
  */
-    void setCapitalized(bool capitalized);
+    void initSpecialKeys();
+
+    void addKeySet(KeySet* keySet);
 
 /**
- * @brief Check if the keyboard is capitalized.
- * @return true if the keyboard is capitalized, false otherwise.
+ * @brief Change the current key set.
+ * for example from lowercase to uppercase.
  */
-    bool isCapitalized();
+    void changeKeySet();
 
-/**
- * @brief change the capitalization of the keyboard.
- * If the keyboard is capitalized, it will be changed to lowercase.
- * If the keyboard is lowercase, it will be changed to capitalized.
- */
-    void changeCapitalization();
 
 private:
-    bool capitalized; /**< Flag indicating if keyboard is capitalized. */
-
     Vector2D cursorPosition; /**< Position of the user cursor. */
 
-    Key lowercaseKeys[5][10]; /**< Array of lowercase keys. */
+    std::vector<KeySet*> keySets;
 
-    Key capitalizeKeys[5][10]; /**< Array of capitalized keys. */
+    KeySet* currentKeySet;
 
     Key backspace;
 
@@ -94,12 +88,6 @@ private:
     Key space;
 
     Key enter;
-
-    void initLowercaseKeys();
-
-    void initCapitalizeKeys();
-
-    void initSpecialKeys();
 };
 
 #endif

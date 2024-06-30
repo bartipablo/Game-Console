@@ -4,8 +4,10 @@ WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiN
     : wifiNetwork(wifiNetwork) {
     this->display = display;
     inputBlocking = new InputBlocking();
-    keyboard = new Keyboard();
+    keyboardFactory = new KeyboardFactory();
+    keyboard = keyboardFactory->createClassicKeyboard();
     keyboardDisplay = new KeyboardDisplay();
+    standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
     wifiConnection = WiFiConnection::getInstance();
     userInput = UserInput::getInstance();
     shutdown = false;
@@ -13,8 +15,10 @@ WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiN
 
 WiFiConnectionInitializer::~WiFiConnectionInitializer() {
     delete inputBlocking;
+    delete keyboardFactory;
     delete keyboard;
     delete keyboardDisplay;
+    delete standardKeyboardService;
 }
 
 void WiFiConnectionInitializer::run() {
@@ -27,36 +31,19 @@ void WiFiConnectionInitializer::run() {
     }
 
     inputBlocking->startBlocking(20);
+    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
 
     display->clear();
     display->displayPassword(password);
-    keyboardDisplay->drawKeys(keyboard->getKeys());
-    keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    standardKeyboardService->displayKeyboard();
 
     while (!shutdown) {
         delay(20);
         
         if (!inputBlocking->isBlocked()) {
+            standardKeyboardService->serveUserInteraction();
 
-            Key previousKey = keyboard->getCurrentKey();
-
-            if (userInput->isPressedJoysticUp()) {
-                keyboard->cursorUp();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticDown()) {
-                keyboard->cursorDown();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticLeft()) {
-                keyboard->cursorLeft();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticRight()) {
-                keyboard->cursorRight();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedLeftButton()) {
+            if (userInput->isPressedLeftButton()) {
                 serveKey(keyboard->getCurrentKey());
             }
             else if (userInput->isPressedRightButton()) {
@@ -68,17 +55,9 @@ void WiFiConnectionInitializer::run() {
     }
 }
 
-void WiFiConnectionInitializer::updateKey(Key previousKey, Key currentKey) {
-    keyboardDisplay->drawKey(previousKey);
-    keyboardDisplay->drawSelectedKey(currentKey);
-    inputBlocking->startBlocking(10);
-}
-
 void WiFiConnectionInitializer::serveKey(Key key) {
-    if (key.getCharacter() == 7) {
-        keyboard->changeCapitalization();
-        keyboardDisplay->drawKeys(keyboard->getKeys());
-        keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    if (key.getCharacter() == CAPS_LOCK) {
+        // ignore this case.
     }
     else if (key.getCharacter() == '\b') {
         if (password.length() > 0) {
@@ -95,6 +74,4 @@ void WiFiConnectionInitializer::serveKey(Key key) {
         password += key.getCharacter();
         display->displayPassword(password);
     }
-
-    inputBlocking->startBlocking(10);
 }

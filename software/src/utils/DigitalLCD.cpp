@@ -9,6 +9,7 @@ void DigitalLCD::init(Arduino_ESP32SPI* bus, int TFT_RESET) {
   digitalLCD_ = new Arduino_ILI9341(bus, TFT_RESET);
 }
 
+
 Arduino_ILI9341* DigitalLCD::getInstance() {
   return digitalLCD_;
 }
