@@ -9,6 +9,7 @@ MainMenu::MainMenu() {
     apps.push_back(new NotepadApplication(menuDisplay));
     apps.push_back(new WiFiApplication(menuDisplay));
     apps.push_back(new PongApplication(menuDisplay));
+    apps.push_back(new snake::SnakeApplication(menuDisplay));
 
     appMenu = new AppMenu(apps);
     appMenu->setBlockExit(true);
