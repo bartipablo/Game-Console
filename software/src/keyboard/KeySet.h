@@ -6,6 +6,11 @@
 #define ROWS 4
 #define COLUMNS 10
 
+
+/**
+ * @brief Class representing a set of keys.
+ * for example, a set of lowercase keys for a keyboard.
+ */
 class KeySet {
 
 public:

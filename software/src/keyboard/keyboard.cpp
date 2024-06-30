@@ -17,7 +17,7 @@ Keyboard::~Keyboard() {
 
 void Keyboard::initSpecialKeys() {
     backspace = Key('\b', "Backspace", Vector2D(4, 0), 2);
-    capsLck = Key(7, "CapsLk", Vector2D(4, 2), 2);
+    capsLck = Key(CAPS_LOCK, "CapsLk", Vector2D(4, 2), 2);
     space = Key(' ', "Space", Vector2D(4, 4), 4);
     enter = Key('\n', "Enter", Vector2D(4, 8), 2);
 }

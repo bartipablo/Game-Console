@@ -8,9 +8,17 @@
 #define ROWS 4
 #define COLUMNS 10
 
+/**
+ * @brief Class representing a keyboard factory.
+ * It allows to create different types of keyboards.
+ */
 class KeyboardFactory {
 
 public:
+/**
+ * @brief Create a classic keyboard.
+ * The classic keyboard is represented in a QWERTY layout with several special characters.
+ */
     Keyboard* createClassicKeyboard() {
         KeySet* lowercaseClassicKeysWithNumbers = generateLowerCaseLettersWithNumber();
         Keyboard* keyboard = new Keyboard(lowercaseClassicKeysWithNumbers);

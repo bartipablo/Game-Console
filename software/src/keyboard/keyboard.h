@@ -21,7 +21,7 @@ class Keyboard {
 public:
 /**
  * @brief Construct a new Keyboard object.
- * This constructor initializes lowercaseKeys, capitalizeKeys and special keys.
+ * @param standardKeySet Standard key set for the keyboard.
 */
     Keyboard(KeySet* standardKeySet);
 
@@ -61,10 +61,17 @@ public:
  */
     std::vector<Key> getKeys();
 
+/**
+ * Init backspace, caps lock, space and enter keys (using in all keyboards).
+ */
     void initSpecialKeys();
 
     void addKeySet(KeySet* keySet);
 
+/**
+ * @brief Change the current key set.
+ * for example from lowercase to uppercase.
+ */
     void changeKeySet();
 
 
