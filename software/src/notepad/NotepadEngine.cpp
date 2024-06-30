@@ -68,7 +68,7 @@ void NotepadEngine::updateKey(Key previousKey, Key currentKey) {
 
 void NotepadEngine::serveKey(Key key) {
     if (key.getCharacter() == 7) {
-        keyboard->changeCapitalization();
+        keyboard->changeKeySet();
         keyboardDisplay->drawKeys(keyboard->getKeys());
         keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
     }

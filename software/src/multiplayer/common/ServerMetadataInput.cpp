@@ -129,7 +129,7 @@ void ServerMetadataInput::serveKey(Key key) {
 
     // capslock 
     else if (key.getCharacter() == 7) {
-        keyboard->changeCapitalization();
+        keyboard->changeKeySet();
         keyboardDisplay->drawKeys(keyboard->getKeys());
         keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
     }

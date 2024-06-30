@@ -78,7 +78,7 @@ void WiFiConnectionInitializer::updateKey(Key previousKey, Key currentKey) {
 
 void WiFiConnectionInitializer::serveKey(Key key) {
     if (key.getCharacter() == 7) {
-        keyboard->changeCapitalization();
+        keyboard->changeKeySet();
         keyboardDisplay->drawKeys(keyboard->getKeys());
         keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
     }

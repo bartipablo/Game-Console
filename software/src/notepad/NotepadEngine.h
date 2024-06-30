@@ -41,7 +41,7 @@ private:
 
     Keyboard* keyboard;
 
-    Keyboard
+    KeyboardFactory* keyboardFactory;
 
     NotepadDisplay* notepadDisplay;
 
