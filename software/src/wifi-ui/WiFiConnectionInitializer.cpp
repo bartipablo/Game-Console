@@ -31,6 +31,7 @@ void WiFiConnectionInitializer::run() {
     }
 
     inputBlocking->startBlocking(20);
+    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
 
     display->clear();
     display->displayPassword(password);
@@ -73,6 +74,4 @@ void WiFiConnectionInitializer::serveKey(Key key) {
         password += key.getCharacter();
         display->displayPassword(password);
     }
-
-    inputBlocking->startBlocking(10);
 }

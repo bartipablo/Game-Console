@@ -26,6 +26,7 @@ void NotepadEngine::run() {
     standardKeyboardService->displayKeyboard();
     notepadDisplay->drawRows(text->getText(), text->getActualRow());
     inputBlocking->startBlocking(20);
+    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
 
     while (!shutdown) {
         delay(20);
@@ -34,7 +35,7 @@ void NotepadEngine::run() {
             
             standardKeyboardService->serveUserInteraction();
 
-            else if (userInput->isPressedLeftButton()) {
+            if (userInput->isPressedLeftButton()) {
                 serveKey(keyboard->getCurrentKey());
             }
             else if (userInput->isPressedRightButton()) {
@@ -55,6 +56,5 @@ void NotepadEngine::serveKey(Key key) {
     else {
         text->appendCharacter(key.getCharacter());
     }
-    inputBlocking->startBlocking(10);
     notepadDisplay->drawRows(text->getText(), text->getActualRow());
 }

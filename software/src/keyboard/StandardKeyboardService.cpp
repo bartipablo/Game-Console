@@ -6,33 +6,38 @@ StandardKeyboardService::StandardKeyboardService(Keyboard* keyboard, KeyboardDis
 }
 
 
-StandardKeyboardService::displayKeyboard() {
+void StandardKeyboardService::displayKeyboard() {
     keyboardDisplay->drawKeys(keyboard->getKeys());
     keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
 }
 
 
-StandardKeyboardService::serveUserInteraction() {
+void StandardKeyboardService::serveUserInteraction() {
     Key previousKey = keyboard->getCurrentKey();
 
     if (userInput->isPressedJoysticUp()) {
         keyboard->cursorUp();
         updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        inputBlockingService();
     }
     else if (userInput->isPressedJoysticDown()) {
         keyboard->cursorDown();
         updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        inputBlockingService();
     }
     else if (userInput->isPressedJoysticLeft()) {
         keyboard->cursorLeft();
         updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        inputBlockingService();
     }
     else if (userInput->isPressedJoysticRight()) {
         keyboard->cursorRight();
         updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        inputBlockingService();
     }
     else if (userInput->isPressedLeftButton()) {
         servePressedKey(keyboard->getCurrentKey());
+        inputBlockingService();
     }
 }
 
@@ -49,4 +54,21 @@ void StandardKeyboardService::servePressedKey(Key key) {
         keyboard->changeKeySet();
         displayKeyboard();
     }
+}
+
+
+void StandardKeyboardService::registerInputBlocking(InputBlocking* inputBlocking, int time) {
+    this->inputBlocking = inputBlocking;
+    if (time < 0) {
+        time = 0;
+    }
+    this->time = time;
+}
+
+
+void StandardKeyboardService::inputBlockingService() {
+    if (inputBlocking == nullptr) {
+        return;
+    }
+    inputBlocking->startBlocking(time);
 }

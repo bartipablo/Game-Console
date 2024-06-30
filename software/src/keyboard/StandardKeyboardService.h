@@ -4,6 +4,8 @@
 #include "Key.h"
 #include "KeyboardDisplay.h"
 #include "Keyboard.h"
+#include "../utils/UserInput.h"
+#include "../utils/InputBlocking.h"
 
 class StandardKeyboardService {
 
@@ -14,9 +16,13 @@ public:
 
     void serveUserInteraction();
 
+    void registerInputBlocking(InputBlocking* inputBlocking, int time);
+
 
 private:
     void updateKeyDisplay(Key previousKey, Key currentKey);
+
+    void inputBlockingService();
 
     void servePressedKey(Key key);
 
@@ -25,6 +31,12 @@ private:
     Keyboard* keyboard;
 
     KeyboardDisplay* keyboardDisplay;
+
+    InputBlocking* inputBlocking = nullptr;
+
+    int time = 0;
+
+    UserInput* userInput = UserInput::getInstance();
 };
 
 

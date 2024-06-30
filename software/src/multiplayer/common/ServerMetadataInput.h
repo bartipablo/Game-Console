@@ -14,6 +14,7 @@
 #include "../../keyboard/Keyboard.h"
 #include "../../keyboard/KeyboardDisplay.h"
 #include "../../keyboard/KeyboardFactory.h"
+#include "../../keyboard/StandardKeyboardService.h"
 
 #include "ServerMetadataInputDisplay.h"
 

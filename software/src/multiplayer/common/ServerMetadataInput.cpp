@@ -54,7 +54,8 @@ void ServerMetadataInput::readServerMetadata() {
     inputBlocking->startBlocking(10);
     display->clearScreen();
     display->drawIPv4AndPortInputInfo(Color(Color::RED_), Color(Color::WHITE_));
-    standardKeyboardService->drawKeyboard();
+    standardKeyboardService->displayKeyboard();
+    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
 
     while (inputIPv4AndPort) {
         delay(20);
@@ -115,8 +116,6 @@ void ServerMetadataInput::serveKey(Key key) {
             inputIPv4AndPort = false;
         }
     }
-
-    inputBlocking->startBlocking(10);
 }
 
 
