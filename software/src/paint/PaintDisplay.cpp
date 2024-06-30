@@ -9,16 +9,11 @@ void PaintDisplay::drawCanvas(Canvas& canvas) {
     int height = canvas.getHeight();
     int pixelSize = canvas.getPixelSize();
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3); 
-
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
             display->fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize, pixels[y][x]);
         }
     }
-
-    display->setRotation(originalRotation);
 }
 
 
@@ -34,9 +29,6 @@ void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx
     int width = (widthPx / 5) + 2;
     int height = (heightPx / 5) + 2;
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
-
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             if (x + j < 0 || x + j >= canvasWidth || y + i < 0 || y + i >= canvasHeight) {
@@ -50,12 +42,7 @@ void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx
 void PaintDisplay::drawColorBox(ColorBox& colorBox) {
     Color actualColor = colorBox.getActualColor();
 
-    uint8_t originalRotation = display->getRotation();
-    display->setRotation(3);
-
     display->fillScreen(Color::BLACK_);
     display->fillRect(105, 65, 110, 110, actualColor.WHITE_);
     display->fillRect(110, 70, 100, 100, actualColor.getColorRGB565());
-
-    display->setRotation(originalRotation);
 }
