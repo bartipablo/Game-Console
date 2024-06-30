@@ -17,15 +17,18 @@ Ball::Ball(int x, int y) : initX(x), initY(y) {
     dy = 0;
 }
 
+
 void Ball::write(OutputMemoryStream &stream) {
     stream.write(&x, sizeof(x));
     stream.write(&y, sizeof(y));
 }
 
+
 void Ball::read(InputMemoryStream &stream) {
     stream.read(&x, sizeof(x));
     stream.read(&y, sizeof(y));
 }
+
 
 void Ball::launch() {
     std::uniform_int_distribution<int> dir(0, 1);
@@ -38,6 +41,7 @@ void Ball::launch() {
     dy = speed * std::sin(angle * M_PI / 180.0f);
 }
 
+
 void Ball::bouncesOffPaddle(Paddle& paddle) {
     int sign = (paddle.getX() < Table::WIDTH / 2) ? 1 : -1;
 
@@ -49,6 +53,7 @@ void Ball::bouncesOffPaddle(Paddle& paddle) {
 
     dy = speed * std::sin(angle * M_PI / 180.0f);
 }
+
 
 bool Ball::isCollisionWithPaddle(Paddle &paddle) {
     // check if ball is at a same height.
@@ -65,9 +70,11 @@ bool Ball::isCollisionWithPaddle(Paddle &paddle) {
     }
 }
 
+
 bool Ball::isCollisionWithWall() {
     return y <= 20 || y + Ball::LENGTH >= Table::HEIGHT - 1;
 }
+
 
 bool Ball::isBehindPaddle(pong::Paddle &paddle) {
     bool isLeftPaddle = (paddle.getX() < Table::WIDTH / 2);
@@ -82,14 +89,17 @@ bool Ball::isBehindPaddle(pong::Paddle &paddle) {
     return (y + Ball::LENGTH <= paddle.getY() || y >= paddle.getY());
 }
 
+
 void Ball::bouncesOffWall() {
     dy *= -1;
 }
+
 
 void Ball::update() {
     x += dx;
     y += dy;
 }
+
 
 void Ball::reset() {
     x = initX;

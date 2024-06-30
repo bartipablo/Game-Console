@@ -15,13 +15,16 @@ const int Color::BLACK_=0;
 
 const int Color::WHITE_=65535;
 
+
 Color::Color() {
     colorRGB565 = 0;
 }
 
+
 Color::Color(int colorRGB565) {
     this->colorRGB565 = colorRGB565;
 }
+
 
 int Color::getColorRGB565() {
     return colorRGB565;

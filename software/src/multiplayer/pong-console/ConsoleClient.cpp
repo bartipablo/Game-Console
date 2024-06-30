@@ -2,8 +2,6 @@
 
 namespace pong {
 
-
-
 ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     this->serverIPv4Str = serverIPv4Str;
     this->serverPort = serverPort;
@@ -27,6 +25,7 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     display = new ConsoleClientDisplay(clientOneScore, clientTwoScore, ball, clientOnePaddle, clientTwoPaddle);
     basicDisplay = new BasicDisplay();
 }
+
 
 ConsoleClient::~ConsoleClient() {
     delete display;

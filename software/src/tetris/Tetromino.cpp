@@ -20,13 +20,16 @@ void Tetromino::rotateClockwise(const PlayingField& playingField) {
     rotateForSpecyficTetrominos(xRotate, yRotate, playingField, nextDirection);
 }
 
+
 void Tetromino::rotateAntiClockwise(const PlayingField& playingField) {
     rotateForSpecyficTetrominos(xAntiRotate, yAntiRotate, playingField, previousDirection);
 }
 
+
 std::vector<Block> Tetromino::getBlocks() {
         return std::vector<Block>(blocks, blocks + BLOCKS_QUANTITY);
 }
+
 
 std::vector<Vector2D> Tetromino::getPositions() {
     std::vector<Vector2D> positions;
@@ -35,6 +38,7 @@ std::vector<Vector2D> Tetromino::getPositions() {
     }
     return positions;
 }
+
 
 void Tetromino::move(int x, int y, const PlayingField& playingField) {
 

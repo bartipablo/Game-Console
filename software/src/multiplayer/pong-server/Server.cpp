@@ -181,7 +181,7 @@ void Server::gameSession() {
             }
             else {
                 if (loopCounter >= loopCountToNextTour) {
-                runNextTour();
+                    runNextTour();
                 } else {
                     loopCounter++;
                 }

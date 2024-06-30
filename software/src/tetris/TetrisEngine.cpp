@@ -129,9 +129,11 @@ bool TetrisEngine::isTetrominoPlaced(std::vector<Vector2D> positions) {
     return false; 
 }
 
+
 bool TetrisEngine::isGameOver(std::vector<Vector2D> positions) {
     return !playingField.isEmptyPositions(positions);
 }
+
 
 std::vector<int> TetrisEngine::findLinesToClear() {
     std::vector<int> linesToClear;
@@ -164,6 +166,7 @@ bool TetrisEngine::shouldAutoMoveDown() {
     return false;
 }
 
+
 void TetrisEngine::moveTetromino(Tetromino* tetromino, int x, int y) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());
     tetromino->move(x, y, playingField);
@@ -171,12 +174,14 @@ void TetrisEngine::moveTetromino(Tetromino* tetromino, int x, int y) {
     inputBlocking.startBlocking(10);
 }
 
+
 void TetrisEngine::rotateClockwiseTetromino(Tetromino* tetromino) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());
     tetromino->rotateClockwise(playingField);
     tetrisDisplay.drawBlocks(tetromino->getBlocks()); 
     inputBlocking.startBlocking(10);   
 }
+
 
 void TetrisEngine::rotateAntiClockwiseTetromino(Tetromino* tetromino) {
     tetrisDisplay.clearAtPositions(tetromino->getPositions());

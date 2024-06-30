@@ -9,7 +9,6 @@ PaintEngine::PaintEngine() {
     this->inputBlocking = new InputBlocking();
 
     this->shutdown = false;
-
 }
 
 PaintEngine::~PaintEngine() {
@@ -21,7 +20,7 @@ PaintEngine::~PaintEngine() {
     delete this->inputBlocking;
 }
 
-//TODO
+
 void PaintEngine::run() {
     cursor->setSensitive(50);
 
@@ -55,6 +54,7 @@ void PaintEngine::run() {
         cursorDisplay->drawCursor();
     }
 }
+
 
 void PaintEngine::runColorSelection() {
     paintDisplay->drawColorBox(*colorBox);

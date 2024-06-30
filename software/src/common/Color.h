@@ -7,6 +7,7 @@
  * 
  */
 class Color {
+  
 public:
   const static int YELLOW_;
 
