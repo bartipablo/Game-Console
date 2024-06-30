@@ -1,9 +1,11 @@
 #include "TetrisDisplay.h"
 #include "Block.h"
 
+
 TetrisDisplay::TetrisDisplay() {
     this->display = DigitalLCD::getInstance();
 }
+
 
 void TetrisDisplay::drawBlock(Block block) {
     int x = block.getPosition().x();
@@ -22,11 +24,13 @@ void TetrisDisplay::drawBlock(Block block) {
                       color);
 }
 
+
 void TetrisDisplay::drawBlocks(const std::vector<Block>& blocks) {
     for(const auto& block : blocks) {
         drawBlock(block); 
     }
 }
+
 
 void TetrisDisplay::drawEmptyPlayingField() {
     for (int x = 0; x < 10; x++) {
@@ -36,16 +40,19 @@ void TetrisDisplay::drawEmptyPlayingField() {
     }  
 }
 
+
 void TetrisDisplay::clearAtPosition(Vector2D position) {
     Block emptyField = Block(WHITE, position);
     drawBlock(emptyField); 
 }
+
 
 void TetrisDisplay::clearAtPositions(std::vector<Vector2D> positions) {
     for (const Vector2D& pos : positions) {
         clearAtPosition(pos);
     }
 }
+
 
 void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
     std::vector<Vector2D> positions = playingField.getAllPositions();
@@ -60,6 +67,7 @@ void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
     }
 }
 
+
 void TetrisDisplay::drawFieldsDescription() {
     display->fillScreen(BLACK);
     display->setTextColor(WHITE);
@@ -73,6 +81,7 @@ void TetrisDisplay::drawFieldsDescription() {
     display->println("NEXT");
 }
 
+
 void TetrisDisplay::clearScore() {
     int x = 10; 
     int y = 60; 
@@ -81,6 +90,7 @@ void TetrisDisplay::clearScore() {
 
     display->fillRect(x, y, width, height, BLACK);
 }
+
 
 void TetrisDisplay::clearLevel() {
     int x = 10; 
@@ -91,6 +101,7 @@ void TetrisDisplay::clearLevel() {
     display->fillRect(x, y, width, height, BLACK);
 }
 
+
 void TetrisDisplay::clearNext() {
     int x = 220; 
     int y = 60; 
@@ -99,6 +110,7 @@ void TetrisDisplay::clearNext() {
 
     display->fillRect(x, y, width, height, WHITE);
 }
+
 
 void TetrisDisplay::drawScore(int score) {
     String scoreString = String(score);
@@ -111,6 +123,7 @@ void TetrisDisplay::drawScore(int score) {
     display->println(scoreString); 
 }
 
+
 void TetrisDisplay::drawLevel(int level) {
     String levelString = String(level);
 
@@ -121,6 +134,7 @@ void TetrisDisplay::drawLevel(int level) {
     display->setCursor(30, 150);  
     display->println(levelString); 
 }
+
 
 void TetrisDisplay::drawNext(std::vector<Block> blocks) {
     int minX = blocks[0].getPosition().x();
@@ -183,6 +197,7 @@ void TetrisDisplay::drawNext(std::vector<Block> blocks) {
     }
 
 }
+
 
 void TetrisDisplay::displayGameOver(int score, int level) {
     String scoreString = String(score);
