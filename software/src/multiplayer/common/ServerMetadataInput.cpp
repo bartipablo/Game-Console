@@ -4,6 +4,8 @@ ServerMetadataInput::ServerMetadataInput() {
     display = new ServerMetadataInputDisplay();
     inputBlocking = new InputBlocking();
     basicDisplay = new BasicDisplay();
+    keyboardFactory = new KeyboardFactory();
+    keyboardDisplay = new KeyboardDisplay();
 }
 
 
@@ -11,6 +13,8 @@ ServerMetadataInput::~ServerMetadataInput() {
     delete display;
     delete inputBlocking;
     delete basicDisplay;
+    delete keyboardFactory;
+    delete keyboardDisplay;
 }	
 
 
@@ -42,8 +46,7 @@ void ServerMetadataInput::start() {
 
 
 void ServerMetadataInput::readServerMetadata() {
-    keyboard = new Keyboard();
-    keyboardDisplay = new KeyboardDisplay();
+    keyboard = keyboardFactory->createClassicKeyboard();
 
     inputBlocking->startBlocking(10);
     display->clearScreen();
@@ -88,7 +91,6 @@ void ServerMetadataInput::readServerMetadata() {
     }
 
     delete keyboard;
-    delete keyboardDisplay;
 }
 
 

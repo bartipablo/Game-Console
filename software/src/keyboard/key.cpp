@@ -15,8 +15,8 @@ Key::Key(char character, Vector2D position, int width) {
 }
 
 Key::Key() {
-    this->character = 0;
-    this->stringRepresentation = "DEFAULT";
+    this->character = '\0';
+    this->stringRepresentation = "NULL";
     this->position = Vector2D(0, 0);
     this->width = 1;
 }

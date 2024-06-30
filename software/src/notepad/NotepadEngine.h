@@ -5,6 +5,7 @@
 #include "Text.h"
 #include "../keyboard/Keyboard.h"
 #include "../keyboard/KeyboardDisplay.h"
+#include "../keyboard/KeyboardFactory.h"
 #include "../utils/InputBlocking.h"
 #include "../utils/UserInput.h"
 
@@ -39,6 +40,8 @@ private:
     Text* text;
 
     Keyboard* keyboard;
+
+    Keyboard
 
     NotepadDisplay* notepadDisplay;
 

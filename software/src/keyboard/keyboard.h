@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Key.h"
+#include "KeySet.h"
 
 /**
  * @brief Class representing keyboard.
@@ -22,7 +23,9 @@ public:
  * @brief Construct a new Keyboard object.
  * This constructor initializes lowercaseKeys, capitalizeKeys and special keys.
 */
-    Keyboard();
+    Keyboard(KeySet* standardKeySet);
+
+    ~Keyboard();
 
 /**
  * @brief Move cursor up.
@@ -58,34 +61,19 @@ public:
  */
     std::vector<Key> getKeys();
 
-/**
- * @brief capitalize the keyboard.
- * @param capitalized - flag indicating if keyboard is capitalized.
- * If true, the keyboard will be capitalized.
- */
-    void setCapitalized(bool capitalized);
+    void initSpecialKeys();
 
-/**
- * @brief Check if the keyboard is capitalized.
- * @return true if the keyboard is capitalized, false otherwise.
- */
-    bool isCapitalized();
+    void addKeySet(KeySet* keySet);
 
-/**
- * @brief change the capitalization of the keyboard.
- * If the keyboard is capitalized, it will be changed to lowercase.
- * If the keyboard is lowercase, it will be changed to capitalized.
- */
-    void changeCapitalization();
+    void changeKeySet();
+
 
 private:
-    bool capitalized; /**< Flag indicating if keyboard is capitalized. */
-
     Vector2D cursorPosition; /**< Position of the user cursor. */
 
-    Key lowercaseKeys[5][10]; /**< Array of lowercase keys. */
+    std::vector<KeySet*> keySets;
 
-    Key capitalizeKeys[5][10]; /**< Array of capitalized keys. */
+    KeySet* currentKeySet;
 
     Key backspace;
 
@@ -94,12 +82,6 @@ private:
     Key space;
 
     Key enter;
-
-    void initLowercaseKeys();
-
-    void initCapitalizeKeys();
-
-    void initSpecialKeys();
 };
 
 #endif

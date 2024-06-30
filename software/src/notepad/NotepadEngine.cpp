@@ -2,7 +2,8 @@
 
 NotepadEngine::NotepadEngine() {
     text = new Text(53, 15);
-    keyboard = new Keyboard();
+    keyboardFactory = new KeyboardFactory();
+    keyboard = keyboardFactory->createClassicKeyboard();
     notepadDisplay = new NotepadDisplay();
     keyboardDisplay = new KeyboardDisplay();
     inputBlocking = new InputBlocking();
@@ -12,6 +13,7 @@ NotepadEngine::NotepadEngine() {
 
 NotepadEngine::~NotepadEngine() {
     delete text;
+    delete keyboardFactory;
     delete keyboard;
     delete notepadDisplay;
     delete keyboardDisplay;

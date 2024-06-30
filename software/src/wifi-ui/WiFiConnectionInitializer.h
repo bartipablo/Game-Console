@@ -9,6 +9,7 @@
 #include "../utils/wifi/WiFiNetwork.h"
 #include "../keyboard/Keyboard.h"
 #include "../keyboard/KeyboardDisplay.h"
+#include "../keyboard/KeyboardFactory.h"
 #include "WiFiDisplay.h"
 
 /**
@@ -32,6 +33,8 @@ private:
     InputBlocking* inputBlocking;
 
     Keyboard* keyboard;
+
+    KeyboardFactory* keyboardFactory;
 
     KeyboardDisplay* keyboardDisplay;
 

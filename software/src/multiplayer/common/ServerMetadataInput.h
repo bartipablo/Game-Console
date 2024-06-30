@@ -13,6 +13,7 @@
 
 #include "../../keyboard/Keyboard.h"
 #include "../../keyboard/KeyboardDisplay.h"
+#include "../../keyboard/KeyboardFactory.h"
 
 #include "ServerMetadataInputDisplay.h"
 
@@ -72,6 +73,8 @@ private:
     ServerMetadataInputDisplay* display;
 
     InputBlocking* inputBlocking;
+
+    KeyboardFactory* keyboardFactory;
 
     Keyboard* keyboard;
 

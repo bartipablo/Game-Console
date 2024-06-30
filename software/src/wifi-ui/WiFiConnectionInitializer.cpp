@@ -4,7 +4,8 @@ WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiN
     : wifiNetwork(wifiNetwork) {
     this->display = display;
     inputBlocking = new InputBlocking();
-    keyboard = new Keyboard();
+    keyboardFactory = new KeyboardFactory();
+    keyboard = keyboardFactory->createClassicKeyboard();
     keyboardDisplay = new KeyboardDisplay();
     wifiConnection = WiFiConnection::getInstance();
     userInput = UserInput::getInstance();
@@ -13,6 +14,7 @@ WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiN
 
 WiFiConnectionInitializer::~WiFiConnectionInitializer() {
     delete inputBlocking;
+    delete keyboardFactory;
     delete keyboard;
     delete keyboardDisplay;
 }
