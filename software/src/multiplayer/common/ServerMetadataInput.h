@@ -80,9 +80,9 @@ private:
 
     KeyboardDisplay* keyboardDisplay;
 
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    StandardKeyboardService* standardKeyboardService;
 
-    void updateKey(Key previousKey, Key currentKey);
+    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
 
     /**
      * Server pressed key.

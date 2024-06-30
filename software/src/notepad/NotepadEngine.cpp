@@ -7,6 +7,7 @@ NotepadEngine::NotepadEngine() {
     notepadDisplay = new NotepadDisplay();
     keyboardDisplay = new KeyboardDisplay();
     inputBlocking = new InputBlocking();
+    standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
 
     shutdown = false;
 }
@@ -18,11 +19,11 @@ NotepadEngine::~NotepadEngine() {
     delete notepadDisplay;
     delete keyboardDisplay;
     delete inputBlocking;
+    delete standardKeyboardService;
 }
 
 void NotepadEngine::run() {
-    keyboardDisplay->drawKeys(keyboard->getKeys());
-    keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    standardKeyboardService->displayKeyboard();
     notepadDisplay->drawRows(text->getText(), text->getActualRow());
     inputBlocking->startBlocking(20);
 
@@ -30,25 +31,9 @@ void NotepadEngine::run() {
         delay(20);
 
         if (!inputBlocking->isBlocked()) {
+            
+            standardKeyboardService->serveUserInteraction();
 
-            Key previousKey = keyboard->getCurrentKey();
-
-            if (userInput->isPressedJoysticUp()) {
-                keyboard->cursorUp();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticDown()) {
-                keyboard->cursorDown();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticLeft()) {
-                keyboard->cursorLeft();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticRight()) {
-                keyboard->cursorRight();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
             else if (userInput->isPressedLeftButton()) {
                 serveKey(keyboard->getCurrentKey());
             }
@@ -60,17 +45,9 @@ void NotepadEngine::run() {
     }
 }
 
-void NotepadEngine::updateKey(Key previousKey, Key currentKey) {
-    keyboardDisplay->drawKey(previousKey);
-    keyboardDisplay->drawSelectedKey(currentKey);
-    inputBlocking->startBlocking(10);
-}
-
 void NotepadEngine::serveKey(Key key) {
-    if (key.getCharacter() == 7) {
-        keyboard->changeKeySet();
-        keyboardDisplay->drawKeys(keyboard->getKeys());
-        keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    if (key.getCharacter() == CAPS_LOCK) {
+        // ignore this case.
     }
     else if (key.getCharacter() == '\b') {
         text->backspace();

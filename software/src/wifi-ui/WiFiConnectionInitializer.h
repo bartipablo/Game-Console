@@ -10,6 +10,7 @@
 #include "../keyboard/Keyboard.h"
 #include "../keyboard/KeyboardDisplay.h"
 #include "../keyboard/KeyboardFactory.h"
+#include "../keyboard/StandardKeyboardService.h"
 #include "WiFiDisplay.h"
 
 /**
@@ -37,6 +38,8 @@ private:
     KeyboardFactory* keyboardFactory;
 
     KeyboardDisplay* keyboardDisplay;
+
+    StandardKeyboardService* standardKeyboardService;
 
     WiFiConnection* wifiConnection = WiFiConnection::getInstance();
 

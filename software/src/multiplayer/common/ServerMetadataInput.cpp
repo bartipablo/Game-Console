@@ -6,6 +6,8 @@ ServerMetadataInput::ServerMetadataInput() {
     basicDisplay = new BasicDisplay();
     keyboardFactory = new KeyboardFactory();
     keyboardDisplay = new KeyboardDisplay();
+    keyboard = keyboardFactory->createClassicKeyboard();
+    standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
 }
 
 
@@ -15,6 +17,8 @@ ServerMetadataInput::~ServerMetadataInput() {
     delete basicDisplay;
     delete keyboardFactory;
     delete keyboardDisplay;
+    delete keyboard;
+    delete standardKeyboardService;
 }	
 
 
@@ -46,38 +50,19 @@ void ServerMetadataInput::start() {
 
 
 void ServerMetadataInput::readServerMetadata() {
-    keyboard = keyboardFactory->createClassicKeyboard();
 
     inputBlocking->startBlocking(10);
     display->clearScreen();
     display->drawIPv4AndPortInputInfo(Color(Color::RED_), Color(Color::WHITE_));
-    keyboardDisplay->drawKeys(keyboard->getKeys());
-    keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    standardKeyboardService->drawKeyboard();
 
     while (inputIPv4AndPort) {
         delay(20);
         
         if (!inputBlocking->isBlocked()) {
+            standardKeyboardService->serveUserInteraction();
 
-            Key previousKey = keyboard->getCurrentKey();
-
-            if (userInput->isPressedJoysticUp()) {
-                keyboard->cursorUp();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticDown()) {
-                keyboard->cursorDown();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticLeft()) {
-                keyboard->cursorLeft();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedJoysticRight()) {
-                keyboard->cursorRight();
-                updateKey(previousKey, keyboard->getCurrentKey());
-            }
-            else if (userInput->isPressedLeftButton()) {
+            if (userInput->isPressedLeftButton()) {
                 serveKey(keyboard->getCurrentKey());
             }
             else if (userInput->isPressedRightButton()) {
@@ -87,24 +72,17 @@ void ServerMetadataInput::readServerMetadata() {
             }
         }
         inputBlocking->decrement();
-            
     }
-
-    delete keyboard;
-}
-
-
-void ServerMetadataInput::updateKey(Key previousKey, Key currentKey) {
-    keyboardDisplay->drawKey(previousKey);
-    keyboardDisplay->drawSelectedKey(currentKey);
-    inputBlocking->startBlocking(10);
 }
 
 
 void ServerMetadataInput::serveKey(Key key) {
+    if (key.getCharacter() == CAPS_LOCK) {
+        // ignore this case.
+    }
 
     // normal character
-    if (actualInput == SERVER_IPv4 && isAvailableCharForIPv4(key.getCharacter())) {
+    else if (actualInput == SERVER_IPv4 && isAvailableCharForIPv4(key.getCharacter())) {
         if (serverIPv4.length() == 15) return;
         serverIPv4 += key.getCharacter();
         display->drawInputIPv4(serverIPv4);
@@ -125,13 +103,6 @@ void ServerMetadataInput::serveKey(Key key) {
             serverPortStr.pop_back();
             display->drawInputPort(serverPortStr);
         }
-    }
-
-    // capslock 
-    else if (key.getCharacter() == 7) {
-        keyboard->changeKeySet();
-        keyboardDisplay->drawKeys(keyboard->getKeys());
-        keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
     }
 
     //enter
