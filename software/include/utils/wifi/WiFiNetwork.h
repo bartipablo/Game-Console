@@ -11,7 +11,7 @@
 class WiFiNetwork {
 
 public:
-    WiFiNetwork(char* ssid, int rssi, WiFiEncriptionType encryptionType) : rssi(rssi), encriptionType(encryptionType) {
+    WiFiNetwork(const char* ssid, const int rssi, const WiFiEncriptionType encryptionType) : rssi(rssi), encriptionType(encryptionType) {
         strcpy(this->ssid, ssid);
     }
 
@@ -30,9 +30,9 @@ public:
 private:
     char ssid[32];
 
-    int rssi;
+    const int rssi;
 
-    WiFiEncriptionType encriptionType;
+    const WiFiEncriptionType encriptionType;
     
 };
 
