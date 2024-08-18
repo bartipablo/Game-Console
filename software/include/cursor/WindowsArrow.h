@@ -20,7 +20,12 @@ public:
 */
     WindowsArrow();
 
-
+    /** The arrow is represented by a 19x12 matrix of characters.
+    * '0' - no pixel
+    * '1' - black pixel
+    * '2' - white pixel
+    */
+    static const char arrowCharRepresentation[19][12];
 };
 
 }
