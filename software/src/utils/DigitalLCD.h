@@ -32,7 +32,7 @@ public:
      * @param bus Pointer to the SPI bus used by the LCD display.
      * @param TFT_RESET The GPIO pin number for the reset of the LCD display.
      */
-    static void init(Arduino_ESP32SPI* bus, int TFT_RESET);
+    static void init(const Arduino_ESP32SPI* bus, int TFT_RESET, int defaultRotation=3);
 
     static const int X_BOUNDARY = 320;
 
