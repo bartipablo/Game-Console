@@ -1,6 +1,8 @@
-#include "./src/utils/DigitalLCD.h"
-#include "./src/main-menu/MainMenu.h"
-#include "./src/utils/wifi/WiFiConnection.h"
+#include <Arduino.h>
+
+#include "./utils/DigitalLCD.h"
+#include "./main-menu/MainMenu.h"
+#include "./utils/wifi/WiFiConnection.h"
 
 
 namespace Peripheral {
