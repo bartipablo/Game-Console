@@ -3,6 +3,7 @@
 #include "./utils/DigitalLCD.h"
 #include "./main-menu/MainMenu.h"
 #include "./utils/wifi/WiFiConnection.h"
+#include "UserInput.h"
 
 
 namespace Peripheral {

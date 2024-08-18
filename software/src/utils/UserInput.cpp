@@ -1,15 +1,14 @@
-#include "esp32-hal-gpio.h"
-#include "Arduino.h"
 #include "UserInput.h"
 
-UserInput* UserInput::userInput_ = nullptr;
+UserInput *UserInput::userInput_ = nullptr;
 
-UserInput::UserInput(int leftButtonPin, int rightButtonPin, int joysticXPin, int joysticYPin, int joysticButtonPin) {
-    this->leftButtonPin_ = leftButtonPin;
-    this->rightButtonPin_ = rightButtonPin;
-    this->joysticXPin_ = joysticXPin;
-    this->joysticYPin_ = joysticYPin;
-    this->joysticButtonPin_ = joysticButtonPin;
+UserInput::UserInput(const int leftButtonPin, const int rightButtonPin, const int joysticXPin, const int joysticYPin, const int joysticButtonPin)
+    : leftButtonPin_(leftButtonPin),
+      rightButtonPin_(rightButtonPin),
+      joysticXPin_(joysticXPin),
+      joysticYPin_(joysticYPin),
+      joysticButtonPin_(joysticButtonPin)
+{
 
     pinMode(leftButtonPin_, INPUT_PULLUP);
     pinMode(rightButtonPin_, INPUT_PULLUP);
@@ -53,12 +52,12 @@ int UserInput::getYJoysticVal() {
 }
 
 void UserInput::init(int leftButtonPin, int rightButtonPin, int joysticXPin, int joysticYPin, int joysticButtonPin) {
-  if (userInput_ != nullptr) {
-      return;
-  }
-  userInput_ = new UserInput(leftButtonPin, rightButtonPin, joysticXPin, joysticYPin, joysticButtonPin);
+    if (userInput_ != nullptr) {
+        throw ForbiddenOperation("UserInput has already been initialized.");
+    }
+    userInput_ = new UserInput(leftButtonPin, rightButtonPin, joysticXPin, joysticYPin, joysticButtonPin);
 }
 
-UserInput* UserInput::getInstance() {
-  return userInput_;
+UserInput *UserInput::getInstance() {
+    return userInput_;
 }
