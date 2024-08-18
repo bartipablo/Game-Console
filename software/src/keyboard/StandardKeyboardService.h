@@ -4,7 +4,7 @@
 #include "Key.h"
 #include "KeyboardDisplay.h"
 #include "Keyboard.h"
-#include "../utils/UserInput.h"
+#include "UserInput.h"
 #include "../utils/InputBlocking.h"
 
 class StandardKeyboardService {

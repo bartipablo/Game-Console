@@ -1,7 +1,7 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include "../streams/Serializable.h"
+#include "Serializable.h"
 #include "Paddle.h"
 #include "Table.h"
 
@@ -14,7 +14,7 @@ namespace pong {
 /**
  * The ball class represents the ball in the Pong game.
 */
-class Ball : public Serializable {
+class Ball : public streams::Serializable {
 
 public:
     Ball(int x, int y);
@@ -76,9 +76,9 @@ public:
 */
     void launch();
 
-    void write(OutputMemoryStream &stream) override;
+    void write(streams::OutputMemoryStream &stream) override;
 
-    void read(InputMemoryStream &stream) override;
+    void read(streams::InputMemoryStream &stream) override;
 
     static const int LENGTH = 6;
 

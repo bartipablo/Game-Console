@@ -5,11 +5,11 @@
 #include <regex>
 #include <cstring>
 
-#include "../../common/BasicDisplay.h"
+#include "BasicDisplay.h"
 
-#include "../../utils/UserInput.h"
+#include "UserInput.h"
 #include "../../utils/InputBlocking.h"
-#include "../../utils/wifi/WiFiConnection.h"
+#include "WiFiConnection.h"
 
 #include "../../keyboard/Keyboard.h"
 #include "../../keyboard/KeyboardDisplay.h"
@@ -83,7 +83,7 @@ private:
 
     StandardKeyboardService* standardKeyboardService;
 
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
     /**
      * Server pressed key.
@@ -112,8 +112,6 @@ private:
     void noWifiConnected();
 
     UserInput* userInput = UserInput::getInstance();
-
-    BasicDisplay* basicDisplay;
 
     // data provided by user --------------------------
     ActualInput actualInput = SERVER_IPv4;

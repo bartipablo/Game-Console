@@ -5,15 +5,15 @@
 
 #include "ConsoleClientDisplay.h"
 
-#include "../../common/Color.h"
-#include "../../common/BasicDisplay.h"
-#include "../../common/Timer.h"
+#include "Color.h"
+#include "BasicDisplay.h"
+#include "Timer.h"
 
-#include "../../utils/UserInput.h"
+#include "UserInput.h"
 
-#include "../sockets/SocketAddress.h"
-#include "../sockets/SocketUDP.h"
-#include "../sockets/PacketCounterUDP.h"
+#include "SocketAddress.h"
+#include "SocketUDP.h"
+#include "PacketCounterUDP.h"
 
 #include "../pong-game/PongSocketTCP.h"
 #include "../pong-game/Score.h"
@@ -75,15 +75,15 @@ private:
     int serverPort;
 
     // network properties ----------------------
-    SocketAddress* clientIPv4;
+    sockets::SocketAddress* clientIPv4;
 
-    SocketAddress* serverIPv4;
+    sockets::SocketAddress* serverIPv4;
 
     PongSocketTCP* clientSocketTCP;
 
-    SocketUDP* clientSocketUDP;
+    sockets::SocketUDP* clientSocketUDP;
 
-    PacketCounterUDP* packetCounterUDP;
+    sockets::PacketCounterUDP* packetCounterUDP;
     // network properties ----------------------
 
     // game variables ---------------------------------
@@ -108,8 +108,6 @@ private:
     UserInput* userInput = UserInput::getInstance();
 
     ConsoleClientDisplay* display;
-
-    BasicDisplay* basicDisplay;
     // for console service ------------------
 
     // game state 
@@ -117,7 +115,7 @@ private:
 
     bool running = false;
 
-    EXIT_STATUS e;
+    sockets::EXIT_STATUS e;
 
     char nativeBuffer[1024];
 

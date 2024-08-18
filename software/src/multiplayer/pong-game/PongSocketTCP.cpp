@@ -5,7 +5,7 @@ namespace pong {
 
 PongSocketTCP::PongSocketTCP() {}
 
-PongSocketTCP::PongSocketTCP(SOCKET inSocket) {
+PongSocketTCP::PongSocketTCP(sockets::SOCKET inSocket) {
     mSocket = inSocket;
 }
 
@@ -17,7 +17,7 @@ Communicates PongSocketTCP::receiveCommunicate() {
     int readByes = receive_(nativeBuff, sizeof(reply));
 
     if (readByes == sizeof(reply)) {
-        InputMemoryStream* in = new InputMemoryStream(nativeBuff, sizeof(reply));
+        streams::InputMemoryStream* in = new streams::InputMemoryStream(nativeBuff, sizeof(reply));
         in->read((void*) &reply, sizeof (reply));
         delete in;
     }
@@ -29,7 +29,7 @@ Communicates PongSocketTCP::receiveCommunicate() {
 
 
 void PongSocketTCP::sendCommunicate(Communicates request) {
-    OutputMemoryStream* out = new OutputMemoryStream;
+    streams::OutputMemoryStream* out = new streams::OutputMemoryStream;
 
     out->write((void*) &request, sizeof(request));
     send_(out->getBufferPtr(), out->getLength());
@@ -38,7 +38,7 @@ void PongSocketTCP::sendCommunicate(Communicates request) {
 }
 
 
-bool PongSocketTCP::receivePortUDP(SocketAddress *socketAddress, int timeout) {
+bool PongSocketTCP::receivePortUDP(sockets::SocketAddress *socketAddress, int timeout) {
     bool receivedPort = false;
     int port = -1;
 
@@ -48,7 +48,7 @@ bool PongSocketTCP::receivePortUDP(SocketAddress *socketAddress, int timeout) {
         int readByes = receive_(nativeBuff, sizeof(int));
 
         if (readByes == sizeof(port)) {
-            InputMemoryStream* in = new InputMemoryStream(nativeBuff, sizeof(port));
+            streams::InputMemoryStream* in = new streams::InputMemoryStream(nativeBuff, sizeof(port));
             in->read((void*) &port, sizeof (port));
             socketAddress->setPort(port);
             receivedPort = true;
@@ -65,7 +65,7 @@ bool PongSocketTCP::receivePortUDP(SocketAddress *socketAddress, int timeout) {
 
 
 void PongSocketTCP::sendPortUDP(int port) {
-    OutputMemoryStream* out = new OutputMemoryStream;
+    streams::OutputMemoryStream* out = new streams::OutputMemoryStream;
 
     out->write( (void*) &port, sizeof(port));
     send_(out->getBufferPtr(), out->getLength());

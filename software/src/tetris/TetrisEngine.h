@@ -10,7 +10,7 @@
 #include "TetrisDisplay.h"
 #include "../utils/InputBlocking.h"
 #include "Arduino.h"
-#include "../utils/UserInput.h"
+#include "UserInput.h"
 
 
 /**

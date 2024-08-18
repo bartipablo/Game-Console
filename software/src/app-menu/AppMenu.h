@@ -6,7 +6,7 @@
 
 #include "App.h"
 #include "../utils/InputBlocking.h"
-#include "../utils/UserInput.h"
+#include "utils/UserInput.h"
 
 /**
  * Represents a menu that displays a list of applications.

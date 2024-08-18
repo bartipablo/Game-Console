@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../common/Color.h"
+#include "Color.h"
 
 /**
  * @brief Class representing a color box.

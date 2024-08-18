@@ -10,9 +10,9 @@
 #include "SnakeDisplay.h"
 #include "Score.h"
 
-#include "../utils/UserInput.h"
-#include "../common/Timer.h"
-#include "../common/BasicDisplay.h"
+#include "UserInput.h"
+#include "Timer.h"
+#include "BasicDisplay.h"
 
 namespace snake {
 
@@ -42,8 +42,6 @@ private:
     const int FRAME_RATE = 100;
 
     SnakeDisplay* snakeDisplay;
-
-    BasicDisplay* basicDisplay;
 
     UserInput* userInput = UserInput::getInstance();
 

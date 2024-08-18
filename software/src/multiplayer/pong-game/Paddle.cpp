@@ -4,13 +4,13 @@ namespace pong {
 
 Paddle::Paddle(int x, int y) :x(x), y(y), initX(x), initY(y) {}
 
-void Paddle::write(OutputMemoryStream &stream) {
+void Paddle::write(streams::OutputMemoryStream &stream) {
     stream.write(&y, sizeof(y));
     stream.write(&x, sizeof(x));
 }
 
 
-void Paddle::read(InputMemoryStream &stream) {
+void Paddle::read(streams::InputMemoryStream &stream) {
     stream.read(&y, sizeof(y));
     stream.read(&x, sizeof(x)); 
 }

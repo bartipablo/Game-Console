@@ -3,7 +3,6 @@
 ServerMetadataInput::ServerMetadataInput() {
     display = new ServerMetadataInputDisplay();
     inputBlocking = new InputBlocking();
-    basicDisplay = new BasicDisplay();
     keyboardFactory = new KeyboardFactory();
     keyboardDisplay = new KeyboardDisplay();
     keyboard = keyboardFactory->createClassicKeyboard();
@@ -14,7 +13,6 @@ ServerMetadataInput::ServerMetadataInput() {
 ServerMetadataInput::~ServerMetadataInput() {
     delete display;
     delete inputBlocking;
-    delete basicDisplay;
     delete keyboardFactory;
     delete keyboardDisplay;
     delete keyboard;
@@ -148,14 +146,14 @@ bool ServerMetadataInput::isValidPort(const std::string& portStr) {
 
 void ServerMetadataInput::invalidInputCommunicate(int time, std::string message) {
         correctInputProvided = false;
-        basicDisplay->clearScreen();
-        basicDisplay->drawInfo(message, "Error", Color::WHITE_, Color::RED_);
+        basicdisplay::clearScreen();
+        basicdisplay::drawInfo(message, "Error", Color::WHITE_, Color::RED_);
         delay(time);
 }
 
 
 void ServerMetadataInput::noWifiConnected() {
-    basicDisplay->clearScreen();
-    basicDisplay->drawInfo("You need to be connected to a wifi network", "Info", Color::WHITE_, Color::YELLOW_);
+    basicdisplay::clearScreen();
+    basicdisplay::drawInfo("You need to be connected to a wifi network", "Info", Color::WHITE_, Color::YELLOW_);
     delay(5000);
 }

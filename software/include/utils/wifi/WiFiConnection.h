@@ -7,6 +7,8 @@
 #include "WiFiEncriptionType.h"
 #include "WiFiNetwork.h"
 
+namespace wifi {
+
 /**
  * @brief A class that is a singleton and wrapper for a wifi connection.
  * NOTE: Class currently does not provide a method to connect to a WEP-secured network.
@@ -83,5 +85,7 @@ private:
 
     static WiFiConnection* wifiConnection_;
 };
+
+}
 
 #endif

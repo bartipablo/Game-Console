@@ -1,7 +1,7 @@
 #ifndef SnakeArea_H
 #define SnakeArea_H
 
-#include "../common/Vector2D.h"
+#include "Vector2D.h"
 
 namespace snake {
 

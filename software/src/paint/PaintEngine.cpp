@@ -3,8 +3,7 @@
 PaintEngine::PaintEngine() {
     this->canvas = new Canvas();
     this->paintDisplay = new PaintDisplay();
-    this->cursor = new Cursor(WindowsArrow());
-    this->cursorDisplay = new CursorDisplay(*this->cursor);
+    this->cursor = new cursor::Cursor(cursor::WindowsArrow());
     this->colorBox = new ColorBox();
     this->inputBlocking = new InputBlocking();
 
@@ -15,7 +14,6 @@ PaintEngine::~PaintEngine() {
     delete this->canvas;
     delete this->paintDisplay;
     delete this->cursor;
-    delete this->cursorDisplay;
     delete this->colorBox;
     delete this->inputBlocking;
 }
@@ -51,7 +49,7 @@ void PaintEngine::run() {
 
         cursor->move(userInput->getXJoysticVal(), userInput->getYJoysticVal());
 
-        cursorDisplay->drawCursor();
+        cursor::drawCursor(*cursor);
     }
 }
 

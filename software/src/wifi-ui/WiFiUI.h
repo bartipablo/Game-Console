@@ -30,7 +30,7 @@ public:
 private:
     bool previousConnectionStatus;
 
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
     UserInput* userInput = UserInput::getInstance();
 

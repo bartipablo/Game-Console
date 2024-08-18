@@ -1,7 +1,7 @@
 #ifndef Block_H
 #define Block_H
 
-#include "../common/Vector2D.h"
+#include "Vector2D.h"
 
 
 /**

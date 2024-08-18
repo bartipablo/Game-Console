@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "../../common/Color.h"
-#include "../../utils/DigitalLCD.h"
+#include "Color.h"
+#include "DigitalLCD.h"
 
 class ServerMetadataInputDisplay {
 public:

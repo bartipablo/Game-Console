@@ -1,5 +1,7 @@
 #include "WiFiConnection.h"
 
+namespace wifi {
+
 WiFiConnection* WiFiConnection::wifiConnection_ = nullptr;
 
 WiFiConnection::WiFiConnection() {
@@ -55,4 +57,6 @@ std::vector<WiFiNetwork> WiFiConnection::scanNetworks() {
 
 const char* WiFiConnection::getLastSSID() {
     return lastSSID;
+}
+
 }

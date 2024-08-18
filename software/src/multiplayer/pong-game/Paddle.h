@@ -1,7 +1,7 @@
 #ifndef PADDLE_H
 #define PADDLE_H
 
-#include "../streams/Serializable.h"
+#include "Serializable.h"
 #include "Table.h"
 
 namespace pong {
@@ -9,7 +9,7 @@ namespace pong {
 /**
  * The paddle class represents a player paddle in the Pong game.
  */
-class Paddle : public Serializable {
+class Paddle : public streams::Serializable {
 public:
     Paddle(int x, int y);
 
@@ -27,9 +27,9 @@ public:
 */
     void move(int y);
 
-    void write(OutputMemoryStream &stream);
+    void write(streams::OutputMemoryStream &stream);
 
-    void read(InputMemoryStream &stream);
+    void read(streams::InputMemoryStream &stream);
 
 /**
  * Reset the paddle to the initial position.

@@ -3,8 +3,8 @@
 
 #include <string>
 
-#include "../utils/DigitalLCD.h"
-#include "../common/Color.h"
+#include "DigitalLCD.h"
+#include "Color.h"
 #include "../utils/wifi/WiFiNetwork.h"
 #include "../utils/wifi/WiFiEncriptionType.h"
 
@@ -23,7 +23,7 @@ public:
 
     void displayWEPInformation();
 
-    void displayNetwork(WiFiNetwork network);
+    void displayNetwork(wifi::WiFiNetwork network);
 
     void displayPassword(std::string password);
 

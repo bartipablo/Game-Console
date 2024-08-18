@@ -4,8 +4,8 @@
 #include <string>
 #include <sstream>
 
-#include "../../utils/DigitalLCD.h"
-#include "../../common/Color.h"
+#include "DigitalLCD.h"
+#include "Color.h"
 
 #include "../pong-game/Ball.h"
 #include "../pong-game/Paddle.h"

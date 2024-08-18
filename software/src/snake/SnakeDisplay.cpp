@@ -1,6 +1,6 @@
 #include "SnakeDisplay.h"
 
-#include "../common/Color.h"
+#include "Color.h"
 
 namespace snake {
 

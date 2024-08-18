@@ -8,7 +8,7 @@
 #include "../keyboard/KeyboardFactory.h"
 #include "../keyboard/StandardKeyboardService.h"
 #include "../utils/InputBlocking.h"
-#include "../utils/UserInput.h"
+#include "UserInput.h"
 
 class NotepadEngine {
 

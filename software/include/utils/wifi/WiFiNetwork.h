@@ -5,6 +5,8 @@
 
 #include "WiFiEncriptionType.h"
 
+namespace wifi {
+
 /**
  * @brief A class that represents a wifi network.
  */
@@ -35,5 +37,7 @@ private:
     const WiFiEncriptionType encriptionType;
     
 };
+
+}
 
 #endif

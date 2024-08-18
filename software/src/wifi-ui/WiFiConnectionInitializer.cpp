@@ -1,6 +1,6 @@
 #include "WiFiConnectionInitializer.h"
 
-WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork) 
+WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, wifi::WiFiNetwork wifiNetwork) 
     : wifiNetwork(wifiNetwork) {
     this->display = display;
     inputBlocking = new InputBlocking();
@@ -8,7 +8,7 @@ WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiN
     keyboard = keyboardFactory->createClassicKeyboard();
     keyboardDisplay = new KeyboardDisplay();
     standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
-    wifiConnection = WiFiConnection::getInstance();
+    wifiConnection = wifi::WiFiConnection::getInstance();
     userInput = UserInput::getInstance();
     shutdown = false;
 }
@@ -22,9 +22,9 @@ WiFiConnectionInitializer::~WiFiConnectionInitializer() {
 }
 
 void WiFiConnectionInitializer::run() {
-    WiFiEncriptionType encriptionType = wifiNetwork.getEncryptionType();
+    wifi::WiFiEncriptionType encriptionType = wifiNetwork.getEncryptionType();
 
-    if (encriptionType == WiFiEncriptionType::WEP) {
+    if (encriptionType == wifi::WiFiEncriptionType::WEP) {
         display->displayWEPInformation();
         delay(2000);
         return;

@@ -7,7 +7,6 @@ SnakeEngine::SnakeEngine() {
     snake = new Snake(Vector2D(10, 10), Direction::Right);
     fruit = new Fruit(Vector2D(0, 0));
     snakeDisplay = new SnakeDisplay();
-    basicDisplay = new BasicDisplay();
     frameTimer = new Timer(FRAME_RATE);
     score = new Score();
     isRunning = false;
@@ -18,7 +17,6 @@ SnakeEngine::~SnakeEngine() {
     delete snake;
     delete fruit;
     delete frameTimer;
-    delete basicDisplay;
     delete snakeDisplay;
     delete score;
 }
@@ -31,7 +29,7 @@ void SnakeEngine::run() {
 
     fruit->generateAtRandomPosition(snake, area);
     
-    basicDisplay->clearScreen();
+    basicdisplay::clearScreen();
     snakeDisplay->drawSnake(snake);
     snakeDisplay->drawFruit(fruit);
     snakeDisplay->drawRightBoundary();
@@ -87,7 +85,7 @@ void SnakeEngine::run() {
         }
     }
 
-    basicDisplay->clearScreen();
+    basicdisplay::clearScreen();
     snakeDisplay->drawGameOver(score);
 
     std::chrono::milliseconds duration(3000);

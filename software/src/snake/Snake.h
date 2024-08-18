@@ -1,8 +1,8 @@
 #ifndef Snake_H
 #define Snake_H
 
-#include "../common/Vector2D.h"
-#include "../common/Direction.h"
+#include "Vector2D.h"
+#include "Direction.h"
 
 #include <vector>
 #include <algorithm> 

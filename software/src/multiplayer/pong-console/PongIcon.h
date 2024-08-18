@@ -1,7 +1,7 @@
 #ifndef PongIcon_H
 #define PongIcon_H
 
-#include "../../common/Icon.h"
+#include "Icon.h"
 
 class PongIcon : public Icon {
 public:

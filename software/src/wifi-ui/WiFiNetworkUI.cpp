@@ -1,10 +1,10 @@
 #include "WiFiNetworkUI.h"
 
-WiFiNetworkUI::WiFiNetworkUI(WiFiDisplay* wifiDisplay, WiFiNetwork wifiNetwork) 
+WiFiNetworkUI::WiFiNetworkUI(WiFiDisplay* wifiDisplay, wifi::WiFiNetwork wifiNetwork) 
     : wifiNetwork(wifiNetwork) {
     this->wifiDisplay = wifiDisplay;
     inputBlocking = new InputBlocking();
-    wifiConnection = WiFiConnection::getInstance();
+    wifiConnection = wifi::WiFiConnection::getInstance();
 }
 
 WiFiNetworkUI::~WiFiNetworkUI() {

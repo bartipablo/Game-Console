@@ -1,5 +1,7 @@
 #include "WiFiEncriptionType.h"
 
+namespace wifi {
+
 WiFiEncriptionType getWiFiEncriptionType(int encriptionCode) {
     switch (encriptionCode) {
         case 2:
@@ -33,4 +35,6 @@ std::string toStringEncriptionType(WiFiEncriptionType encriptionType) {
             return "OTHER";
     }
     return "unknown";
+}
+
 }

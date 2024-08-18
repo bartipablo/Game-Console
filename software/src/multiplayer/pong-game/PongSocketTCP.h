@@ -4,10 +4,10 @@
 #include <thread>
 #include <chrono>
 
-#include "../sockets/SocketTCP.h"
+#include "SocketTCP.h"
 #include "Communicates.h"
-#include "../streams/InputMemoryStream.h"
-#include "../streams/OutputMemoryStream.h"
+#include "InputMemoryStream.h"
+#include "OutputMemoryStream.h"
 
 namespace pong {
 
@@ -15,12 +15,12 @@ namespace pong {
  * The PongSocketTCP class represents a TCP socket for the Pong game.
  * Class contains a specific methods for communication between server and client for the pong game.
  */
-class PongSocketTCP : public SocketTCP {
+class PongSocketTCP : public sockets::SocketTCP {
 
 public:
     PongSocketTCP();
 
-    PongSocketTCP(SOCKET inSocket);
+    PongSocketTCP(sockets::SOCKET inSocket);
 
 /**
  * Send a specific communicate to the other side.
@@ -42,7 +42,7 @@ public:
  * @param socketAddress The address of the client.
  * @param timeout The time to wait for the port (10 * timeout [ms]).
  */
-    bool receivePortUDP(SocketAddress* socketAddress, int timeout);
+    bool receivePortUDP(sockets::SocketAddress* socketAddress, int timeout);
 
 /**
  * Send a UDP socket port (from client to server).

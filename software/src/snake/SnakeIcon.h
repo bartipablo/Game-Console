@@ -1,7 +1,7 @@
 #ifndef SnakeIcon_H
 #define SnakeIcon_H
 
-#include "../common/Icon.h"
+#include "Icon.h"
 
 namespace snake {
 

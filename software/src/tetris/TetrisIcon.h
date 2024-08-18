@@ -1,7 +1,7 @@
 #ifndef TetrisIcon_H
 #define TetrisIcon_H
 
-#include "../common/Icon.h"
+#include "Icon.h"
 
 class TetrisIcon : public Icon {
 public:

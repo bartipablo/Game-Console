@@ -1,7 +1,7 @@
 #ifndef SnakeDisplay_H
 #define SnakeDisplay_H
 
-#include "../utils/DigitalLCD.h"
+#include "DigitalLCD.h"
 #include "Snake.h"
 #include "Fruit.h"
 #include "Area.h"

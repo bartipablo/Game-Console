@@ -1,17 +1,11 @@
 #include "Cursor.h"
 
-Cursor::Cursor(CursorShape cursorShape) {
-    position = Vector2D(100, 100);
-    this->cursorShape = cursorShape;
-    this->sensitivity = 30;
-}
+namespace cursor {
+
+Cursor::Cursor(CursorShape cursorShape) : position {0, 0}, cursorShape {cursorShape}, sensitivity {30} {}
 
 
-Cursor::Cursor(CursorShape cursorShape, Vector2D initPosition) {
-    position = initPosition;
-    this->cursorShape = cursorShape;
-    this->sensitivity = 30;
-}
+Cursor::Cursor(CursorShape cursorShape, Vector2D initPosition) : position {initPosition}, cursorShape {cursorShape}, sensitivity {30} {}
 
 
 Vector2D Cursor::getPosition() {
@@ -59,4 +53,6 @@ void Cursor::move(int xAnalogVal, int yAnalogVal) {
 
 CursorShape Cursor::getCursorShape() {
     return cursorShape;
+}
+
 }

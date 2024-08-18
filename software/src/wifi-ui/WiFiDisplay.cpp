@@ -43,7 +43,7 @@ void WiFiDisplay::displayWEPInformation() {
     display->print("WEP encryption is not supported yet :(");
 }
 
-void WiFiDisplay::displayNetwork(WiFiNetwork network) {
+void WiFiDisplay::displayNetwork(wifi::WiFiNetwork network) {
     clear();
     display->setCursor(0, 20);
     display->setTextColor(Color::WHITE_);
@@ -58,7 +58,7 @@ void WiFiDisplay::displayNetwork(WiFiNetwork network) {
     display->setCursor(0, 60);
     display->print("Encryption: ");
     display->print(
-        toStringEncriptionType(network.getEncryptionType()).c_str()
+        wifi::toStringEncriptionType(network.getEncryptionType()).c_str()
     );
 }
 

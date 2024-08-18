@@ -3,6 +3,8 @@
 
 #include <string>
 
+namespace wifi {
+
 /**
  * @brief An enum class that represents the different types of wifi encription.
  
@@ -19,5 +21,7 @@ enum class WiFiEncriptionType {
 WiFiEncriptionType getWiFiEncriptionType(int encriptionCode);
 
 std::string toStringEncriptionType(WiFiEncriptionType encriptionType);
+
+}
 
 #endif

@@ -49,7 +49,7 @@ void WiFiUI::run() {
 void WiFiUI::runWiFiNetworkSelectionMenu() {
     display->clear();
     display->displayStatus("Loading...");
-    std::vector<WiFiNetwork> networks = wifiConnection->scanNetworks();
+    std::vector<wifi::WiFiNetwork> networks = wifiConnection->scanNetworks();
     std::vector<App*> networkUIs;
 
     if (networks.size() == 0) {
@@ -58,7 +58,7 @@ void WiFiUI::runWiFiNetworkSelectionMenu() {
         return;
     }
     
-    for (WiFiNetwork network : networks) {
+    for (wifi::WiFiNetwork network : networks) {
         networkUIs.push_back(new WiFiNetworkUI(display, network));
     }
 

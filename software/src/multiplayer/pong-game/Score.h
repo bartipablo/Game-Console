@@ -1,14 +1,14 @@
 #ifndef SCORE_H
 #define SCORE_H
 
-#include "../streams/Serializable.h"
+#include "Serializable.h"
 
 namespace pong {
 
 /**
  * The Score class represents the score of a player in the Pong game.
  */
-class Score : public Serializable {
+class Score : public streams::Serializable {
 
 public:
     Score();
@@ -25,9 +25,9 @@ public:
         score = 0;
     }
 
-    void write(OutputMemoryStream &stream);
+    void write(streams::OutputMemoryStream &stream);
 
-    void read(InputMemoryStream &stream);
+    void read(streams::InputMemoryStream &stream);
 
 private:
     int8_t score;

@@ -18,13 +18,13 @@ Ball::Ball(int x, int y) : initX(x), initY(y) {
 }
 
 
-void Ball::write(OutputMemoryStream &stream) {
+void Ball::write(streams::OutputMemoryStream &stream) {
     stream.write(&x, sizeof(x));
     stream.write(&y, sizeof(y));
 }
 
 
-void Ball::read(InputMemoryStream &stream) {
+void Ball::read(streams::InputMemoryStream &stream) {
     stream.read(&x, sizeof(x));
     stream.read(&y, sizeof(y));
 }

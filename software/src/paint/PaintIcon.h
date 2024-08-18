@@ -1,7 +1,7 @@
 #ifndef PaintIcon_H
 #define PaintIcon_H
 
-#include "../common/Icon.h"
+#include "Icon.h"
 
 class PaintIcon : public Icon {
 public:

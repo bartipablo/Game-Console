@@ -1,7 +1,7 @@
 #ifndef WiFiIcon_H
 #define WiFiIcon_H
 
-#include "../common/Icon.h"
+#include "Icon.h"
 
 class WiFiIcon : public Icon {
 public:

@@ -5,11 +5,11 @@
 #include "Canvas.h"
 #include "PaintDisplay.h"
 #include "ColorBox.h"
-#include "../utils/UserInput.h"
+#include "UserInput.h"
 #include "../cursor/Cursor.h"
 #include "../cursor/CursorDisplay.h"
-#include "../cursor/shapes/WindowsArrow.h"
-#include "../common/Color.h"
+#include "WindowsArrow.h"
+#include "Color.h"
 #include "../utils/InputBlocking.h"
 
 class PaintEngine {
@@ -27,11 +27,9 @@ public:
 private:
     Canvas* canvas;
 
-    Cursor* cursor;
+    cursor::Cursor* cursor;
 
     PaintDisplay* paintDisplay;
-
-    CursorDisplay* cursorDisplay;
 
     ColorBox* colorBox;
 

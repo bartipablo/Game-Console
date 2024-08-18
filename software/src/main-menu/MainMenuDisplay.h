@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "../utils/DigitalLCD.h"
-#include "../common/Color.h"
-#include "../common/Icon.h"
+#include "DigitalLCD.h"
+#include "Color.h"
+#include "Icon.h"
 
 class MainMenuDisplay {
 

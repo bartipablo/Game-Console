@@ -3,10 +3,10 @@
 
 #include <string>
 
-#include "../utils/UserInput.h"
+#include "UserInput.h"
 #include "../utils/InputBlocking.h"
-#include "../utils/wifi/WiFiConnection.h"
-#include "../utils/wifi/WiFiNetwork.h"
+#include "WiFiConnection.h"
+#include "WiFiNetwork.h"
 #include "../keyboard/Keyboard.h"
 #include "../keyboard/KeyboardDisplay.h"
 #include "../keyboard/KeyboardFactory.h"
@@ -19,7 +19,7 @@
 */
 class WiFiConnectionInitializer {
 public:
-    WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork);
+    WiFiConnectionInitializer(WiFiDisplay* display, wifi::WiFiNetwork wifiNetwork);
 
     ~WiFiConnectionInitializer();
 
@@ -41,13 +41,13 @@ private:
 
     StandardKeyboardService* standardKeyboardService;
 
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
     UserInput* userInput = UserInput::getInstance();
 
     WiFiDisplay* display;
 
-    WiFiNetwork wifiNetwork;
+    wifi::WiFiNetwork wifiNetwork;
 
     std::string password;
 

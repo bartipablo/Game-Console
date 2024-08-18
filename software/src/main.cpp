@@ -1,8 +1,8 @@
 #include <Arduino.h>
 
-#include "./utils/DigitalLCD.h"
+#include "DigitalLCD.h"
 #include "./main-menu/MainMenu.h"
-#include "./utils/wifi/WiFiConnection.h"
+#include "WiFiConnection.h"
 #include "UserInput.h"
 
 
@@ -31,7 +31,7 @@ void setup() {
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
-    WiFiConnection::init();
+    wifi::WiFiConnection::init();
 
     DigitalLCD::init(&bus, TFT_RESET);
 }

@@ -8,11 +8,11 @@ namespace pong {
  */
 class Table {
 public:
-    static const int WIDTH = 320;
+    static constexpr int WIDTH = 320;
 
-    static const int HEIGHT = 240;
+    static constexpr int HEIGHT = 240;
 
-    static const int SCORE_HEIGHT = 20; // Height of the score area at the top of the screen.
+    static constexpr int SCORE_HEIGHT = 20; // Height of the score area at the top of the screen.
 };
 
 }

@@ -5,7 +5,7 @@
 
 #define CAPS_LOCK 7
 
-#include "../common/Vector2D.h"
+#include "Vector2D.h"
 
 /**
  * @brief Class representing single key on keyboard.

@@ -7,11 +7,11 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     this->serverPort = serverPort;
 
     //network variables.
-    packetCounterUDP = new PacketCounterUDP();
-    serverIPv4 = new SocketAddress(serverIPv4Str, serverPort);
-    clientIPv4 = new SocketAddress();
+    packetCounterUDP = new sockets::PacketCounterUDP();
+    serverIPv4 = new sockets::SocketAddress(serverIPv4Str, serverPort);
+    clientIPv4 = new sockets::SocketAddress();
     clientSocketTCP = new PongSocketTCP();
-    clientSocketUDP = new SocketUDP();
+    clientSocketUDP = new sockets::SocketUDP();
     clientSocketUDP->setNonBlocking(true);
 
     //game variables.
@@ -23,13 +23,11 @@ ConsoleClient::ConsoleClient(std::string serverIPv4Str, int serverPort) {
     clientTwoPaddle = new Paddle(Table::WIDTH - Paddle::WIDTH, centralY + Paddle::HEIGHT);
 
     display = new ConsoleClientDisplay(clientOneScore, clientTwoScore, ball, clientOnePaddle, clientTwoPaddle);
-    basicDisplay = new BasicDisplay();
 }
 
 
 ConsoleClient::~ConsoleClient() {
     delete display;
-    delete basicDisplay;
 
     delete frameTimer;
     delete serverIPv4;
@@ -50,7 +48,7 @@ void ConsoleClient::start() {
 
     if (!successfullyConnected) return;
 
-    basicDisplay->clearScreen();
+    basicdisplay::clearScreen();
     display->drawLine();
     display->drawBall();
     display->drawPaddles();
@@ -80,6 +78,8 @@ void ConsoleClient::start() {
 
 
 void ConsoleClient::connect() {
+    using namespace sockets;
+
     connectionInfo("Conection...", 0);
 
     // UDP ------------------------------------------------------
@@ -153,8 +153,8 @@ void ConsoleClient::connect() {
 
 
 void ConsoleClient::connectionError(std::string message, int time) {
-    basicDisplay->clearScreen();
-    basicDisplay->drawInfo(message, "ERROR", Color(Color::WHITE_), Color(Color::RED_));
+    basicdisplay::clearScreen();
+    basicdisplay::drawInfo(message, "ERROR", Color(Color::WHITE_), Color(Color::RED_));
     successfullyConnected = false;
     running = false;
     delay(time);
@@ -162,8 +162,8 @@ void ConsoleClient::connectionError(std::string message, int time) {
 
 
 void ConsoleClient::connectionInfo(std::string message, int time) {
-    basicDisplay->clearScreen();
-    basicDisplay->drawInfo(message, "INFO", Color(Color::WHITE_), Color(Color::YELLOW_));
+    basicdisplay::clearScreen();
+    basicdisplay::drawInfo(message, "INFO", Color(Color::WHITE_), Color(Color::YELLOW_));
     delay(time);
 }
 
@@ -176,7 +176,7 @@ void ConsoleClient::gameSummary(std::string message, Color color, int time) {
 
 
 void ConsoleClient::receiveState() {
-    SocketAddress _;
+    sockets::SocketAddress _;
     const int maxReceivedStates = 10;
     int receivedStates = 0;
 
@@ -185,7 +185,7 @@ void ConsoleClient::receiveState() {
         if (readBytes <= 0) {
             return;
         }
-        InputMemoryStream in = InputMemoryStream(nativeBuffer, readBytes);
+        streams::InputMemoryStream in = streams::InputMemoryStream(nativeBuffer, readBytes);
         receivedStates++;
 
         packetCounterUDP->read(in);
@@ -212,7 +212,7 @@ void ConsoleClient::receiveState() {
 
 void ConsoleClient::sendMove(int val) {
     Move move(val);
-    OutputMemoryStream out;
+    streams::OutputMemoryStream out;
     move.write(out);
     clientSocketUDP->sendTo_(out.getBufferPtr(), (int) out.getLength(), *serverIPv4);
 }
@@ -241,8 +241,5 @@ void ConsoleClient::handleMessagesFromServer() {
             break;
     }
 }
-
-
-
 
 }

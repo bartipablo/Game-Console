@@ -16,7 +16,7 @@
  */
 class WiFiNetworkUI : public App {
 public:
-    WiFiNetworkUI(WiFiDisplay* wifiDisplay, WiFiNetwork wifiNetwork);
+    WiFiNetworkUI(WiFiDisplay* wifiDisplay, wifi::WiFiNetwork wifiNetwork);
 
     ~WiFiNetworkUI();
 
@@ -31,13 +31,13 @@ public:
     void display() override;
 
 private:
-    WiFiConnection* wifiConnection = WiFiConnection::getInstance();
+    wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
     InputBlocking* inputBlocking;
 
     std::string title;
 
-    WiFiNetwork wifiNetwork;
+    wifi::WiFiNetwork wifiNetwork;
 
     WiFiDisplay* wifiDisplay;    
 };
