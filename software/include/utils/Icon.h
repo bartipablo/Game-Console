@@ -5,17 +5,22 @@
 
 class Icon {
 public:
+    Icon(Vector2D initPosition, int initWidth, int initHeight, int initPixelSize) 
+    : position{initPosition}, width{initWidth}, height{initHeight}, pixelSize{initPixelSize} {}
+
+    virtual ~Icon() = default;
+
 /**
  * @return the width of the icon. (number of pixels in x-axis).
 */
-    int getWidth() {
+    int getWidth() const {
         return width;
     }
 
 /**
  * @return the height of the icon. (number of pixels in y-axis).
 */
-    int getHeight() {
+    int getHeight() const {
         return height;
     }
 
@@ -23,7 +28,7 @@ public:
  * @return the size of a pixel in pixels.
  * For example, a pixelSize of 5 means that each pixel is 5x5 pixels.
  */
-    int getPixelSize() {
+    int getPixelSize() const {
         return pixelSize;
     }
 
@@ -31,7 +36,7 @@ public:
  * @return the position of the icon on the screen.
  * The position is the top-left corner of the icon.
  */
-    Vector2D getPosition() {
+    Vector2D getPosition() const {
         return position;
     }
 
@@ -44,13 +49,13 @@ public:
     virtual int getRGB565(int x, int y) = 0;
 
 protected:
-    Vector2D position;
+    const Vector2D position;
 
-    int width;
+    const int width;
 
-    int height;
+    const int height;
 
-    int pixelSize;
+    const int pixelSize;
 };
 
 #endif

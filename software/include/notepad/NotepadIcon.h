@@ -5,12 +5,7 @@
 
 class NotepadIcon : public Icon {
 public:
-    NotepadIcon() {
-        width = 20;
-        height = 20;
-        pixelSize = 5;
-        position = Vector2D(110, 70);
-    }
+    NotepadIcon() : Icon{{110, 70}, 20, 20, 5}  {}
 
     int getRGB565(int x, int y) override {
         if (x < 0 || x >= width || y < 0 || y >= height)
