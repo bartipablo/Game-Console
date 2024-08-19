@@ -5,6 +5,8 @@
 
 #include "DesktopClient.h"
 
+using namespace sockets;
+using namespace streams;
 
 int main(int argc, char* argv[]) {
 

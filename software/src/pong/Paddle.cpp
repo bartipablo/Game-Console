@@ -2,7 +2,7 @@
 
 namespace pong {
 
-Paddle::Paddle(int x, int y) :x{x}, y{y}, initX{x}, initY{y} {}
+Paddle::Paddle(int x, int y) :x(x), y(y), initX(x), initY(y) {}
 
 void Paddle::write(streams::OutputMemoryStream &stream) {
     stream.write(&y, sizeof(y));

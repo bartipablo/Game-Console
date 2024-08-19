@@ -8,15 +8,15 @@
 
 #include "raylib.h"
 
-#include "../pong-game/PongSocketTCP.h"
-#include "../pong-game/Communicates.h"
-#include "../pong-game/Score.h"
-#include "../pong-game/Paddle.h"
-#include "../pong-game/Ball.h"
-#include "../pong-game/Move.h"
+#include "PongSocketTCP.h"
+#include "Communicates.h"
+#include "PongScore.h"
+#include "Paddle.h"
+#include "Ball.h"
+#include "Move.h"
 
-#include "../sockets/SocketUDP.h"
-#include "../sockets/PacketCounterUDP.h"
+#include "SocketUDP.h"
+#include "PacketCounterUDP.h"
 
 #include <string>
 #include <iostream>
@@ -91,29 +91,29 @@ private:
 
 
     // network properties ----------------------
-    std::shared_ptr<SocketAddress> clientIPv4;
+    std::shared_ptr<sockets::SocketAddress> clientIPv4;
 
-    std::shared_ptr<SocketAddress> serverIPv4;
+    std::shared_ptr<sockets::SocketAddress> serverIPv4;
 
     int serverPort;
 
-    std::shared_ptr<PongSocketTCP> clientSocketTCP;
+    std::shared_ptr<pong::PongSocketTCP> clientSocketTCP;
 
-    std::shared_ptr<SocketUDP> clientSocketUDP;
+    std::shared_ptr<sockets::SocketUDP> clientSocketUDP;
 
-    std::shared_ptr<PacketCounterUDP> packetCounterUDP;
+    std::shared_ptr<sockets::PacketCounterUDP> packetCounterUDP;
     // network properties ----------------------
 
     // game variables ---------------------------------
-    std::shared_ptr<Score> clientOneScore;
+    std::shared_ptr<pong::Score> clientOneScore;
 
-    std::shared_ptr<Score> clientTwoScore;
+    std::shared_ptr<pong::Score> clientTwoScore;
 
-    std::shared_ptr<Ball> ball;
+    std::shared_ptr<pong::Ball> ball;
 
-    std::shared_ptr<Paddle> clientOnePaddle;
+    std::shared_ptr<pong::Paddle> clientOnePaddle;
 
-    std::shared_ptr<Paddle> clientTwoPaddle;
+    std::shared_ptr<pong::Paddle> clientTwoPaddle;
 
     int centralX = Table::WIDTH/2;
 
@@ -135,7 +135,7 @@ private:
 
     // screen properties -----------------------
 
-    EXIT_STATUS e;
+    sockets::EXIT_STATUS e;
 
     char nativeBuffer[1024];
 
