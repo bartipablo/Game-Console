@@ -17,8 +17,8 @@ void WiFiConnectionInitializer::run() {
 
     keyboard::StandardKeyboardService standardKeyboardService {keyboard_};
 
-    inputBlocking->startBlocking(20);
-    standardKeyboardService.registerInputBlocking(inputBlocking, 10);
+    inputBlocking.startBlocking(20);
+    standardKeyboardService.registerInputBlocking(&inputBlocking, 10);
 
     basicdisplay::clearScreen();
     displayPassword(password);
@@ -27,7 +27,7 @@ void WiFiConnectionInitializer::run() {
     while (!shutdown) {
         delay(20);
         
-        if (!inputBlocking->isBlocked()) {
+        if (!inputBlocking.isBlocked()) {
             standardKeyboardService.serveUserInteraction();
 
             if (userInput->isPressedLeftButton()) {
@@ -37,8 +37,7 @@ void WiFiConnectionInitializer::run() {
                 return;
             }
         }
-        inputBlocking->decrement();
-            
+        inputBlocking.decrement();
     }
 }
 

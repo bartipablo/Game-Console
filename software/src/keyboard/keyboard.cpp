@@ -116,7 +116,7 @@ void Keyboard::addKeySet(KeySet keySet) {
 
 
 void Keyboard::changeKeySet() {
-    if (keySets.size() == currentKeySetIndex - 1) {
+    if (currentKeySetIndex >= keySets.size() - 1) {
         currentKeySetIndex = 0;
     } else {
         currentKeySetIndex++;

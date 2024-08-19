@@ -30,7 +30,7 @@ public:
     void run();
 
 private:
-    InputBlocking* inputBlocking;
+    InputBlocking inputBlocking;
 
     keyboard::Keyboard keyboard_;
 
