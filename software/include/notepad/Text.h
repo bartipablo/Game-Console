@@ -46,9 +46,9 @@ public:
 private:
     int actualRow;
 
-    int maxRowLength;
+    const int maxRowLength;
 
-    int maxRowsQuantity;
+    const int maxRowsQuantity;
 
     std::string* text;
 
