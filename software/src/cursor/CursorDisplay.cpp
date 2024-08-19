@@ -2,8 +2,7 @@
 
 namespace cursor {
 
-
-void drawCursor(Cursor& cursor) {
+void drawCursor(const Cursor& cursor) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
     CursorShape cursorShape = cursor.getCursorShape();

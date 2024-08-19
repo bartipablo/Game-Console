@@ -16,31 +16,33 @@ namespace cursor {
 class CursorShape {
 
 public:
+    CursorShape(int widthPx, int heightPx) : widthPx(widthPx), heightPx(heightPx) {}
+
 /**
  * @return the vector of pixels representing the cursor shape.
 */
-    std::vector<Pixel> getPixels() {
+    std::vector<Pixel> getPixels() const {
         return pixels;
     }
 
 /**
  * @return the height (in pixel) of each pixel in the cursor shape.
  */
-    int getHeightPx() {
+    int getHeightPx() const {
         return heightPx;
     }
 
 /**
  * @return the width (in pixel) of each pixel in the cursor shape.
  */
-    int getWidthPx() {
+    int getWidthPx() const {
         return widthPx;
     }
 
 protected:
-    int heightPx; 
+    const int heightPx; 
 
-    int widthPx;
+    const int widthPx;
 
     std::vector<Pixel> pixels;
 };

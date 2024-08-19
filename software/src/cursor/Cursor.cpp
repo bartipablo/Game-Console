@@ -4,22 +4,18 @@ namespace cursor {
 
 Cursor::Cursor(CursorShape cursorShape) : position {0, 0}, cursorShape {cursorShape}, sensitivity {30} {}
 
-
 Cursor::Cursor(CursorShape cursorShape, Vector2D initPosition) : position {initPosition}, cursorShape {cursorShape}, sensitivity {30} {}
 
-
-Vector2D Cursor::getPosition() {
+Vector2D Cursor::getPosition() const {
     return position;
 }
 
-
 void Cursor::setSensitive(int sensitivity) {
     if (sensitivity <= 0) {
-        sensitivity = 1;
+        this->sensitivity = 1;
     }
     this->sensitivity = sensitivity;
 }
-
 
 void Cursor::move(int xAnalogVal, int yAnalogVal) {
     int xShift = 0;
@@ -51,7 +47,7 @@ void Cursor::move(int xAnalogVal, int yAnalogVal) {
     position = Vector2D(xNewPosition, yNewPosition);
 }
 
-CursorShape Cursor::getCursorShape() {
+CursorShape Cursor::getCursorShape() const {
     return cursorShape;
 }
 

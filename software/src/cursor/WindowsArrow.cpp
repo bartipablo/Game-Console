@@ -1,8 +1,13 @@
 #include "WindowsArrow.h"
 
+namespace {
+    const int WIDTH = 12;
+    const int HEIGHT = 19;
+}
+
 namespace cursor {
 
-const char WindowsArrow::arrowCharRepresentation[19][12] = {
+const char WindowsArrow::arrowCharRepresentation[HEIGHT][WIDTH] = {
     {'1','0','0','0','0','0','0','0','0','0','0','0'},
     {'1','1','0','0','0','0','0','0','0','0','0','0'},
     {'1','2','1','0','0','0','0','0','0','0','0','0'},
@@ -24,11 +29,7 @@ const char WindowsArrow::arrowCharRepresentation[19][12] = {
     {'0','0','0','0','0','0','0','1','1','0','0','0'}
 };
 
-
-WindowsArrow::WindowsArrow() {
-    
-    this->widthPx = 12;
-    this->heightPx = 19;
+WindowsArrow::WindowsArrow() : CursorShape{WIDTH, HEIGHT} {
 
     for (int y = 0; y < heightPx; y++) {
         for (int x = 0; x < widthPx; x++) {

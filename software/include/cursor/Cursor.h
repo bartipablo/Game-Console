@@ -14,7 +14,6 @@ namespace cursor {
 /**
  * @brief Class representing a user cursor.
  * For example a cursor could be a Windows arrow.
- * 
  */
 class Cursor {
 
@@ -26,9 +25,9 @@ public:
 /**
  * @brief Get the position to which the cursor is pointing.
 */
-    Vector2D getPosition();
+    Vector2D getPosition() const;
 
-    CursorShape getCursorShape();
+    CursorShape getCursorShape() const;
 
 /**
  * @brief Move the cursor by a given x and y value.
@@ -40,7 +39,7 @@ public:
  * @brief Set the sensitivity of the cursor.
  * Values should be greater than 1.
  * The higher the value, the lower the sensitivity.
-   The smaller the value, the higher the sensitivity.
+ * The smaller the value, the higher the sensitivity.
 */
     void setSensitive(int sensitivity);
 
@@ -49,7 +48,7 @@ private:
 
     Vector2D position;
     
-    CursorShape cursorShape;
+    const CursorShape cursorShape;
 };
 
 }

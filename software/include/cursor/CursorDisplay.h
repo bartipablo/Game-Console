@@ -9,9 +9,8 @@
 
 namespace cursor {
 
-void drawCursor(Cursor& cursor);
+void drawCursor(const Cursor& cursor);
 
 }
-
 
 #endif
