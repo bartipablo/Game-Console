@@ -8,21 +8,22 @@ set(CMAKE_CXX_STANDARD 17)
 
 SET(CMAKE_BUILD_TYPE Debug)
 
-add_executable(pong-server Server.cpp
-        ../../common/Timer.cpp
-        ../pong-game/Ball.cpp
-        ../pong-game/Communicates.h
-        ../pong-game/Move.cpp
-        ../pong-game/Paddle.cpp
-        ../pong-game/PongSocketTCP.cpp
-        ../pong-game/Score.cpp
-        ../pong-game/Table.h
-        ../sockets/Socket.cpp
-        ../sockets/SocketAddress.cpp
-        ../sockets/SocketHeader.h
-        ../sockets/SocketTCP.cpp
-        ../sockets/SocketUDP.cpp
-        ../sockets/PacketCounterUDP.cpp
-        ../streams/InputMemoryStream.cpp
-        ../streams/OutputMemoryStream.cpp
-        ../streams/Serializable.h)
+include_directories(${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_SOURCE_DIR}/../include/pong)
+include_directories(${CMAKE_SOURCE_DIR}/../include/utils)
+include_directories(${CMAKE_SOURCE_DIR}/../include/utils/sockets)
+include_directories(${CMAKE_SOURCE_DIR}/../include/utils/streams)
+
+
+# Find all .cpp files in the src directories
+file(GLOB_RECURSE SRC_FILES
+    ../src/pong/*.cpp
+    ../src/utils/sockets/*.cpp
+    ../src/utils/streams/*.cpp
+    ../src/utils/Timer.cpp
+    Server.cpp
+)
+
+
+# Add executable target
+add_executable(pong-server ${SRC_FILES})

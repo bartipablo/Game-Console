@@ -7,20 +7,20 @@
 #define PONG_SERVER_H
 
 
-#include "../pong-game/Communicates.h"
-#include "../sockets/SocketUDP.h"
-#include "../sockets/PacketCounterUDP.h"
-#include "../pong-game/PongSocketTCP.h"
-#include "../streams/InputMemoryStream.h"
-#include "../streams/OutputMemoryStream.h"
+#include "Communicates.h"
+#include "SocketUDP.h"
+#include "PacketCounterUDP.h"
+#include "PongSocketTCP.h"
+#include "InputMemoryStream.h"
+#include "OutputMemoryStream.h"
 
-#include "../pong-game/Score.h"
-#include "../pong-game/Ball.h"
-#include "../pong-game/Table.h"
-#include "../pong-game/Paddle.h"
-#include "../pong-game/Move.h"
+#include "PongScore.h"
+#include "Ball.h"
+#include "Table.h"
+#include "Paddle.h"
+#include "Move.h"
 
-#include "../../common/Timer.h"
+#include "Timer.h"
 
 #include <memory>
 #include <iostream>
@@ -44,26 +44,26 @@ public:
     static const int PORT = 12345;
 
 private:
-    std::shared_ptr<PongSocketTCP> serverTCPSocket;
+    std::shared_ptr<pong::PongSocketTCP> serverTCPSocket;
 
-    std::shared_ptr<SocketUDP> serverUDPSocket;
+    std::shared_ptr<sockets::SocketUDP> serverUDPSocket;
 
-    std::shared_ptr<SocketAddress> serverAddress;
+    std::shared_ptr<sockets::SocketAddress> serverAddress;
 
     std::shared_ptr<Timer> frameTimer;
 
 
     // client one variables--------------------------
-    std::shared_ptr<SocketAddress> clientOneAddress;
+    std::shared_ptr<sockets::SocketAddress> clientOneAddress;
 
-    std::shared_ptr<PongSocketTCP> clientOneTCPSocket;
+    std::shared_ptr<pong::PongSocketTCP> clientOneTCPSocket;
     // client one variables--------------------------
 
 
     // client two variables--------------------------
-    std::shared_ptr<SocketAddress> clientTwoAddress;
+    std::shared_ptr<sockets::SocketAddress> clientTwoAddress;
 
-    std::shared_ptr<PongSocketTCP> clientTwoTCPSocket;
+    std::shared_ptr<pong::PongSocketTCP> clientTwoTCPSocket;
     // client two variables--------------------------
 
 
@@ -75,17 +75,17 @@ private:
 
 
     // game variables ---------------------------------
-    std::shared_ptr<Score> clientOneScore;
+    std::shared_ptr<pong::Score> clientOneScore;
 
-    std::shared_ptr<Score> clientTwoScore;
+    std::shared_ptr<pong::Score> clientTwoScore;
 
-    std::shared_ptr<Ball> ball;
+    std::shared_ptr<pong::Ball> ball;
 
-    std::shared_ptr<Paddle> clientOnePaddle;
+    std::shared_ptr<pong::Paddle> clientOnePaddle;
 
-    std::shared_ptr<Paddle> clientTwoPaddle;
+    std::shared_ptr<pong::Paddle> clientTwoPaddle;
 
-    std::shared_ptr<PacketCounterUDP> packetCounterUDP;
+    std::shared_ptr<sockets::PacketCounterUDP> packetCounterUDP;
     // game variables ---------------------------------
 
 
@@ -98,11 +98,12 @@ private:
     // game properties --------------------------------
 
     // others -----------------------------------------
-    EXIT_STATUS e;
+    sockets::EXIT_STATUS e;
 
-    char nativeBuffer[1024];
+    static constexpr int nativeBufferSize = 1024;
 
-    static const int nativeBufferSize = 1024;
+    char nativeBuffer[nativeBufferSize];
+
     // others -----------------------------------------
 
     /**

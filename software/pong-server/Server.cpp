@@ -6,6 +6,9 @@
 #include "Server.h"
 
 
+using namespace sockets;
+using namespace streams;
+
 void SIGPIPEhandler(int signal) {
     // ignore signal...
 }
