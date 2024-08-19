@@ -35,8 +35,6 @@ public:
 
 private:
     AppMenu* appMenu;
-
-    MainMenuDisplay* menuDisplay;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "BasicDisplay.h"
 #include "App.h" 
 #include "MainMenuDisplay.h"
 #include "PaintIcon.h"
@@ -10,33 +11,14 @@
 
 class PaintApplication : public App {
 public:
-    PaintApplication(MainMenuDisplay* menuDisplay) {
-        title = "Paint";
-        this->menuDisplay = menuDisplay;
-    }
+    PaintApplication() : title {"Paint"} {}
 
-    void start() override {
-        PaintEngine* paintEngine = new PaintEngine();
-        paintEngine->run();
-        delete paintEngine;
-    }
+    void start() override;
 
-    void display() override {
-        Icon* paintIcon = new PaintIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*paintIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete paintIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
-    MainMenuDisplay* menuDisplay;  
-
 };
 
 #endif

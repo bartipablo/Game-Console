@@ -4,6 +4,7 @@
 #include <string>
 #include <regex>
 
+#include "BasicDisplay.h"
 #include "App.h" 
 #include "MainMenuDisplay.h"
 #include "PongIcon.h"
@@ -13,44 +14,14 @@
 
 class PongApplication : public App {
 public:
-    PongApplication(MainMenuDisplay* menuDisplay) {
-        title = "Pong (Multi)";
-        this->menuDisplay = menuDisplay;
-    }
+    PongApplication() : title {"Pong (Multi)"} {}
 
-    void start() override {
-        ServerMetadataInput* serverMetadataInput = new ServerMetadataInput();
-        serverMetadataInput->start();
+    void start() override;
 
-        std::string serverIPv4 = serverMetadataInput->getServerIPv4();
-        int serverPort = serverMetadataInput->getServerPort();
-        bool correctInputProvided = serverMetadataInput->isCorrectInputProvided();
-
-        delete serverMetadataInput;
-
-        if (correctInputProvided) {
-            pong::ConsoleClient* client = new pong::ConsoleClient(serverIPv4, serverPort);
-            client->start();
-            delete client;
-        }
-    }
-
-    void display() override {
-        Icon* pongIcon = new PongIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*pongIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete pongIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
-    MainMenuDisplay* menuDisplay;  
-
 };
 
 #endif

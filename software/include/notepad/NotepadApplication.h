@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "BasicDisplay.h"
 #include "App.h" 
 #include "MainMenuDisplay.h"
 #include "NotepadIcon.h"
@@ -10,32 +11,14 @@
 
 class NotepadApplication : public App {
 public:
-    NotepadApplication(MainMenuDisplay* menuDisplay) {
-        title = "Notepad";
-        this->menuDisplay = menuDisplay;
-    }
+    NotepadApplication() : title {"Notepad"} {};
 
-    void start() override {
-        NotepadEngine* notepadEngine = new NotepadEngine();
-        notepadEngine->run();
-        delete notepadEngine;
-    }
+    void start() override;
 
-    void display() override {
-        Icon* notepadIcon = new NotepadIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*notepadIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete notepadIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
-    MainMenuDisplay* menuDisplay;  
 };
 
 #endif

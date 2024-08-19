@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "BasicDisplay.h"
 #include "App.h" 
 #include "MainMenuDisplay.h"
 #include "TetrisIcon.h"
@@ -10,32 +11,14 @@
 
 class TetrisApplication : public App {
 public:
-    TetrisApplication(MainMenuDisplay* menuDisplay) {
-        title = "Tetris";
-        this->menuDisplay = menuDisplay;
-    }
+    TetrisApplication() : title {"Tetris"} {}
 
-    void start() override {
-        TetrisEngine* tetrisEngine = new TetrisEngine();
-        tetrisEngine->run();
-        delete tetrisEngine;
-    }
+    void start() override;
 
-    void display() override {
-        Icon* tetrisIcon = new TetrisIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*tetrisIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete tetrisIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
-    MainMenuDisplay* menuDisplay;    
 };
 
 #endif

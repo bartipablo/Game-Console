@@ -1,10 +1,12 @@
 #include "MainMenuDisplay.h"
 
-void MainMenuDisplay::clear() {
-    display->fillScreen(Color::BLACK_);
-}
 
-void MainMenuDisplay::drawIcon(Icon& icon) {
+namespace mainmenudisplay {
+
+
+void drawIcon(Icon& icon) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int pixelSize = icon.getPixelSize();
 
     int xPosition = icon.getPosition().x();
@@ -23,16 +25,24 @@ void MainMenuDisplay::drawIcon(Icon& icon) {
     }
 }
 
-void MainMenuDisplay::drawTitle(std::string title) {
+
+void drawTitle(std::string title) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextSize(4);
     display->setTextColor(Color::WHITE_);
     display->setCursor(160 - title.length() * 12, 10);
     display->print(title.c_str());
 }
 
-void MainMenuDisplay::drawButtonInfo() {
+
+void drawButtonInfo() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextSize(1);
     display->setTextColor(Color::WHITE_);
     display->setCursor(70, 240 - 20);
     display->print("Press left button to continue.");
+}
+
 }

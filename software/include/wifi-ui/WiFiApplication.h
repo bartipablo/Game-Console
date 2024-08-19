@@ -1,6 +1,7 @@
 #ifndef WiFiApplication_H
 #define WiFiApplication_H
 
+#include "BasicDisplay.h"
 #include "MainMenuDisplay.h"
 #include "App.h" 
 #include "WiFiUI.h"
@@ -12,7 +13,7 @@
 */
 class WiFiApplication : public App {
 public:
-    WiFiApplication(MainMenuDisplay* menuDisplay);
+    WiFiApplication() : title {"WiFi"} {};
 
     void start() override;
 
@@ -20,7 +21,6 @@ public:
 
 private:
     std::string title;
-    MainMenuDisplay* menuDisplay;
 };
 
 #endif

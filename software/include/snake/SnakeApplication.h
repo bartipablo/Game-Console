@@ -3,43 +3,22 @@
 
 #include <string>
 
+#include "BasicDisplay.h"
 #include "App.h" 
 #include "MainMenuDisplay.h"
 #include "SnakeIcon.h"
 #include "SnakeEngine.h"
 
-namespace snake {
-
 class SnakeApplication : public App {
 public:
-    SnakeApplication(MainMenuDisplay* menuDisplay) {
-        title = "Snake";
-        this->menuDisplay = menuDisplay;
-    }
+    SnakeApplication() : title{"Snake"} {}
 
-    void start() override {
-        snake::SnakeEngine* snakeEngine = new snake::SnakeEngine();
-        snakeEngine->run();
-        delete snakeEngine;
-    }
+    void start() override;
 
-    void display() override {
-        Icon* snakeIcon = new snake::SnakeIcon();
-
-        menuDisplay->clear();
-        menuDisplay->drawIcon(*snakeIcon);
-        menuDisplay->drawTitle(title);
-        menuDisplay->drawButtonInfo();
-
-        delete snakeIcon;
-    }
+    void display() override;
 
 private:
     std::string title;
-
-    MainMenuDisplay* menuDisplay;    
 };
-
-}
 
 #endif
