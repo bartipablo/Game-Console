@@ -1,8 +1,10 @@
 #include "PaintDisplay.h"
 
-PaintDisplay::PaintDisplay() {}
+namespace paintdisplay {
 
-void PaintDisplay::drawCanvas(Canvas& canvas) {
+
+void drawCanvas(paint::Canvas& canvas) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
 
     int** pixels = canvas.getPixels();
     int width = canvas.getWidth();
@@ -17,7 +19,8 @@ void PaintDisplay::drawCanvas(Canvas& canvas) {
 }
 
 
-void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx, int heightPx) {
+void drawCanvasPart(paint::Canvas& canvas, Vector2D position, int widthPx, int heightPx) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
     
     int** canvasPixels = canvas.getPixels();
     int canvasWidth = canvas.getWidth();
@@ -39,10 +42,14 @@ void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx
     }
 }
 
-void PaintDisplay::drawColorBox(ColorBox& colorBox) {
+void drawColorBox(paint::ColorBox& colorBox) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     Color actualColor = colorBox.getActualColor();
 
     display->fillScreen(Color::BLACK_);
     display->fillRect(105, 65, 110, 110, actualColor.WHITE_);
     display->fillRect(110, 70, 100, 100, actualColor.getColorRGB565());
+}
+
 }

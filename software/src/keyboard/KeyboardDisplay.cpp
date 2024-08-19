@@ -1,28 +1,28 @@
 #include "KeyboardDisplay.h"
 
-KeyboardDisplay::KeyboardDisplay() {
-    this->display = DigitalLCD::getInstance();
-}
+namespace keyboarddisplay {
 
 
-void KeyboardDisplay::drawKey(Key key) {
+void drawKey(keyboard::Key key) {
     drawKey(key, Color::GRAY_);
 }
 
 
-void KeyboardDisplay::drawKeys(std::vector<Key> keys) {
-    for (Key key : keys) {
+void drawKeys(const std::vector<keyboard::Key>& keys) {
+    for (keyboard::Key key : keys) {
         drawKey(key, Color::GRAY_);
     }
 }
 
 
-void KeyboardDisplay::drawSelectedKey(Key key) {
+void drawSelectedKey(keyboard::Key key) {
     drawKey(key, Color::GREEN_);
 }
 
 
-void KeyboardDisplay::drawKey(Key key, int color) {
+void drawKey(keyboard::Key key, int color) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int x = getXPx(key.getPosition());
     int y = getYPx(key.getPosition());
 
@@ -37,11 +37,13 @@ void KeyboardDisplay::drawKey(Key key, int color) {
 }
 
 
-int KeyboardDisplay::getXPx(Vector2D position) {
+int getXPx(Vector2D position) {
     return KEY_HEIGHT * position.x() + 140;
 }
 
 
-int KeyboardDisplay::getYPx(Vector2D position) {
+int getYPx(Vector2D position) {
     return KEY_WIDTH * position.y();
+}
+
 }

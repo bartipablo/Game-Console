@@ -1,15 +1,16 @@
 #include "SnakeDisplay.h"
 
-#include "../common/Color.h"
+namespace snakedisplay {
+    
 
-namespace snake {
+void drawSnake(snake::Snake& snake) {
+    using snake::Snake;
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
 
-void SnakeDisplay::drawSnake(Snake* snake) {
-
-    for (int i = 1; i < snake->getBodyPositions().size(); i++) {
+    for (int i = 1; i < snake.getBodyPositions().size(); i++) {
         display->fillRect(
-            snake->getBodyPositions()[i].x()*Snake::SIZE, 
-            snake->getBodyPositions()[i].y()*Snake::SIZE, 
+            snake.getBodyPositions()[i].x()*Snake::SIZE, 
+            snake.getBodyPositions()[i].y()*Snake::SIZE, 
             Snake::SIZE, 
             Snake::SIZE, 
             Color::GREEN_
@@ -18,36 +19,35 @@ void SnakeDisplay::drawSnake(Snake* snake) {
 }
 
 
-void SnakeDisplay::updateSnake(Snake* snake) {
+void updateSnake(snake::Snake& snake) {
+    using snake::Snake;
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->fillRect(
-        snake->getPreviousTailPosition().x()*Snake::SIZE, 
-        snake->getPreviousTailPosition().y()*Snake::SIZE, 
+        snake.getPreviousTailPosition().x()*Snake::SIZE, 
+        snake.getPreviousTailPosition().y()*Snake::SIZE, 
         Snake::SIZE, 
         Snake::SIZE, 
         Color::BLACK_
     );
 
     display->fillRect(
-        snake->getHeadPosition().x()*Snake::SIZE, 
-        snake->getHeadPosition().y()*Snake::SIZE, 
+        snake.getHeadPosition().x()*Snake::SIZE, 
+        snake.getHeadPosition().y()*Snake::SIZE, 
         Snake::SIZE, 
         Snake::SIZE, 
-        Color::GREEN_
-    );
-    display->fillRect(
-        snake->getTailPosition().x()*Snake::SIZE, 
-        snake->getTailPosition().y()*Snake::SIZE, 
-        Snake::SIZE,
-        Snake::SIZE,
         Color::GREEN_
     );
 }
 
 
-void SnakeDisplay::drawFruit(Fruit* fruit) {
+void drawFruit(snake::Fruit& fruit) {
+    using snake::Fruit;
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->fillRect(
-        fruit->getPosition().x()*Fruit::SIZE, 
-        fruit->getPosition().y()*Fruit::SIZE, 
+        fruit.getPosition().x()*Fruit::SIZE, 
+        fruit.getPosition().y()*Fruit::SIZE, 
         Fruit::SIZE, 
         Fruit::SIZE, 
         Color::RED_
@@ -55,7 +55,11 @@ void SnakeDisplay::drawFruit(Fruit* fruit) {
 }
 
 
-void SnakeDisplay::drawRightBoundary() {
+void drawRightBoundary() {
+    using snake::Area;
+    using snake::Snake;
+
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
     
     display->fillRect(
         Area::WIDTH*Snake::SIZE, 
@@ -66,7 +70,10 @@ void SnakeDisplay::drawRightBoundary() {
     );
 }
 
-void SnakeDisplay::drawScoreTitle() {
+
+void drawScoreTitle() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextSize(2);
     display->setCursor(242, 40);
     display->setTextColor(Color::WHITE_); 
@@ -75,10 +82,12 @@ void SnakeDisplay::drawScoreTitle() {
 }
 
 
-void SnakeDisplay::drawScore(Score* score) {
+void drawScore(snake::Score& score) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->fillRect(250, 60, 70, 30, Color::BLACK_);
 
-    int scoreQuantity = score->getScore();
+    int scoreQuantity { score.getScore() };
 
     char buffer[5];  
     sprintf(buffer, "%04d", scoreQuantity);
@@ -90,9 +99,10 @@ void SnakeDisplay::drawScore(Score* score) {
 }
 
 
+void drawGameOver(snake::Score& score) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
 
-void SnakeDisplay::drawGameOver(Score* score) {
-    int scoreQuantity = score->getScore();
+    int scoreQuantity  { score.getScore() };
 
     char buffer[5];
     sprintf(buffer, "%04d", scoreQuantity);
@@ -106,6 +116,5 @@ void SnakeDisplay::drawGameOver(Score* score) {
     display->print("SCORE: ");
     display->println(buffer);
 }
-
 
 }

@@ -1,23 +1,17 @@
 #include "WiFiNetworkUI.h"
 
-WiFiNetworkUI::WiFiNetworkUI(WiFiDisplay* wifiDisplay, WiFiNetwork wifiNetwork) 
-    : wifiNetwork(wifiNetwork) {
-    this->wifiDisplay = wifiDisplay;
-    inputBlocking = new InputBlocking();
-    wifiConnection = WiFiConnection::getInstance();
-}
-
-WiFiNetworkUI::~WiFiNetworkUI() {
-    delete inputBlocking;
+WiFiNetworkUI::WiFiNetworkUI(wifi::WiFiNetwork wifiNetwork) 
+    : wifiNetwork(wifiNetwork), wifiConnection{wifi::WiFiConnection::getInstance()} {
 }
 
 void WiFiNetworkUI::start() {
-    WiFiConnectionInitializer* wifiConnectionInitializer = new WiFiConnectionInitializer(wifiDisplay, wifiNetwork);
-    wifiConnectionInitializer->run();
-    delete wifiConnectionInitializer;
+    WiFiConnectionInitializer wifiConnectionInitializer {wifiNetwork};
+    wifiConnectionInitializer.run();
 }
 
 void WiFiNetworkUI::display() {
-    wifiDisplay->displayNetwork(wifiNetwork);
-    wifiDisplay->drawBelowMessage("Press left button to connect.");
+    using namespace wifidisplay;
+
+    displayNetwork(wifiNetwork);
+    drawBelowMessage("Press left button to connect.");
 }

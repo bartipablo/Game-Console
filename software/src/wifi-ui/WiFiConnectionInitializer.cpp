@@ -1,68 +1,57 @@
 #include "WiFiConnectionInitializer.h"
 
-WiFiConnectionInitializer::WiFiConnectionInitializer(WiFiDisplay* display, WiFiNetwork wifiNetwork) 
-    : wifiNetwork(wifiNetwork) {
-    this->display = display;
-    inputBlocking = new InputBlocking();
-    keyboardFactory = new KeyboardFactory();
-    keyboard = keyboardFactory->createClassicKeyboard();
-    keyboardDisplay = new KeyboardDisplay();
-    standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
-    wifiConnection = WiFiConnection::getInstance();
-    userInput = UserInput::getInstance();
-    shutdown = false;
-}
-
-WiFiConnectionInitializer::~WiFiConnectionInitializer() {
-    delete inputBlocking;
-    delete keyboardFactory;
-    delete keyboard;
-    delete keyboardDisplay;
-    delete standardKeyboardService;
+WiFiConnectionInitializer::WiFiConnectionInitializer(wifi::WiFiNetwork wifiNetwork) 
+    : wifiNetwork(wifiNetwork), keyboard_{keyboard::KeyboardFactory::createClassicKeyboard()}, wifiConnection{wifi::WiFiConnection::getInstance()}, userInput{UserInput::getInstance()}, shutdown{false} {
 }
 
 void WiFiConnectionInitializer::run() {
-    WiFiEncriptionType encriptionType = wifiNetwork.getEncryptionType();
+    using namespace wifidisplay;
 
-    if (encriptionType == WiFiEncriptionType::WEP) {
-        display->displayWEPInformation();
+    wifi::WiFiEncriptionType encriptionType = wifiNetwork.getEncryptionType();
+
+    if (encriptionType == wifi::WiFiEncriptionType::WEP) {
+        displayWEPInformation();
         delay(2000);
         return;
     }
 
-    inputBlocking->startBlocking(20);
-    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
+    keyboard::StandardKeyboardService standardKeyboardService {keyboard_};
 
-    display->clear();
-    display->displayPassword(password);
-    standardKeyboardService->displayKeyboard();
+    inputBlocking.startBlocking(20);
+    standardKeyboardService.registerInputBlocking(&inputBlocking, 10);
+
+    basicdisplay::clearScreen();
+    displayPassword(password);
+    standardKeyboardService.displayKeyboard();
 
     while (!shutdown) {
         delay(20);
         
-        if (!inputBlocking->isBlocked()) {
-            standardKeyboardService->serveUserInteraction();
+        if (!inputBlocking.isBlocked()) {
+            standardKeyboardService.serveUserInteraction();
 
             if (userInput->isPressedLeftButton()) {
-                serveKey(keyboard->getCurrentKey());
+                serveKey(keyboard_.getCurrentKey());
             }
             else if (userInput->isPressedRightButton()) {
                 return;
             }
         }
-        inputBlocking->decrement();
-            
+        inputBlocking.decrement();
     }
 }
 
-void WiFiConnectionInitializer::serveKey(Key key) {
+void WiFiConnectionInitializer::serveKey(keyboard::Key key) {
+    using namespace wifidisplay;
+    using keyboard::CAPS_LOCK;
+
     if (key.getCharacter() == CAPS_LOCK) {
         // ignore this case.
     }
     else if (key.getCharacter() == '\b') {
         if (password.length() > 0) {
             password.pop_back();
-            display->displayPassword(password);
+            displayPassword(password);
         }
     }
     else if (key.getCharacter() == '\n') {
@@ -72,6 +61,6 @@ void WiFiConnectionInitializer::serveKey(Key key) {
     }
     else if (password.length() < 64) {
         password += key.getCharacter();
-        display->displayPassword(password);
+        displayPassword(password);
     }
 }

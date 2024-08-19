@@ -1,23 +1,20 @@
 #include "WiFiApplication.h"
 
-WiFiApplication::WiFiApplication(MainMenuDisplay* menuDisplay) {
-    title = "WiFi";
-    this->menuDisplay = menuDisplay;
-}
 
 void WiFiApplication::start() {
-    WiFiUI* wifiUI = new WiFiUI();
-    wifiUI->run();
-    delete wifiUI;
+    WiFiUI wifiUI {};
+    wifiUI.run();
 }
 
+
 void WiFiApplication::display() {
-    Icon* wifiIcon = new WiFiIcon();
+    using namespace mainmenudisplay;
+    using basicdisplay::clearScreen;
 
-    menuDisplay->clear();
-    menuDisplay->drawIcon(*wifiIcon);
-    menuDisplay->drawTitle(title);
-    menuDisplay->drawButtonInfo();
+    WiFiIcon wifiIcon {};
 
-    delete wifiIcon;
+    clearScreen();
+    drawIcon(wifiIcon);
+    drawTitle(title);
+    drawButtonInfo();
 }

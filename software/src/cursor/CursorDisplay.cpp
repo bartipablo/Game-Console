@@ -1,8 +1,10 @@
 #include "CursorDisplay.h"
 
-CursorDisplay::CursorDisplay(Cursor& cursor) : cursor(cursor) {}
+namespace cursor {
 
-void CursorDisplay::drawCursor() {    
+void drawCursor(const Cursor& cursor) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     CursorShape cursorShape = cursor.getCursorShape();
 
     std::vector<Pixel> cursorPixels = cursorShape.getPixels();
@@ -12,4 +14,6 @@ void CursorDisplay::drawCursor() {
         Vector2D position = pixel.getPosition();
         display->drawPixel(cursorPosition.x() + position.x(), cursorPosition.y() + position.y(), pixel.getColor());
     }
+}
+
 }

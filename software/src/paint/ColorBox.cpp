@@ -1,10 +1,11 @@
 #include "ColorBox.h"
 
-ColorBox::ColorBox() {
+namespace paint {
+
+ColorBox::ColorBox() : selectedColorIndex{0}, actualColorIndex{0} {
     colorsQuantity = colors.size();
-    selectedColorIndex = 0;
-    actualColorIndex = 0;
 }
+
 
 Color ColorBox::getSelectedColor() {
     if (selectedColorIndex >= colorsQuantity || selectedColorIndex < 0) {
@@ -13,12 +14,14 @@ Color ColorBox::getSelectedColor() {
     return colors[selectedColorIndex];
 }
 
+
 Color ColorBox::getActualColor() {
     if (actualColorIndex >= colorsQuantity || actualColorIndex < 0) {
         actualColorIndex = 0;
     }
     return colors[actualColorIndex];
 }
+
 
 void ColorBox::nextColor() {
     actualColorIndex++;
@@ -27,6 +30,7 @@ void ColorBox::nextColor() {
     }
 }
 
+
 void ColorBox::previousColor() {
     actualColorIndex--;
     if (actualColorIndex < 0) {
@@ -34,6 +38,9 @@ void ColorBox::previousColor() {
     }
 }
 
+
 void ColorBox::selectColor() {
     selectedColorIndex = actualColorIndex;
+}
+
 }

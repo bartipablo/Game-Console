@@ -30,3 +30,16 @@
 *.exe
 *.out
 *.app
+/build
+build/
+/build/
+
+
+# PlatformIO
+.pio
+
+#vscode/
+.vscode/
+
+#MacOs files
+.DS_STORE

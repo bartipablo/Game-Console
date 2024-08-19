@@ -2,93 +2,79 @@
 
 namespace snake {
 
-SnakeEngine::SnakeEngine() {
-    area = new Area();
-    snake = new Snake(Vector2D(10, 10), Direction::Right);
-    fruit = new Fruit(Vector2D(0, 0));
-    snakeDisplay = new SnakeDisplay();
-    basicDisplay = new BasicDisplay();
-    frameTimer = new Timer(FRAME_RATE);
-    score = new Score();
-    isRunning = false;
-}
 
-SnakeEngine::~SnakeEngine() {
-    delete area;
-    delete snake;
-    delete fruit;
-    delete frameTimer;
-    delete basicDisplay;
-    delete snakeDisplay;
-    delete score;
-}
+SnakeEngine::SnakeEngine() 
+: snake{Vector2D{10, 10}, Direction::Right}, fruit{Vector2D{0, 0}}, frameTimer{FRAME_RATE}, isRunning{false} {}
+
 
 /*******************
  * MAIN GAME LOOP
 ********************/
 void SnakeEngine::run() {
+    using namespace snakedisplay;
+
     isRunning = true;
 
-    fruit->generateAtRandomPosition(snake, area);
+    fruit.generateAtRandomPosition(snake, area);
     
-    basicDisplay->clearScreen();
-    snakeDisplay->drawSnake(snake);
-    snakeDisplay->drawFruit(fruit);
-    snakeDisplay->drawRightBoundary();
-    snakeDisplay->drawScoreTitle();
-    snakeDisplay->drawScore(score);
+    basicdisplay::clearScreen();
+    drawSnake(snake);
+    drawFruit(fruit);
+    drawRightBoundary();
+    drawScoreTitle();
+    drawScore(score);
 
     while (isRunning) {
 
-        if (frameTimer->isExpired()) {
+        if (frameTimer.isExpired()) {
 
             if (userInput->isPressedJoysticDown()) {
-                snake->changeDirection(Direction::Down);
+                snake.changeDirection(Direction::Down);
             } else if (userInput->isPressedJoysticUp()) {
-                snake->changeDirection(Direction::Up);
+                snake.changeDirection(Direction::Up);
             } else if (userInput->isPressedJoysticLeft()) {
-                snake->changeDirection(Direction::Left);
+                snake.changeDirection(Direction::Left);
             } else if (userInput->isPressedJoysticRight()) {
-                snake->changeDirection(Direction::Right);
+                snake.changeDirection(Direction::Right);
             } else if (userInput->isPressedRightButton()) {
                 isRunning = false;
             }
 
-            snake->move();
+            snake.move();
 
-            if (snake->isCollidingWithItself() || area->isOutOfBound(snake->getHeadPosition())) {
+            if (snake.isCollidingWithItself() || area.isOutOfBound(snake.getHeadPosition())) {
                 isRunning = false;
             }
 
             bool fruitEaten = false;
 
-            if (snake->getHeadPosition() == fruit->getPosition()) {
+            if (snake.getHeadPosition() == fruit.getPosition()) {
                 fruitEaten = true;
-                snake->grow();
+                snake.grow();
 
-                bool generatedNewFruit = fruit->generateAtRandomPosition(snake, area);
+                bool generatedNewFruit = fruit.generateAtRandomPosition(snake, area);
 
                 if (!generatedNewFruit) {
                     isRunning = false;
                     continue;
                 }
 
-                score->incrementScore();
-                snakeDisplay->drawScore(score);
+                score.incrementScore();
+                drawScore(score);
             }
 
-            frameTimer->reset();
+            frameTimer.reset();
 
-            snakeDisplay->updateSnake(snake);
+            updateSnake(snake);
 
             if (fruitEaten) {
-                snakeDisplay->drawFruit(fruit);
+                drawFruit(fruit);
             }
         }
     }
 
-    basicDisplay->clearScreen();
-    snakeDisplay->drawGameOver(score);
+    basicdisplay::clearScreen();
+    drawGameOver(score);
 
     std::chrono::milliseconds duration(3000);
     std::this_thread::sleep_for(duration);

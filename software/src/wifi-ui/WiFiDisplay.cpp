@@ -1,14 +1,15 @@
 #include "WiFiDisplay.h"
 
-void WiFiDisplay::clear() {
-    display->fillScreen(Color::BLACK_);
-}
+namespace wifidisplay {
 
-void WiFiDisplay::clearConnectionStatus() {
+void clearConnectionStatus() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
     display->fillRect(60, 20, 320, 65, Color::BLACK_);
 }
 
-void WiFiDisplay::displayConnetionStatus(bool connected, const char* ssid) {
+void displayConnetionStatus(bool connected, const char* ssid) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setCursor(0, 20);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
@@ -27,24 +28,30 @@ void WiFiDisplay::displayConnetionStatus(bool connected, const char* ssid) {
     display->print(ssid);
 }
 
-void WiFiDisplay::displayStatus(std::string message) {
-    clear();
+void displayStatus(std::string message) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+    basicdisplay::clearScreen();
     display->setCursor(100, 100);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
     display->print(message.c_str());
 }
 
-void WiFiDisplay::displayWEPInformation() {
-    clear();
+void displayWEPInformation() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+    basicdisplay::clearScreen();
     display->setCursor(0, 20);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
     display->print("WEP encryption is not supported yet :(");
 }
 
-void WiFiDisplay::displayNetwork(WiFiNetwork network) {
-    clear();
+void displayNetwork(wifi::WiFiNetwork network) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+    basicdisplay::clearScreen();
     display->setCursor(0, 20);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
@@ -58,11 +65,13 @@ void WiFiDisplay::displayNetwork(WiFiNetwork network) {
     display->setCursor(0, 60);
     display->print("Encryption: ");
     display->print(
-        toStringEncriptionType(network.getEncryptionType()).c_str()
+        wifi::toStringEncriptionType(network.getEncryptionType()).c_str()
     );
 }
 
-void WiFiDisplay::displayPassword(std::string password) {
+void displayPassword(std::string password) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->fillRect(0, 40, 320, 80, Color::BLACK_);
     display->setCursor(0, 20);
     display->setTextColor(Color::WHITE_);
@@ -73,9 +82,13 @@ void WiFiDisplay::displayPassword(std::string password) {
     display->print(password.c_str());
 }
 
-void WiFiDisplay::drawBelowMessage(std::string message) {
+void drawBelowMessage(std::string message) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextSize(1);
     display->setTextColor(Color::WHITE_);
     display->setCursor(60, 240 - 20);
     display->print(message.c_str());
+}
+
 }
