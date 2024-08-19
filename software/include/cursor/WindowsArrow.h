@@ -1,8 +1,6 @@
 #ifndef WindowsArrow_H
 #define WindowsArrow_H
 
-#include <pgmspace.h>
-
 #include "CursorShape.h"
 #include "Color.h"
 

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 
 #include "DigitalLCD.h"
-#include "./main-menu/MainMenu.h"
+#include "MainMenu.h"
 #include "WiFiConnection.h"
 #include "UserInput.h"
 
