@@ -7,7 +7,7 @@
 
 namespace pong {
 
-enum Communicates {
+enum class Communicates {
     None,
     StillLiveRequest,
     StillLiveReply,
