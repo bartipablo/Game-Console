@@ -21,27 +21,23 @@ class SnakeEngine {
 public:
     SnakeEngine();
 
-    ~SnakeEngine();
-
 /**
  * Starts the game logic and the display.
  */
     void run();
 
 private:
-    Area* area;
+    Area area;
 
-    Snake* snake;
+    Snake snake;
 
-    Fruit* fruit;
+    Fruit fruit;
 
-    Timer* frameTimer;
+    Timer frameTimer;
 
-    Score* score;
+    Score score;
 
     const int FRAME_RATE = 100;
-
-    SnakeDisplay* snakeDisplay;
 
     UserInput* userInput = UserInput::getInstance();
 

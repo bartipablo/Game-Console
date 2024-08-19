@@ -58,7 +58,7 @@ public:
         return body;
     }
 
-    const static int SIZE = 6;
+    const static int SIZE = 6; // < px
 
 private:
     std::vector<Vector2D> body;

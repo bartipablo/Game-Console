@@ -5,41 +5,34 @@
 #include "Snake.h"
 #include "Fruit.h"
 #include "Area.h"
+#include "Color.h"
 #include "SnakeScore.h"
 
-namespace snake {
-
 /**
- * Represents the display of the snake game.
+ * Methods for display of the snake game.
  */
-class SnakeDisplay {
+namespace snakedisplay {
 
-public:
 /**
  * Draw a whole snake
  */
-    void drawSnake(Snake* snake);
+void drawSnake(snake::Snake& snake);
 
 /**
  * Draw a snake's head and remove the previous tail
  */
-    void updateSnake(Snake* snake);
+void updateSnake(snake::Snake& snake);
 
-    void drawFruit(Fruit* fruit);
+void drawFruit(snake::Fruit& fruit);
 
-    void drawRightBoundary();
+void drawRightBoundary();
 
-    void drawScoreTitle();
+void drawScoreTitle();
 
-    void drawScore(Score* score);
+void drawScore(snake::Score& score);
 
-    void drawGameOver(Score* score);
-
-private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();
-};
+void drawGameOver(snake::Score& score);
 
 }
-
 
 #endif

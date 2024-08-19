@@ -17,9 +17,9 @@ public:
  */
     bool isOutOfBound(Vector2D position) const;
 
-    const static int WIDTH = 40;
+    const static int WIDTH {40}; // < boundary
 
-    const static int HEIGHT = 40;
+    const static int HEIGHT {40}; // < boundary
 };
 
 }

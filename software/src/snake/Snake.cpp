@@ -2,18 +2,17 @@
 
 namespace snake {
 
-Snake::Snake(Vector2D initialPosition, Direction initialDirection) {
-    head = initialPosition;
-    tail = initialPosition;
-    previousTail = initialPosition;
+
+Snake::Snake(Vector2D initialPosition, Direction initialDirection)
+: head{initialPosition}, tail{initialPosition}, previousTail{initialPosition}, direction{initialDirection} {
 
     body.push_back(initialPosition);
-    direction = initialDirection;
 }
+
 
 void Snake::move() {
     previousTail = tail;
-    Vector2D newHead;
+    Vector2D newHead {};
 
     switch (direction) {
         case Direction::Up:
@@ -37,6 +36,7 @@ void Snake::move() {
     head = newHead;
 }
 
+
 void Snake::grow() {
     if (tail == previousTail) {
         return;
@@ -46,8 +46,9 @@ void Snake::grow() {
     tail = previousTail;
 }
 
+
 bool Snake::isCollidingWithItself() {
-    int count = std::count(body.begin(), body.end(), head);
+    int count { std::count(body.begin(), body.end(), head) };
 
     if (count >= 2) {
         return true;
@@ -79,5 +80,6 @@ void Snake::changeDirection(Direction newDirection) {
 
     direction = newDirection;
 }
+
 
 }

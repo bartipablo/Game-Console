@@ -13,7 +13,7 @@ namespace snake {
 class Fruit {
 
 public:
-    Fruit(Vector2D position) : position(position) {}
+    Fruit(Vector2D position) : position{position} {}
 
     Vector2D getPosition();
 
@@ -22,9 +22,9 @@ public:
      * If it is not possible to generate the fruit (because there is no free position), it returns false.
      * @return true if the fruit was generated, false otherwise.
      */
-    bool generateAtRandomPosition(Snake* snake, Area* area);
+    bool generateAtRandomPosition(Snake& snake, Area& area);
 
-    const static int SIZE = 6;
+    const static int SIZE {6};  // < px
 
 private:
     Vector2D position;    
