@@ -4,7 +4,7 @@ namespace snake {
 
 
 SnakeEngine::SnakeEngine() 
-: snake{{10, 10}, Direction::Right}, fruit{{0, 0}}, frameTimer{FRAME_RATE}, isRunning{false} {}
+: snake{Vector2D{10, 10}, Direction::Right}, fruit{Vector2D{0, 0}}, frameTimer{FRAME_RATE}, isRunning{false} {}
 
 
 /*******************
