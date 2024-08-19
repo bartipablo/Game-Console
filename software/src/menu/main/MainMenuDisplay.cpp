@@ -1,8 +1,6 @@
 #include "MainMenuDisplay.h"
 
-
 namespace mainmenudisplay {
-
 
 void drawIcon(Icon& icon) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
@@ -26,7 +24,7 @@ void drawIcon(Icon& icon) {
 }
 
 
-void drawTitle(std::string title) {
+void drawTitle(const std::string& title) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
     display->setTextSize(4);

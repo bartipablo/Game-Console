@@ -2,7 +2,7 @@
 #define AppMenu_H
 
 #include <vector>
-#include "Arduino.h"
+#include <memory>
 
 #include "App.h"
 #include "InputBlocking.h"
@@ -15,12 +15,9 @@ class AppMenu {
 public:
 /**
  * Creates a new AppMenu.
- * @param apps the list of applications to display in the menu.
- * The applications will be displayed in the order they are in the list.
+ * @param apps the list of applications/options to display in the menu.
  */
-    AppMenu(std::vector<App*> apps);
-
-    ~AppMenu();
+    AppMenu(std::vector<std::shared_ptr<App>> apps);
 
 /**
  * Sets whether the menu should be looped or not.
@@ -62,21 +59,19 @@ private:
  */ 
     void nextApplication();
 
-    int currentApplicationIndex = 0;
+    int currentApplicationIndex {0};
 
-    bool blockExit = false;
+    bool blockExit {false};
 
-    bool loopedMenu = false;
+    bool loopedMenu {false};
 
-    bool autoExit = false;
+    bool autoExit {false};
 
-    InputBlocking* inputBlocking;
+    InputBlocking inputBlocking;
 
-    UserInput* userInput;
+    UserInput* userInput = UserInput::getInstance();
 
-    App* currentApplication;
-
-    std::vector<App*> appList;
+    std::vector<std::shared_ptr<App>> appList;
 };
 
 #endif

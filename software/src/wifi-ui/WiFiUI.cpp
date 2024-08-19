@@ -45,7 +45,7 @@ void WiFiUI::runWiFiNetworkSelectionMenu() {
     basicdisplay::clearScreen();
     displayStatus("Loading...");
     std::vector<wifi::WiFiNetwork> networks = wifiConnection->scanNetworks();
-    std::vector<App*> networkUIs;
+    std::vector<std::shared_ptr<App>> networkUIs;
 
     if (networks.size() == 0) {
         displayStatus("No networks found.");
@@ -54,16 +54,14 @@ void WiFiUI::runWiFiNetworkSelectionMenu() {
     }
     
     for (wifi::WiFiNetwork network : networks) {
-        networkUIs.push_back(new WiFiNetworkUI(network));
+        networkUIs.push_back(std::make_shared<WiFiNetworkUI>(network));
     }
 
-    AppMenu* findedNetworksMenu = new AppMenu(networkUIs);
-    findedNetworksMenu->setAutoExit(true);
-    findedNetworksMenu->setLoopedMenu(true);
+    AppMenu findedNetworksMenu = AppMenu{networkUIs};
+    findedNetworksMenu.setAutoExit(true);
+    findedNetworksMenu.setLoopedMenu(true);
 
-    findedNetworksMenu->start();
-
-    delete findedNetworksMenu;
+    findedNetworksMenu.start();
 }
 
 void WiFiUI::refreshConnectionStatus() {

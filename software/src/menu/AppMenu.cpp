@@ -1,29 +1,22 @@
 #include "AppMenu.h"
 
-AppMenu::AppMenu(std::vector<App*> apps) {
-    appList = apps;
-    inputBlocking = new InputBlocking();
-    userInput = UserInput::getInstance();
-}
+AppMenu::AppMenu(std::vector<std::shared_ptr<App>> apps) : appList(apps) {}
 
-AppMenu::~AppMenu() {
-    for (App* app : appList) {
-        delete app;
-    }
-    delete inputBlocking;
-}
 
 void AppMenu::setLoopedMenu(bool loopedMenu) {
     this->loopedMenu = loopedMenu;
 }
 
+
 void AppMenu::setBlockExit(bool blockExit) {
     this->blockExit = blockExit;
 }
 
+
 void AppMenu::setAutoExit(bool autoExit) {
     this->autoExit = autoExit;
 }
+
 
 void AppMenu::nextApplication() {
     currentApplicationIndex++;
@@ -31,8 +24,8 @@ void AppMenu::nextApplication() {
         if (loopedMenu) currentApplicationIndex = 0;
         else            currentApplicationIndex = appList.size() - 1;
     }
-    currentApplication = appList[currentApplicationIndex];
 }
+
 
 void AppMenu::previousApplication() {
     currentApplicationIndex--;
@@ -40,41 +33,40 @@ void AppMenu::previousApplication() {
         if (loopedMenu) currentApplicationIndex = appList.size() - 1;
         else            currentApplicationIndex = 0;
     }
-    currentApplication = appList[currentApplicationIndex];
 }
 
 void AppMenu::start() {
     if (appList.size() == 0) return;
 
-    currentApplication = appList[currentApplicationIndex];
+    std::shared_ptr<App> currentApplication = appList[currentApplicationIndex];
 
     currentApplication->display();
-    inputBlocking->startBlocking(20);
+    inputBlocking.startBlocking(20);
 
     while (true) {
         delay(20);
-        if (inputBlocking->isBlocked()) {
-            inputBlocking->decrement();
+        if (inputBlocking.isBlocked()) {
+            inputBlocking.decrement();
             continue;
         }
 
         if (userInput->isPressedJoysticLeft()) {
             previousApplication();
             currentApplication->display();
-            inputBlocking->startBlocking(10);
+            inputBlocking.startBlocking(10);
         }
 
         else if (userInput->isPressedJoysticRight()) {
             nextApplication();
             currentApplication->display();
-            inputBlocking->startBlocking(10);
+            inputBlocking.startBlocking(10);
         }
 
         else if (userInput->isPressedLeftButton()) {
             currentApplication->start();
             if (autoExit) return;
             currentApplication->display();
-            inputBlocking->startBlocking(20);
+            inputBlocking.startBlocking(20);
         }
 
         else if (userInput->isPressedRightButton() && !blockExit) {

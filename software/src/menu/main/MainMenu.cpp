@@ -1,21 +1,18 @@
 #include "MainMenu.h"
 
 MainMenu::MainMenu() {
-    std::vector<App*> apps;
-    apps.push_back(new TetrisApplication());
-    apps.push_back(new PaintApplication());
-    apps.push_back(new NotepadApplication());
-    apps.push_back(new WiFiApplication());
-    apps.push_back(new PongApplication());
-    apps.push_back(new SnakeApplication());
 
-    appMenu = new AppMenu(apps);
+    std::vector<std::shared_ptr<App>> apps;
+    apps.push_back(std::make_shared<TetrisApplication>());
+    apps.push_back(std::make_shared<PaintApplication>());
+    apps.push_back(std::make_shared<NotepadApplication>());
+    apps.push_back(std::make_shared<WiFiApplication>());
+    apps.push_back(std::make_shared<PongApplication>());
+    apps.push_back(std::make_shared<SnakeApplication>());
+
+    appMenu = my_std::make_unique<AppMenu>(apps);
     appMenu->setBlockExit(true);
     appMenu->setLoopedMenu(true);
-}
-
-MainMenu::~MainMenu() {
-    delete appMenu;
 }
 
 void MainMenu::start() {

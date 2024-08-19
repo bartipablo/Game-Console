@@ -7,7 +7,6 @@
 #include "Color.h"
 #include "Icon.h"
 
-
 /**
  * Methods for display of the main menu.
  */
@@ -22,7 +21,7 @@ void drawIcon(Icon& icon);
  * Draws the title of the application on the screen.
  * @param title the title to draw.
  */
-void drawTitle(std::string title);
+void drawTitle(const std::string& title);
 
 /**
  * Draws the button info on the screen.

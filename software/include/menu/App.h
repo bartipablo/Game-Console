@@ -1,7 +1,6 @@
 #ifndef App_H
 #define App_H
 
-
 /**
  * @brief Class representing application/option in the AppMenu.
  */

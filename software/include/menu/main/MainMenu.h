@@ -2,7 +2,9 @@
 #define Menu_H
 
 #include <vector>
+#include <memory>
 
+#include "mymemory.h"
 #include "AppMenu.h"
 #include "TetrisApplication.h"
 #include "PaintApplication.h"
@@ -10,7 +12,6 @@
 #include "WiFiApplication.h"
 #include "PongApplication.h"
 #include "SnakeApplication.h"
-
 #include "MainMenuDisplay.h"
 
 /**
@@ -25,8 +26,6 @@ class MainMenu {
 public:
     MainMenu();
 
-    ~MainMenu();
-
 /**
  * Starts the main menu.
  * NOTE: This is where the user's control will begin when the console is launched!
@@ -34,7 +33,7 @@ public:
     void start();
 
 private:
-    AppMenu* appMenu;
+    std::unique_ptr<AppMenu> appMenu;
 };
 
 #endif
