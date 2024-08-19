@@ -37,7 +37,7 @@ private:
 
     Score score;
 
-    const int FRAME_RATE = 100;
+    const static int FRAME_RATE {100};
 
     UserInput* userInput = UserInput::getInstance();
 
