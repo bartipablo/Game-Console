@@ -27,23 +27,15 @@ private:
  * Push-button operation.
  * @param key the key to serve.
  */
-    void serveKey(Key key);
+    void serveKey(keyboard::Key key);
 
     bool shutdown;
 
     Text* text;
 
-    Keyboard* keyboard;
+    keyboard::Keyboard keyboard_;
 
-    KeyboardFactory* keyboardFactory;
-
-    NotepadDisplay* notepadDisplay;
-
-    KeyboardDisplay* keyboardDisplay;
-
-    StandardKeyboardService* standardKeyboardService;
-
-    InputBlocking* inputBlocking;
+    InputBlocking inputBlocking;
 
     UserInput* userInput = UserInput::getInstance();
 

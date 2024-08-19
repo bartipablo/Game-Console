@@ -1,11 +1,12 @@
 #include "ServerMetadataInput.h"
 
-void ServerMetadataInputDisplay::clearScreen() {
-    display->fillScreen(Color::BLACK_);
-}
+namespace servermetadatain {
 
 
-void ServerMetadataInputDisplay::drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort) {
+
+void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setCursor(0, 10);
     display->setTextColor(Color::WHITE_);
     display->setTextSize(2);
@@ -19,7 +20,9 @@ void ServerMetadataInputDisplay::drawIPv4AndPortInputInfo(Color colorIPv4, Color
 }
 
 
-void ServerMetadataInputDisplay::drawInputIPv4(std::string IPv4) {
+void drawInputIPv4(std::string IPv4) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextColor(Color::GREEN_); 
 
     display->setTextSize(2);
@@ -29,11 +32,15 @@ void ServerMetadataInputDisplay::drawInputIPv4(std::string IPv4) {
 }
 
 
-void ServerMetadataInputDisplay::drawInputPort(std::string port) {
+void drawInputPort(std::string port) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->setTextColor(Color::GREEN_); 
 
     display->setTextSize(2);
     display->fillRect(70, 72, 320, 20, Color::BLACK_);
     display->setCursor(70, 72);
     display->print(port.c_str());
+}
+
 }

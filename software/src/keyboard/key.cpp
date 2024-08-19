@@ -1,45 +1,38 @@
 #include "Key.h"
 
+namespace keyboard {
 
-Key::Key(char character, std::string stringRepresentation, Vector2D position, int width) {
-    this->character = character;
-    this->stringRepresentation = stringRepresentation;
-    this->position = position;
-    this->width = width;
-}
+const int CAPS_LOCK {7};
 
-
-Key::Key(char character, Vector2D position, int width) {
-    this->character = character;
-    this->stringRepresentation = std::string(1, character);
-    this->position = position;
-    this->width = width;
-}
+Key::Key(char character, std::string stringRepresentation, Vector2D position, int width) 
+: character{character}, stringRepresentation{stringRepresentation}, position{position}, width{width} {}
 
 
-Key::Key() {
-    this->character = '\0';
-    this->stringRepresentation = "NULL";
-    this->position = Vector2D(0, 0);
-    this->width = 1;
-}
+Key::Key(char character, Vector2D position, int width) 
+: character{character}, stringRepresentation{std::string(1, character)}, position{position}, width{width} {}
 
 
-std::string Key::toString() {
+Key::Key() 
+: character{'\0'}, stringRepresentation{"NULL"}, position{Vector2D(0, 0)}, width{1} {}
+
+
+std::string Key::toString() const {
     return stringRepresentation;
 }
 
 
-char Key::getCharacter() {
+char Key::getCharacter() const {
     return character;
 }
 
 
-Vector2D Key::getPosition() {
+Vector2D Key::getPosition() const {
     return position;
 }
 
 
-int Key::getWidth() {
+int Key::getWidth() const {
     return width;
+}
+
 }

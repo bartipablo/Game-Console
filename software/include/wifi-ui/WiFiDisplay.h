@@ -7,30 +7,28 @@
 #include "Color.h"
 #include "WiFiNetwork.h"
 #include "WiFiEncriptionType.h"
+#include "BasicDisplay.h"
 
 /**
- * Class to display the WiFi connection status and information.
+ * Functions to display the WiFi connection status and information.
  */
-class WiFiDisplay {
-public:
-    void clear();
 
-    void clearConnectionStatus();
+namespace wifidisplay {
 
-    void displayConnetionStatus(bool connected, const char* ssid);
+void clearConnectionStatus();
 
-    void displayStatus(std::string message);
+void displayConnetionStatus(bool connected, const char* ssid);
 
-    void displayWEPInformation();
+void displayStatus(std::string message);
 
-    void displayNetwork(wifi::WiFiNetwork network);
+void displayWEPInformation();
 
-    void displayPassword(std::string password);
+void displayNetwork(wifi::WiFiNetwork network);
 
-    void drawBelowMessage(std::string message);
+void displayPassword(std::string password);
 
-private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();
-};
+void drawBelowMessage(std::string message);
+
+}
 
 #endif

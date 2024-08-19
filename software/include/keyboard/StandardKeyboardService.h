@@ -7,10 +7,13 @@
 #include "UserInput.h"
 #include "InputBlocking.h"
 
+namespace keyboard {
+
+
 class StandardKeyboardService {
 
 public:
-    StandardKeyboardService(Keyboard* keyboard, KeyboardDisplay* keyboardDisplay);
+    StandardKeyboardService(Keyboard& keyboard);
 
     void displayKeyboard();
 
@@ -28,16 +31,15 @@ private:
 
     Key previousKey;
 
-    Keyboard* keyboard;
+    Keyboard& keyboard;
 
-    KeyboardDisplay* keyboardDisplay;
+    InputBlocking* inputBlocking {nullptr};
 
-    InputBlocking* inputBlocking = nullptr;
-
-    int time = 0;
+    int time {0};
 
     UserInput* userInput = UserInput::getInstance();
 };
 
+}
 
 #endif

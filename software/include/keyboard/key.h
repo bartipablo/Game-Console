@@ -3,9 +3,11 @@
 
 #include <string>
 
-#define CAPS_LOCK 7
-
 #include "Vector2D.h"
+
+namespace keyboard {
+
+extern const int CAPS_LOCK;
 
 /**
  * @brief Class representing single key on keyboard.
@@ -43,28 +45,32 @@ public:
      * 
      * @return std::string String representation of the key. For example "SPACE" for ' '.
      */
-    std::string toString();
+    std::string toString() const;
 
     /**
      * @brief Get key character.
      * 
      * @return char Key character.
      */
-    char getCharacter();
+    char getCharacter() const;
 
     /**
      * @brief Get key position on keyboard. Used by the display.
      * 
      * @return Vector2D Key position.
      */
-    Vector2D getPosition();
+    Vector2D getPosition() const;
 
     /**
      * @brief Get key width. Used by the display.
      * 
      * @return int Key width.
      */
-    int getWidth();
+    int getWidth() const;
+
+    bool operator==(const Key& other) const {
+        return character == other.character;
+    }
 
 private:
     char character; /**< Key character. Thanks by this field we can identifiy pressed button. */
@@ -76,5 +82,6 @@ private:
     int width;
 };
 
+}
 
 #endif

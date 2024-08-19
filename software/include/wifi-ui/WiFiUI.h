@@ -20,8 +20,6 @@ class WiFiUI {
 public:
     WiFiUI();
 
-    ~WiFiUI();
-
 /**
  * Run the WiFi user interface
 */
@@ -34,9 +32,7 @@ private:
 
     UserInput* userInput = UserInput::getInstance();
 
-    WiFiDisplay* display;
-
-    InputBlocking* inputBlocking;
+    InputBlocking inputBlocking;
 
 /**
  * Run the WiFi network selection menu

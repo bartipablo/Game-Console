@@ -2,7 +2,7 @@
 
 
 void PongApplication::start() {
-    ServerMetadataInput serverMetadataInput {};
+    servermetadatain::ServerMetadataInput serverMetadataInput {};
     serverMetadataInput.start();
 
     std::string serverIPv4 = serverMetadataInput.getServerIPv4();

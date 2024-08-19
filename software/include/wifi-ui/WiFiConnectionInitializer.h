@@ -12,6 +12,7 @@
 #include "KeyboardFactory.h"
 #include "StandardKeyboardService.h"
 #include "WiFiDisplay.h"
+#include "Key.h"
 
 /**
  * Class to initialize the WiFi connection.
@@ -19,9 +20,7 @@
 */
 class WiFiConnectionInitializer {
 public:
-    WiFiConnectionInitializer(WiFiDisplay* display, wifi::WiFiNetwork wifiNetwork);
-
-    ~WiFiConnectionInitializer();
+    WiFiConnectionInitializer(wifi::WiFiNetwork wifiNetwork);
 
 /**
  * Run the WiFi connection initializer.
@@ -33,19 +32,11 @@ public:
 private:
     InputBlocking* inputBlocking;
 
-    Keyboard* keyboard;
-
-    KeyboardFactory* keyboardFactory;
-
-    KeyboardDisplay* keyboardDisplay;
-
-    StandardKeyboardService* standardKeyboardService;
+    keyboard::Keyboard keyboard_;
 
     wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
     UserInput* userInput = UserInput::getInstance();
-
-    WiFiDisplay* display;
 
     wifi::WiFiNetwork wifiNetwork;
 
@@ -54,14 +45,9 @@ private:
     bool shutdown;
 
 /**
- * Updating the key on the display.
-*/
-    void updateKey(Key previousKey, Key currentKey);
-
-/**
  * handle the keyboard input.
 */
-    void serveKey(Key key);
+    void serveKey(keyboard::Key key);
 
 };
 

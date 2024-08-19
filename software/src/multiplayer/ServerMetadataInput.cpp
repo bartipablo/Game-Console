@@ -1,23 +1,10 @@
 #include "ServerMetadataInput.h"
 
-ServerMetadataInput::ServerMetadataInput() {
-    display = new ServerMetadataInputDisplay();
-    inputBlocking = new InputBlocking();
-    keyboardFactory = new KeyboardFactory();
-    keyboardDisplay = new KeyboardDisplay();
-    keyboard = keyboardFactory->createClassicKeyboard();
-    standardKeyboardService = new StandardKeyboardService(keyboard, keyboardDisplay);
-}
+namespace servermetadatain {
 
 
-ServerMetadataInput::~ServerMetadataInput() {
-    delete display;
-    delete inputBlocking;
-    delete keyboardFactory;
-    delete keyboardDisplay;
-    delete keyboard;
-    delete standardKeyboardService;
-}	
+ServerMetadataInput::ServerMetadataInput()
+: keyboard{keyboard::KeyboardFactory::createClassicKeyboard()} {}
 
 
 void ServerMetadataInput::start() {
@@ -48,21 +35,23 @@ void ServerMetadataInput::start() {
 
 
 void ServerMetadataInput::readServerMetadata() {
+    inputBlocking.startBlocking(10);
+    basicdisplay::clearScreen();
+    drawIPv4AndPortInputInfo(Color(Color::RED_), Color(Color::WHITE_));
 
-    inputBlocking->startBlocking(10);
-    display->clearScreen();
-    display->drawIPv4AndPortInputInfo(Color(Color::RED_), Color(Color::WHITE_));
-    standardKeyboardService->displayKeyboard();
-    standardKeyboardService->registerInputBlocking(inputBlocking, 10);
+    keyboard::StandardKeyboardService standardKeyboardService {keyboard};
+
+    standardKeyboardService.displayKeyboard();
+    standardKeyboardService.registerInputBlocking(&inputBlocking, 10);
 
     while (inputIPv4AndPort) {
         delay(20);
         
-        if (!inputBlocking->isBlocked()) {
-            standardKeyboardService->serveUserInteraction();
+        if (!inputBlocking.isBlocked()) {
+            standardKeyboardService.serveUserInteraction();
 
             if (userInput->isPressedLeftButton()) {
-                serveKey(keyboard->getCurrentKey());
+                serveKey(keyboard.getCurrentKey());
             }
             else if (userInput->isPressedRightButton()) {
                 inputIPv4AndPort = false;
@@ -70,12 +59,14 @@ void ServerMetadataInput::readServerMetadata() {
                 break;
             }
         }
-        inputBlocking->decrement();
+        inputBlocking.decrement();
     }
 }
 
 
-void ServerMetadataInput::serveKey(Key key) {
+void ServerMetadataInput::serveKey(keyboard::Key key) {
+    using keyboard::CAPS_LOCK;
+
     if (key.getCharacter() == CAPS_LOCK) {
         // ignore this case.
     }
@@ -84,30 +75,30 @@ void ServerMetadataInput::serveKey(Key key) {
     else if (actualInput == SERVER_IPv4 && isAvailableCharForIPv4(key.getCharacter())) {
         if (serverIPv4.length() == 15) return;
         serverIPv4 += key.getCharacter();
-        display->drawInputIPv4(serverIPv4);
+        drawInputIPv4(serverIPv4);
     }
     else if (actualInput == SERVER_PORT && isAvailableCharForPort(key.getCharacter())) {
         if (serverPortStr.length() == 5) return;
         serverPortStr += key.getCharacter();
-        display->drawInputPort(serverPortStr);
+        drawInputPort(serverPortStr);
     }
 
     // backspace
     else if (key.getCharacter() == '\b') {
         if (actualInput == SERVER_IPv4 && serverIPv4.length() > 0) {
             serverIPv4.pop_back();
-            display->drawInputIPv4(serverIPv4);
+            drawInputIPv4(serverIPv4);
         }
         else if (actualInput == SERVER_PORT && serverPortStr.length() > 0) {
             serverPortStr.pop_back();
-            display->drawInputPort(serverPortStr);
+            drawInputPort(serverPortStr);
         }
     }
 
     //enter
     else if (key.getCharacter() == '\n') {
         if (actualInput == SERVER_IPv4) {
-            display->drawIPv4AndPortInputInfo(Color(Color::WHITE_), Color(Color::RED_));
+            drawIPv4AndPortInputInfo(Color(Color::WHITE_), Color(Color::RED_));
             actualInput = SERVER_PORT;
         }
         else if (actualInput == SERVER_PORT) {
@@ -156,4 +147,6 @@ void ServerMetadataInput::noWifiConnected() {
     basicdisplay::clearScreen();
     basicdisplay::drawInfo("You need to be connected to a wifi network", "Info", Color::WHITE_, Color::YELLOW_);
     delay(5000);
+}
+
 }

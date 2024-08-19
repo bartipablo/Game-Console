@@ -16,9 +16,7 @@
  */
 class WiFiNetworkUI : public App {
 public:
-    WiFiNetworkUI(WiFiDisplay* wifiDisplay, wifi::WiFiNetwork wifiNetwork);
-
-    ~WiFiNetworkUI();
+    WiFiNetworkUI(wifi::WiFiNetwork wifiNetwork);
 
 /**
  * It will run when the user selects the network.
@@ -31,15 +29,11 @@ public:
     void display() override;
 
 private:
-    wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
-
-    InputBlocking* inputBlocking;
+    wifi::WiFiConnection* wifiConnection;
 
     std::string title;
 
     wifi::WiFiNetwork wifiNetwork;
-
-    WiFiDisplay* wifiDisplay;    
 };
 
 #endif

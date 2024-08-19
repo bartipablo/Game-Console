@@ -4,20 +4,16 @@
 #include "DigitalLCD.h"
 #include "Color.h"
 
-class NotepadDisplay {
+namespace notepaddisplay {
 
-public:
 /**
  * Clears the screen.
  * Draw rows of text on the screen.
  * @param rows the rows to draw.
  * @param rowsQuantity the number of rows to draw.
  */
-    void drawRows(std::string* rows, int rowsQuantity);
+void drawRows(std::string* rows, int rowsQuantity);
 
-
-private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();
 };
 
 

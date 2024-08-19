@@ -6,19 +6,15 @@
 #include "Color.h"
 #include "DigitalLCD.h"
 
-class ServerMetadataInputDisplay {
-public:
-    void clearScreen();
 
-    void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort);
+namespace servermetadatain {
 
-    void drawInputIPv4(std::string IPv4);
+void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort);
 
-    void drawInputPort(std::string port);
+void drawInputIPv4(std::string IPv4);
 
-private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();
-};
+void drawInputPort(std::string port);
 
+}
 
 #endif

@@ -3,9 +3,11 @@
 
 #include "Key.h"
 
-#define ROWS 4
-#define COLUMNS 10
+namespace keyboard {
 
+extern const int ROWS;
+
+extern const int COLUMNS;
 
 /**
  * @brief Class representing a set of keys.
@@ -14,23 +16,18 @@
 class KeySet {
 
 public:
-    void setKey(int row, int column, Key key) {
-        if (row < 0 || row >= ROWS || column < 0 || column >= COLUMNS) {
-            return;
-        }
-        keys[row][column] = key;
-    }
+    void setKey(int row, int column, Key key);
 
-    Key getKey(int row, int column) {
-        if (row < 0 || row >= ROWS || column < 0 || column >= COLUMNS) {
-            return Key();
-        }
-        return keys[row][column];
-    }
+    Key getKey(int row, int column);
+
+    constexpr static int ROWS_INIT {4};
+
+    constexpr static int COLUMNS_INIT {10};
 
 private:
-    Key keys[ROWS][COLUMNS];
+    Key keys[ROWS_INIT][COLUMNS_INIT];
 };
 
+}
 
 #endif

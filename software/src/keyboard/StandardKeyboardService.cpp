@@ -1,57 +1,57 @@
 #include "StandardKeyboardService.h"
 
-StandardKeyboardService::StandardKeyboardService(Keyboard* keyboard, KeyboardDisplay* keyboardDisplay) {
-    this->keyboard = keyboard;
-    this->keyboardDisplay = keyboardDisplay;
-}
+namespace keyboard {
+
+StandardKeyboardService::StandardKeyboardService(Keyboard& keyboard)
+: keyboard{keyboard} {}
 
 
 void StandardKeyboardService::displayKeyboard() {
-    keyboardDisplay->drawKeys(keyboard->getKeys());
-    keyboardDisplay->drawSelectedKey(keyboard->getCurrentKey());
+    keyboarddisplay::drawKeys(keyboard.getKeys());
+    keyboarddisplay::drawSelectedKey(keyboard.getCurrentKey());
 }
 
 
 void StandardKeyboardService::serveUserInteraction() {
-    Key previousKey = keyboard->getCurrentKey();
+    Key previousKey = keyboard.getCurrentKey();
 
     if (userInput->isPressedJoysticUp()) {
-        keyboard->cursorUp();
-        updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        keyboard.cursorUp();
+        updateKeyDisplay(previousKey, keyboard.getCurrentKey());
         inputBlockingService();
     }
     else if (userInput->isPressedJoysticDown()) {
-        keyboard->cursorDown();
-        updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        keyboard.cursorDown();
+        updateKeyDisplay(previousKey, keyboard.getCurrentKey());
         inputBlockingService();
     }
     else if (userInput->isPressedJoysticLeft()) {
-        keyboard->cursorLeft();
-        updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        keyboard.cursorLeft();
+        updateKeyDisplay(previousKey, keyboard.getCurrentKey());
         inputBlockingService();
     }
     else if (userInput->isPressedJoysticRight()) {
-        keyboard->cursorRight();
-        updateKeyDisplay(previousKey, keyboard->getCurrentKey());
+        keyboard.cursorRight();
+        updateKeyDisplay(previousKey, keyboard.getCurrentKey());
         inputBlockingService();
     }
     else if (userInput->isPressedLeftButton()) {
-        servePressedKey(keyboard->getCurrentKey());
+        servePressedKey(keyboard.getCurrentKey());
         inputBlockingService();
     }
 }
 
 
 void StandardKeyboardService::updateKeyDisplay(Key previousKey, Key currentKey) {
-    keyboardDisplay->drawKey(previousKey);
-    keyboardDisplay->drawSelectedKey(currentKey);
+    keyboarddisplay::drawKey(previousKey);
+    keyboarddisplay::drawSelectedKey(currentKey);
     this->previousKey = currentKey;
 }
 
 
 void StandardKeyboardService::servePressedKey(Key key) {
     if (key.getCharacter() == CAPS_LOCK) {
-        keyboard->changeKeySet();
+        keyboard.changeKeySet();
         displayKeyboard();
     }
 }
@@ -71,4 +71,6 @@ void StandardKeyboardService::inputBlockingService() {
         return;
     }
     inputBlocking->startBlocking(time);
+}
+
 }

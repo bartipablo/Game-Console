@@ -18,6 +18,7 @@
 
 #include "ServerMetadataInputDisplay.h"
 
+namespace servermetadatain {
 
 /**
  * represents which data is currently being entered.
@@ -34,8 +35,6 @@ enum ActualInput {
 class ServerMetadataInput {
 public:
     ServerMetadataInput();
-
-    ~ServerMetadataInput();
 
     /**
      * function starts the whole procedure of entering the IP and port of the server. 
@@ -71,17 +70,9 @@ public:
     }
 
 private:
-    ServerMetadataInputDisplay* display;
+    InputBlocking inputBlocking;
 
-    InputBlocking* inputBlocking;
-
-    KeyboardFactory* keyboardFactory;
-
-    Keyboard* keyboard;
-
-    KeyboardDisplay* keyboardDisplay;
-
-    StandardKeyboardService* standardKeyboardService;
+    keyboard::Keyboard keyboard;
 
     wifi::WiFiConnection* wifiConnection = wifi::WiFiConnection::getInstance();
 
@@ -89,7 +80,7 @@ private:
      * Server pressed key.
      * Function blocking invalid chars for port and IPv4.
     */
-    void serveKey(Key key);
+    void serveKey(keyboard::Key key);
 
     /**
      * Check if the IP entered by the user is correct. 
@@ -142,5 +133,6 @@ private:
 
 };
 
+}
 
 #endif

@@ -6,6 +6,8 @@
 #include "Key.h"
 #include "KeySet.h"
 
+namespace keyboard {
+
 /**
  * @brief Class representing keyboard.
  * The keyboard is represented in a QWERTY layout with several special characters.
@@ -22,9 +24,7 @@ public:
  * @brief Construct a new Keyboard object.
  * @param standardKeySet Standard key set for the keyboard.
 */
-    Keyboard(KeySet* standardKeySet);
-
-    ~Keyboard();
+    Keyboard(KeySet standardKeySet);
 
 /**
  * @brief Move cursor up.
@@ -60,12 +60,8 @@ public:
  */
     std::vector<Key> getKeys();
 
-/**
- * Init backspace, caps lock, space and enter keys (using in all keyboards).
- */
-    void initSpecialKeys();
 
-    void addKeySet(KeySet* keySet);
+    void addKeySet(KeySet keySet);
 
 /**
  * @brief Change the current key set.
@@ -77,9 +73,9 @@ public:
 private:
     Vector2D cursorPosition; /**< Position of the user cursor. */
 
-    std::vector<KeySet*> keySets;
+    std::vector<KeySet> keySets;
 
-    KeySet* currentKeySet;
+    int currentKeySetIndex;
 
     Key backspace;
 
@@ -89,5 +85,7 @@ private:
 
     Key enter;
 };
+
+}
 
 #endif

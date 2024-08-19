@@ -7,59 +7,44 @@
 #include "DigitalLCD.h"
 #include "Color.h"
 
+namespace keyboarddisplay {
+
+constexpr int KEY_HEIGHT = 20; // < px
+
+constexpr int KEY_WIDTH = 32; // < px
+
 /**
- * @brief Class representing single key.
+ * @brief Draw all keys on the keyboard in grey color.
  * 
+ * @param keys Vector of keys to draw.
  */
-class KeyboardDisplay {
+void drawKeys(std::vector<keyboard::Key> keys);
 
-public:
-    /**
-     * @brief Construct a new KeyboardDisplay object. This method initializes display.
-     * 
-     */
-    KeyboardDisplay();
+/**
+ * @brief Draw single key in grey color.
+ * 
+ * @param key Key to draw.
+ */
+void drawKey(keyboard::Key key);
 
-    /**
-     * @brief Draw all keys on the keyboard in grey color.
-     * 
-     * @param keys Vector of keys to draw.
-     */
-    void drawKeys(std::vector<Key> keys);
+/**
+ * @brief Draw selected key in green color.
+ * 
+ * @param key Key to draw.
+ */
+void drawSelectedKey(keyboard::Key key);
 
-    /**
-     * @brief Draw single key in grey color.
-     * 
-     * @param key Key to draw.
-     */
-    void drawKey(Key key);
-    
-    /**
-     * @brief Draw selected key in green color.
-     * 
-     * @param key Key to draw.
-     */
-    void drawSelectedKey(Key key);
+void drawKey(keyboard::Key key, int color);
 
-private:
-    const int KEY_HEIGHT = 20;
+/**
+ * @brief Get x-axis position in pixels.
+*/
+int getXPx(Vector2D position);
 
-    const int KEY_WIDTH = 32;
-
-    void drawKey(Key key, int color);
-
-    /**
-     * @brief Get x-axis position in pixels.
-    */
-    int getXPx(Vector2D position);
-
-    /**
-     * @brief Get y-axis position in pixels.
-    */
-    int getYPx(Vector2D position);
-
-    Arduino_ILI9341* display;
-};
-
+/**
+ * @brief Get y-axis position in pixels.
+*/
+int getYPx(Vector2D position);
+}
 
 #endif
