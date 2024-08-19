@@ -9,7 +9,6 @@
 #include "PaintIcon.h"
 #include "PaintEngine.h"
 
-
 class PaintApplication : public App {
 public:
     PaintApplication() : title {"Paint"} {}

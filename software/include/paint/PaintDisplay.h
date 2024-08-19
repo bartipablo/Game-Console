@@ -9,7 +9,6 @@
 #include "ColorBox.h"
 #include "Color.h"
 
-
 namespace paintdisplay {
 
 /**

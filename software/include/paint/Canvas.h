@@ -4,7 +4,6 @@
 #include "Vector2D.h"
 #include "Color.h"
 
-
 namespace paint {
 
 /**
