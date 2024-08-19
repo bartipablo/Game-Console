@@ -129,17 +129,17 @@ private:
     // screen properties -----------------------
     std::string startText;
 
-    const int screenWidth = 320;
+    constexpr static int screenWidth = 320;
 
-    const int screenHeight = 240;
+    constexpr static int screenHeight = 240;
 
     // screen properties -----------------------
-
     sockets::EXIT_STATUS e;
 
-    char nativeBuffer[1024];
+    static constexpr int nativeBufferSize = 1024;
 
-    static const int nativeBufferSize = 1024;
+    char nativeBuffer[nativeBufferSize];
+
 };
 
 }
