@@ -2,8 +2,6 @@
 
 namespace servermetadatain {
 
-
-
 void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
@@ -20,7 +18,7 @@ void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort) {
 }
 
 
-void drawInputIPv4(std::string IPv4) {
+void drawInputIPv4(const std::string& IPv4) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
     display->setTextColor(Color::GREEN_); 
@@ -32,7 +30,7 @@ void drawInputIPv4(std::string IPv4) {
 }
 
 
-void drawInputPort(std::string port) {
+void drawInputPort(const std::string& port) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
     display->setTextColor(Color::GREEN_); 

@@ -11,9 +11,9 @@ namespace servermetadatain {
 
 void drawIPv4AndPortInputInfo(Color colorIPv4, Color colorPort);
 
-void drawInputIPv4(std::string IPv4);
+void drawInputIPv4(const std::string& IPv4);
 
-void drawInputPort(std::string port);
+void drawInputPort(const std::string& port);
 
 }
 

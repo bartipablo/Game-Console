@@ -72,12 +72,12 @@ void ServerMetadataInput::serveKey(keyboard::Key key) {
     }
 
     // normal character
-    else if (actualInput == SERVER_IPv4 && isAvailableCharForIPv4(key.getCharacter())) {
+    else if (actualInput == ActualInput::SERVER_IPv4 && isAvailableCharForIPv4(key.getCharacter())) {
         if (serverIPv4.length() == 15) return;
         serverIPv4 += key.getCharacter();
         drawInputIPv4(serverIPv4);
     }
-    else if (actualInput == SERVER_PORT && isAvailableCharForPort(key.getCharacter())) {
+    else if (actualInput == ActualInput::SERVER_PORT && isAvailableCharForPort(key.getCharacter())) {
         if (serverPortStr.length() == 5) return;
         serverPortStr += key.getCharacter();
         drawInputPort(serverPortStr);
@@ -85,11 +85,11 @@ void ServerMetadataInput::serveKey(keyboard::Key key) {
 
     // backspace
     else if (key.getCharacter() == '\b') {
-        if (actualInput == SERVER_IPv4 && serverIPv4.length() > 0) {
+        if (actualInput == ActualInput::SERVER_IPv4 && serverIPv4.length() > 0) {
             serverIPv4.pop_back();
             drawInputIPv4(serverIPv4);
         }
-        else if (actualInput == SERVER_PORT && serverPortStr.length() > 0) {
+        else if (actualInput == ActualInput::SERVER_PORT && serverPortStr.length() > 0) {
             serverPortStr.pop_back();
             drawInputPort(serverPortStr);
         }
@@ -97,40 +97,13 @@ void ServerMetadataInput::serveKey(keyboard::Key key) {
 
     //enter
     else if (key.getCharacter() == '\n') {
-        if (actualInput == SERVER_IPv4) {
+        if (actualInput == ActualInput::SERVER_IPv4) {
             drawIPv4AndPortInputInfo(Color(Color::WHITE_), Color(Color::RED_));
-            actualInput = SERVER_PORT;
+            actualInput = ActualInput::SERVER_PORT;
         }
-        else if (actualInput == SERVER_PORT) {
+        else if (actualInput == ActualInput::SERVER_PORT) {
             inputIPv4AndPort = false;
         }
-    }
-}
-
-
-bool ServerMetadataInput::isAvailableCharForIPv4(char c) {
-    return (c >= '0' && c <= '9') || c == '.';
-}
-
-
-bool ServerMetadataInput::isAvailableCharForPort(char c) {
-    return c >= '0' && c <= '9';
-}
-
-
-bool ServerMetadataInput::isValidIPv4(const std::string& str) {
-    std::regex pattern("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
-
-    return std::regex_match(str, pattern);
-}
-
-
-bool ServerMetadataInput::isValidPort(const std::string& portStr) {
-    try {
-        int port = atoi(portStr.c_str());
-        return (port > 0 && port <= 65535);
-    } catch (...) {
-        return false;
     }
 }
 
@@ -147,6 +120,33 @@ void ServerMetadataInput::noWifiConnected() {
     basicdisplay::clearScreen();
     basicdisplay::drawInfo("You need to be connected to a wifi network", "Info", Color::WHITE_, Color::YELLOW_);
     delay(5000);
+}
+
+
+bool isValidIPv4(const std::string& str) {
+    std::regex pattern("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+
+    return std::regex_match(str, pattern);
+}
+
+
+bool isValidPort(const std::string& portStr) {
+    try {
+        int port = atoi(portStr.c_str());
+        return (port > 0 && port <= 65535);
+    } catch (...) {
+        return false;
+    }
+}
+
+
+bool isAvailableCharForIPv4(char c) {
+    return (c >= '0' && c <= '9') || c == '.';
+}
+
+
+bool isAvailableCharForPort(char c) {
+    return c >= '0' && c <= '9';
 }
 
 }
