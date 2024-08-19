@@ -3,6 +3,7 @@
 
 #include "Vector2D.h"
 
+namespace tetris {
 
 /**
  * @brief Class representing a single block in tetris.
@@ -22,7 +23,10 @@ public:
 
 private:
   int color;
+
   Vector2D position;
 };
+
+}
 
 #endif

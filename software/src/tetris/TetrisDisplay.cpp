@@ -1,13 +1,18 @@
 #include "TetrisDisplay.h"
 #include "Block.h"
 
-
-TetrisDisplay::TetrisDisplay() {
-    this->display = DigitalLCD::getInstance();
+namespace {
+constexpr int SQUARE_SIZE = 12;
+constexpr int X_PLAYING_FIELD = 88;
+constexpr int Y_PLAYING_FIELD = 0;
 }
 
 
-void TetrisDisplay::drawBlock(Block block) {
+namespace tetrisdisplay {
+
+void drawBlock(tetris::Block block) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int x = block.getPosition().x();
     int y = block.getPosition().y();
     int color = block.getColor();
@@ -25,14 +30,14 @@ void TetrisDisplay::drawBlock(Block block) {
 }
 
 
-void TetrisDisplay::drawBlocks(const std::vector<Block>& blocks) {
+void drawBlocks(const std::vector<tetris::Block>& blocks) {
     for(const auto& block : blocks) {
         drawBlock(block); 
     }
 }
 
 
-void TetrisDisplay::drawEmptyPlayingField() {
+void drawEmptyPlayingField() {
     for (int x = 0; x < 10; x++) {
         for (int y = 0; y < 20; y++) {
             clearAtPosition(Vector2D(x, y));
@@ -41,34 +46,36 @@ void TetrisDisplay::drawEmptyPlayingField() {
 }
 
 
-void TetrisDisplay::clearAtPosition(Vector2D position) {
-    Block emptyField = Block(WHITE, position);
+void clearAtPosition(Vector2D position) {
+    tetris::Block emptyField = tetris::Block(WHITE, position);
     drawBlock(emptyField); 
 }
 
 
-void TetrisDisplay::clearAtPositions(std::vector<Vector2D> positions) {
+void clearAtPositions(std::vector<Vector2D> positions) {
     for (const Vector2D& pos : positions) {
         clearAtPosition(pos);
     }
 }
 
 
-void TetrisDisplay::drawPlayingField(const PlayingField& playingField) {
+void drawPlayingField(const tetris::PlayingField& playingField) {
     std::vector<Vector2D> positions = playingField.getAllPositions();
 
     for (const Vector2D& pos : positions) {
         if (playingField.isEmpty(pos)) {
             clearAtPosition(pos);
         } else {
-            Block block = playingField.getFromPosition(pos);
+            tetris::Block block = playingField.getFromPosition(pos);
             drawBlock(block);
         }
     }
 }
 
 
-void TetrisDisplay::drawFieldsDescription() {
+void drawFieldsDescription() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     display->fillScreen(BLACK);
     display->setTextColor(WHITE);
     display->setTextSize(2);
@@ -82,7 +89,9 @@ void TetrisDisplay::drawFieldsDescription() {
 }
 
 
-void TetrisDisplay::clearScore() {
+void clearScore() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int x = 10; 
     int y = 60; 
     int width = 70; 
@@ -92,7 +101,9 @@ void TetrisDisplay::clearScore() {
 }
 
 
-void TetrisDisplay::clearLevel() {
+void clearLevel() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int x = 10; 
     int y = 150; 
     int width = 70; 
@@ -102,7 +113,9 @@ void TetrisDisplay::clearLevel() {
 }
 
 
-void TetrisDisplay::clearNext() {
+void clearNext() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int x = 220; 
     int y = 60; 
     int width = 90; 
@@ -112,7 +125,9 @@ void TetrisDisplay::clearNext() {
 }
 
 
-void TetrisDisplay::drawScore(int score) {
+void drawScore(int score) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     String scoreString = String(score);
 
     while (scoreString.length() < 6) {
@@ -124,7 +139,9 @@ void TetrisDisplay::drawScore(int score) {
 }
 
 
-void TetrisDisplay::drawLevel(int level) {
+void drawLevel(int level) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     String levelString = String(level);
 
     while (levelString.length() < 2) {
@@ -136,7 +153,9 @@ void TetrisDisplay::drawLevel(int level) {
 }
 
 
-void TetrisDisplay::drawNext(std::vector<Block> blocks) {
+void drawNext(std::vector<tetris::Block> blocks) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     int minX = blocks[0].getPosition().x();
     int maxX = blocks[0].getPosition().x();
     int minY = blocks[0].getPosition().y();
@@ -199,7 +218,9 @@ void TetrisDisplay::drawNext(std::vector<Block> blocks) {
 }
 
 
-void TetrisDisplay::displayGameOver(int score, int level) {
+void displayGameOver(int score, int level) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+    
     String scoreString = String(score);
     while (scoreString.length() < 6) {
         scoreString = "0" + scoreString;
@@ -225,4 +246,6 @@ void TetrisDisplay::displayGameOver(int score, int level) {
     display->setTextSize(1);  
     display->setCursor(70, 200);
     display->println("Press any key to continue...");
+}
+
 }

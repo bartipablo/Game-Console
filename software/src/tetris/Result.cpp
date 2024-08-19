@@ -1,5 +1,6 @@
 #include "Result.h"
 
+namespace tetris {
 
 Result::Result() {
     this->score = 0;
@@ -73,3 +74,5 @@ void Result::updateSpeed() {
         speed = 1;
     }
 };
+
+}

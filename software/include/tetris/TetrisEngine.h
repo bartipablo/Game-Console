@@ -12,6 +12,7 @@
 #include "Arduino.h"
 #include "UserInput.h"
 
+namespace tetris {
 
 /**
  * @brief Class representing the core engine of the Tetris game.
@@ -39,14 +40,21 @@ public:
 
 private:
     InputBlocking inputBlocking;
+
     Result result;
+
     PlayingField playingField;
+
     TetrominoFactory tetrominoFactory;
-    TetrisDisplay tetrisDisplay;
-    UserInput* userInput;
+
+    UserInput* userInput = UserInput::getInstance();
+
     int loopCounter;
+
     bool gameover;
+
     bool pause;
+    
     bool shutdown;
     
     bool isTetrominoPlaced(std::vector<Vector2D> positions);
@@ -57,12 +65,13 @@ private:
 
     std::vector<int> findLinesToClear();
 
-    void moveTetromino(Tetromino* tetromino, int x, int y);
+    void moveTetromino(Tetromino& tetromino, int x, int y);
 
-    void rotateClockwiseTetromino(Tetromino* tetromino);
+    void rotateClockwiseTetromino(Tetromino& tetromino);
 
-    void rotateAntiClockwiseTetromino(Tetromino* tetromino);    
+    void rotateAntiClockwiseTetromino(Tetromino& tetromino);    
 };
 
+}
 
 #endif

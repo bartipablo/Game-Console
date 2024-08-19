@@ -1,5 +1,6 @@
 #include "PlayingField.h"
 
+namespace tetris {
 
 PlayingField::PlayingField() {
   for (int x = TetrisProperties::minX; x <= TetrisProperties::maxX; x++) {
@@ -129,4 +130,6 @@ bool PlayingField::lineIsEmpty(int lineNo) {
         }
     }
     return true;
+}
+
 }

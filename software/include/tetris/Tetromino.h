@@ -8,6 +8,8 @@
 #include "PlayingField.h"
 #include <vector>
 
+namespace tetris {
+
 /**
  * @brief Class representing a Tetromino object in the Tetris game.
  * 
@@ -105,5 +107,7 @@ private:
      */
     void rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4], const PlayingField& playingField, Direction (*newDirection)(Direction));
 };
+
+}
 
 #endif

@@ -9,6 +9,8 @@
 #include "optional.hpp"
 #include "TetrisProperties.h"
 
+namespace tetris {
+
 /**
  * @brief Class representing the playing field with blocks in Tetris.
  * 
@@ -109,7 +111,9 @@ public:
     bool lineIsEmpty(int lineNo);
 
 private:
-    std::map < Vector2D, tl::optional<Block> > fields;
+    std::map <Vector2D, tl::optional<Block> > fields;
 };
+
+}
 
 #endif

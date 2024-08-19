@@ -1,5 +1,6 @@
 #include "Block.h"
 
+namespace tetris {
 
 int Block::getColor() const {
     return this->color;
@@ -11,4 +12,6 @@ Vector2D Block::getPosition() const {
 
 void Block::updatePosition(const Vector2D newPosition) {
     position = newPosition;
+}
+
 }

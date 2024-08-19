@@ -1,11 +1,12 @@
 #include "TetrominoFactory.h"
 
+namespace tetris {
 
 TetrominoFactory::TetrominoFactory() {
         randomSeed(analogRead(23));
     }
 
-Tetromino* TetrominoFactory::getRandomTetromino() {
+Tetromino TetrominoFactory::getRandomTetromino() {
     int color = getRandomColor();
     int randomNumber = getRandomNumber(8);
 
@@ -55,7 +56,7 @@ int TetrominoFactory::getRandomNumber(int range) {
 }
 
 
-Tetromino* TetrominoFactory::createL1Tetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createL1Tetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{2, 1, 0, -1}, {0, 1, 0, -1}, {-2, -1, 0, 1}, {0, -1, 0, 1}};
     int yRotateInit[4][4] = {{0, -1, 0, 1}, {2, 1, 0, -1}, {0, 1, 0, -1}, {-2, -1, 0, 1}};
     int xAntiRotateInit[4][4] = {{0, 1, 0, -1}, {-2, -1, 0, 1}, {0, -1, 0, 1}, {2, 1, 0, -1}};
@@ -68,11 +69,11 @@ Tetromino* TetrominoFactory::createL1Tetromino(Vector2D initialPosition, int col
     blocksInit[2] = Block(color, Vector2D(initialPosition.x(), initialPosition.y() + 1));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y() + 1));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createL2Tetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createL2Tetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{0, -1, 0, 1}, {-2, -1, 0, 1}, {0, 1, 0, -1}, {2, 1, 0, -1}};
     int yRotateInit[4][4] = {{2, 1, 0, -1}, {0, -1, 0, 1}, {-2, -1, 0, 1}, {0, 1, 0, -1}};
     int xAntiRotateInit[4][4] = {{-2, -1, 0, 1}, {0, 1, 0, -1}, {2, 1, 0, -1}, {0, -1, 0, 1}};
@@ -85,11 +86,11 @@ Tetromino* TetrominoFactory::createL2Tetromino(Vector2D initialPosition, int col
     blocksInit[2] = Block(color, Vector2D(initialPosition.x(), initialPosition.y() + 1));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() - 1, initialPosition.y() + 1));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createSkew1Tetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createSkew1Tetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{1, 0, 1, 0}, {1, 0, -1, -2}, {-1, 0, -1, 0}, {-1, 0, 1, 2}};
     int yRotateInit[4][4] = {{-1, 0, 1, 2}, {1, 0, 1, 0}, {1, 0, -1, -2}, {-1, 0, -1, 0}};
     int xAntiRotateInit[4][4] = {{1, 0, -1, -2}, {-1, 0, -1, 0}, {-1, 0, 1, 2}, {1, 0, 1, 0}};
@@ -102,11 +103,11 @@ Tetromino* TetrominoFactory::createSkew1Tetromino(Vector2D initialPosition, int 
     blocksInit[2] = Block(color, Vector2D(initialPosition.x(), initialPosition.y()));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y()));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createSkew2Tetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createSkew2Tetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{2, 1, 0, -1}, {0, -1, 0, -1}, {-2, -1, 0, 1}, {0, 1, 0, 1}};
     int yRotateInit[4][4] = {{0, 1, 0, 1}, {2, 1, 0, -1}, {0, -1, 0, -1}, {-2, -1, 0, 1}};
     int xAntiRotateInit[4][4] = {{0, -1, 0, -1}, {-2, -1, 0, 1}, {0, 1, 0, 1}, {2, 1, 0, -1}};
@@ -119,11 +120,11 @@ Tetromino* TetrominoFactory::createSkew2Tetromino(Vector2D initialPosition, int 
     blocksInit[2] = Block(color, Vector2D(initialPosition.x(), initialPosition.y() + 1));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y() + 1));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createSquareTetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createSquareTetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
     int yRotateInit[4][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
     int xAntiRotateInit[4][4] = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
@@ -136,11 +137,11 @@ Tetromino* TetrominoFactory::createSquareTetromino(Vector2D initialPosition, int
     blocksInit[2] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y()));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y() + 1));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createStraightTetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createStraightTetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{2, 1, 0, -1}, {1, 0, -1, -2}, {-2, -1, 0, 1}, {-1, 0, 1, 2}};
     int yRotateInit[4][4] = {{-1, 0, 1, 2}, {2, 1, 0, -1}, {1, 0, -1, -2}, {-2,-1, 0, 1}};
     int xAntiRotateInit[4][4] = {{1, 0, -1, -2}, {-2, -1, 0, 1}, {-1, 0, 1, 2}, {2, 1, 0, -1}}; 
@@ -153,11 +154,11 @@ Tetromino* TetrominoFactory::createStraightTetromino(Vector2D initialPosition, i
     blocksInit[2] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y()));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 2, initialPosition.y()));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
 }
 
 
-Tetromino* TetrominoFactory::createTTetromino(Vector2D initialPosition, int color) {
+Tetromino TetrominoFactory::createTTetromino(Vector2D initialPosition, int color) {
     int xRotateInit[4][4] = {{1, 1, 0, -1}, {-1, 1, 0, -1}, {-1, -1, 0, 1}, {1, -1, 0, 1}};
     int yRotateInit[4][4] = {{1, -1, 0, 1}, {1, 1, 0, -1}, {-1, 1, 0, -1}, {-1, -1, 0, 1}};
     int xAntiRotateInit[4][4] = {{-1, 1, 0, -1}, {-1, -1, 0, 1}, {1, -1, 0, 1}, {1, 1, 0, -1}};
@@ -170,5 +171,7 @@ Tetromino* TetrominoFactory::createTTetromino(Vector2D initialPosition, int colo
     blocksInit[2] = Block(color, Vector2D(initialPosition.x(), initialPosition.y() + 1));
     blocksInit[3] = Block(color, Vector2D(initialPosition.x() + 1, initialPosition.y() + 1));
 
-    return new Tetromino(xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit);
+    return Tetromino{xRotateInit, yRotateInit, xAntiRotateInit, yAntiRotateInit, blocksInit};
+}
+
 }

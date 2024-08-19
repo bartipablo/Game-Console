@@ -9,6 +9,7 @@
 
 #include <random>
 
+namespace tetris {
 
 /**
  * @brief Class responsible for creating Tetromino objects.
@@ -28,7 +29,7 @@ public:
      * @return Pointer to the Tetromino object.
      */
 
-    Tetromino* getRandomTetromino();
+    Tetromino getRandomTetromino();
 
 private:
     /**
@@ -60,7 +61,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type L1.
      */
-    Tetromino* createL1Tetromino(Vector2D initialPosition, int color);
+    Tetromino createL1Tetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an L2 shape (L-shaped tetromino) Tetromino.
@@ -71,7 +72,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type L2.
      */
-    Tetromino* createL2Tetromino(Vector2D initialPosition, int color);
+    Tetromino createL2Tetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an Skew1 shape (S-shaped tetromino) Tetromino.
@@ -82,7 +83,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type Skew1.
      */
-    Tetromino* createSkew1Tetromino(Vector2D initialPosition, int color);
+    Tetromino createSkew1Tetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an Skew2 shape (S-shaped tetromino) Tetromino.
@@ -93,7 +94,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type Skew2.
      */
-    Tetromino* createSkew2Tetromino(Vector2D initialPosition, int color);
+    Tetromino createSkew2Tetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an Square shape (Square-shaped tetromino) Tetromino.
@@ -104,7 +105,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type Square.
      */
-    Tetromino* createSquareTetromino(Vector2D initialPosition, int color);
+    Tetromino createSquareTetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an Straight shape (Straight-shaped tetromino) Tetromino.
@@ -114,7 +115,7 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type Straight.
      */
-    Tetromino* createStraightTetromino(Vector2D initialPosition, int color);
+    Tetromino createStraightTetromino(Vector2D initialPosition, int color);
 
     /**
      * @brief Method to create an T shape (T-shaped tetromino) Tetromino.
@@ -125,7 +126,9 @@ private:
      * @param color The color of the Tetromino.
      * @return Pointer to the Tetromino object of type T.
      */
-    Tetromino* createTTetromino(Vector2D initialPosition, int color);
+    Tetromino createTTetromino(Vector2D initialPosition, int color);
 };
+
+}
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef Result_H
 #define Result_H
 
+namespace tetris {
 
 /**
  * @brief Class representing the result in Tetris.
@@ -58,5 +59,6 @@ private:
     void updateSpeed();
 };
 
+}
 
 #endif

@@ -1,5 +1,7 @@
 #include "Tetromino.h"
 
+namespace tetris {
+
 Tetromino::Tetromino(int xRotateInit[4][4], int yRotateInit[4][4], int xAntiRotateInit[4][4], int yAntiRotateInit[4][4], Block blocksInit[BLOCKS_QUANTITY])
     : direction(Direction::Up) {
     for (int i = 0; i < 4; ++i) {
@@ -105,4 +107,6 @@ void Tetromino:: rotateForSpecyficTetrominos(int xRotate[4][4], int yRotate[4][4
         }
 
         direction = newDirection(direction);
+}
+
 }
