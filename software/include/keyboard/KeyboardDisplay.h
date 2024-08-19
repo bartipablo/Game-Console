@@ -7,18 +7,20 @@
 #include "DigitalLCD.h"
 #include "Color.h"
 
-namespace keyboarddisplay {
-
+namespace {
 constexpr int KEY_HEIGHT = 20; // < px
 
 constexpr int KEY_WIDTH = 32; // < px
+}
+
+namespace keyboarddisplay {
 
 /**
  * @brief Draw all keys on the keyboard in grey color.
  * 
  * @param keys Vector of keys to draw.
  */
-void drawKeys(std::vector<keyboard::Key> keys);
+void drawKeys(const std::vector<keyboard::Key>& keys);
 
 /**
  * @brief Draw single key in grey color.

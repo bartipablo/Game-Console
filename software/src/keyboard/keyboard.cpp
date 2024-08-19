@@ -21,19 +21,19 @@ void Keyboard::cursorUp() {
 
 
 void Keyboard::cursorDown() {
-    if (cursorPosition.x()  < 4) {
+    if (cursorPosition.x()  < ROWS) {
         cursorPosition = Vector2D(cursorPosition.x() + 1, cursorPosition.y());
     } 
 }
 
 
 void Keyboard::cursorLeft() {
-    if (cursorPosition.x() < 4) {
+    if (cursorPosition.x() < ROWS) {
         if (cursorPosition.y() > 0) {
             cursorPosition = Vector2D(cursorPosition.x(), cursorPosition.y() - 1);
         }
     }
-    else if (cursorPosition.x() == 4) {
+    else if (cursorPosition.x() == ROWS) {
         if (cursorPosition.y() >= 8) {
             cursorPosition = Vector2D(4, 6);
         }
@@ -43,22 +43,21 @@ void Keyboard::cursorLeft() {
         else if (cursorPosition.y() >= 2) {
             cursorPosition = Vector2D(4, 1);
         }
-    
     }
 }
 
 
 void Keyboard::cursorRight() {
-    if (cursorPosition.x() < 4) {
-        if (cursorPosition.y() < 9) {
+    if (cursorPosition.x() < ROWS) {
+        if (cursorPosition.y() < COLUMNS - 1) {
             cursorPosition = Vector2D(cursorPosition.x(), cursorPosition.y() + 1);
         }
     }
-    else if (cursorPosition.x() == 4) {
+    else if (cursorPosition.x() == ROWS) {
         if (cursorPosition.y() <= 1) {
             cursorPosition = Vector2D(4, 2);
         }
-        else if (cursorPosition.y() <= 3) {
+        else if (cursorPosition.y() < 3) {
             cursorPosition = Vector2D(4, 5);
         }
         else if (cursorPosition.y() <= 7) {
@@ -71,7 +70,7 @@ void Keyboard::cursorRight() {
 Key Keyboard::getCurrentKey() {
     KeySet& currentKeySet = keySets.at(currentKeySetIndex);
 
-    if (cursorPosition.x() < 4) {
+    if (cursorPosition.x() < ROWS) {
         return currentKeySet.getKey(cursorPosition.x(), cursorPosition.y());
     }
     else if (cursorPosition.y() <= 1) {
@@ -86,7 +85,7 @@ Key Keyboard::getCurrentKey() {
     else if (cursorPosition.y() >= 8) {
         return enter;
     }
-    return Key();
+    return Key {};
 }
 
 

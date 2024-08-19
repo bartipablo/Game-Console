@@ -8,7 +8,7 @@ void drawKey(keyboard::Key key) {
 }
 
 
-void drawKeys(std::vector<keyboard::Key> keys) {
+void drawKeys(const std::vector<keyboard::Key>& keys) {
     for (keyboard::Key key : keys) {
         drawKey(key, Color::GRAY_);
     }

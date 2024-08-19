@@ -9,7 +9,6 @@
 
 namespace keyboard {
 
-
 class StandardKeyboardService {
 
 public:
