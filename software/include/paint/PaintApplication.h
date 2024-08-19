@@ -9,6 +9,7 @@
 #include "PaintIcon.h"
 #include "PaintEngine.h"
 
+
 class PaintApplication : public App {
 public:
     PaintApplication() : title {"Paint"} {}
@@ -20,5 +21,6 @@ public:
 private:
     std::string title;
 };
+
 
 #endif

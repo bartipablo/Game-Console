@@ -1,28 +1,16 @@
 #include "PaintEngine.h"
 
-PaintEngine::PaintEngine() {
-    this->canvas = new Canvas();
-    this->paintDisplay = new PaintDisplay();
-    this->cursor = new cursor::Cursor(cursor::WindowsArrow());
-    this->colorBox = new ColorBox();
-    this->inputBlocking = new InputBlocking();
+namespace paint {
 
-    this->shutdown = false;
-}
-
-PaintEngine::~PaintEngine() {
-    delete this->canvas;
-    delete this->paintDisplay;
-    delete this->cursor;
-    delete this->colorBox;
-    delete this->inputBlocking;
-}
+PaintEngine::PaintEngine() : cursor {cursor::WindowsArrow{}}, shutdown {false} {}
 
 
 void PaintEngine::run() {
-    cursor->setSensitive(50);
+    using namespace paintdisplay;
 
-    paintDisplay->drawCanvas(*canvas);
+    cursor.setSensitive(50);
+
+    drawCanvas(canvas);
     delay(300);
 
     while(!shutdown) {
@@ -37,44 +25,46 @@ void PaintEngine::run() {
         }
 
         if (userInput->isPressedLeftButton() && !userInput->isPressedJoysticButton()) {
-            canvas->drawPixel(cursor->getPosition(), colorBox->getSelectedColor().getColorRGB565());
+            canvas.drawPixel(cursor.getPosition(), colorBox.getSelectedColor().getColorRGB565());
         }
 
         if (userInput->isPressedRightButton() && !userInput->isPressedJoysticButton()) {
             runColorSelection();
-            paintDisplay->drawCanvas(*canvas);
+            drawCanvas(canvas);
         }
         
-        paintDisplay->drawCanvasPart(*canvas, cursor->getPosition(), cursor->getCursorShape().getWidthPx(), cursor->getCursorShape().getHeightPx());
+        drawCanvasPart(canvas, cursor.getPosition(), cursor.getCursorShape().getWidthPx(), cursor.getCursorShape().getHeightPx());
 
-        cursor->move(userInput->getXJoysticVal(), userInput->getYJoysticVal());
+        cursor.move(userInput->getXJoysticVal(), userInput->getYJoysticVal());
 
-        cursor::drawCursor(*cursor);
+        cursor::drawCursor(cursor);
     }
 }
 
 
 void PaintEngine::runColorSelection() {
-    paintDisplay->drawColorBox(*colorBox);
-    inputBlocking->startBlocking(10);
+    using namespace paintdisplay;
+
+    drawColorBox(colorBox);
+    inputBlocking.startBlocking(10);
 
     while (true) {
         delay(20);
-        if (!inputBlocking->isBlocked()) {
+        if (!inputBlocking.isBlocked()) {
             
             if (userInput->isPressedJoysticLeft()) {
-                colorBox->previousColor();
-                paintDisplay->drawColorBox(*colorBox);
-                inputBlocking->startBlocking(10);
+                colorBox.previousColor();
+                drawColorBox(colorBox);
+                inputBlocking.startBlocking(10);
 
             }
             else if (userInput->isPressedJoysticRight()) {
-                colorBox->nextColor();
-                paintDisplay->drawColorBox(*colorBox);
-                inputBlocking->startBlocking(10);
+                colorBox.nextColor();
+                drawColorBox(colorBox);
+                inputBlocking.startBlocking(10);
             }
             else if (userInput->isPressedLeftButton()) {
-                colorBox->selectColor();
+                colorBox.selectColor();
                 delay(20);
                 return;
             }
@@ -83,7 +73,8 @@ void PaintEngine::runColorSelection() {
                 return;
             }
         }
-        inputBlocking->decrement();
+        inputBlocking.decrement();
     }
 }
 
+}

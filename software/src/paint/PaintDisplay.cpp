@@ -1,25 +1,29 @@
 #include "PaintDisplay.h"
 
-PaintDisplay::PaintDisplay() {}
+namespace paintdisplay {
 
-void PaintDisplay::drawCanvas(Canvas& canvas) {
 
-    int** pixels = canvas.getPixels();
+void drawCanvas(paint::Canvas& canvas) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+    int* pixels = canvas.getPixels();
     int width = canvas.getWidth();
     int height = canvas.getHeight();
     int pixelSize = canvas.getPixelSize();
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            display->fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize, pixels[y][x]);
+            int color = *(pixels + y * width + x);
+            display->fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize, color);
         }
     }
 }
 
 
-void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx, int heightPx) {
+void drawCanvasPart(paint::Canvas& canvas, Vector2D position, int widthPx, int heightPx) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
     
-    int** canvasPixels = canvas.getPixels();
+    int* pixels = canvas.getPixels();
     int canvasWidth = canvas.getWidth();
     int canvasHeight = canvas.getHeight();
     int canvasPixelSize = canvas.getPixelSize();
@@ -34,15 +38,21 @@ void PaintDisplay::drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx
             if (x + j < 0 || x + j >= canvasWidth || y + i < 0 || y + i >= canvasHeight) {
                 continue;
             }
-            display->fillRect((x + j) * canvasPixelSize, (y + i) * canvasPixelSize, canvasPixelSize, canvasPixelSize, canvasPixels[y + i][x + j]);
+            int color = *(pixels + y * width + x);
+            display->fillRect((x + j) * canvasPixelSize, (y + i) * canvasPixelSize, canvasPixelSize, canvasPixelSize, color);
         }
     }
 }
 
-void PaintDisplay::drawColorBox(ColorBox& colorBox) {
+
+void drawColorBox(paint::ColorBox& colorBox) {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
     Color actualColor = colorBox.getActualColor();
 
     display->fillScreen(Color::BLACK_);
     display->fillRect(105, 65, 110, 110, actualColor.WHITE_);
     display->fillRect(110, 70, 100, 100, actualColor.getColorRGB565());
+}
+
 }

@@ -12,12 +12,12 @@
 #include "Color.h"
 #include "InputBlocking.h"
 
+namespace paint {
+
 class PaintEngine {
 
 public:
     PaintEngine();
-
-    ~PaintEngine();
 
     /**
      * Start the paint enigne.
@@ -25,15 +25,13 @@ public:
     void run();
 
 private:
-    Canvas* canvas;
+    Canvas canvas;
 
-    cursor::Cursor* cursor;
+    cursor::Cursor cursor;
 
-    PaintDisplay* paintDisplay;
+    ColorBox colorBox;
 
-    ColorBox* colorBox;
-
-    InputBlocking* inputBlocking;
+    InputBlocking inputBlocking;
 
     UserInput* userInput = UserInput::getInstance();
 
@@ -42,5 +40,6 @@ private:
     void runColorSelection();
 };
 
+}
 
 #endif

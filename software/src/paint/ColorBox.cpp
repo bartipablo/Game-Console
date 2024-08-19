@@ -1,9 +1,9 @@
 #include "ColorBox.h"
 
-ColorBox::ColorBox() {
+namespace paint {
+
+ColorBox::ColorBox() : selectedColorIndex{0}, actualColorIndex{0} {
     colorsQuantity = colors.size();
-    selectedColorIndex = 0;
-    actualColorIndex = 0;
 }
 
 Color ColorBox::getSelectedColor() {
@@ -36,4 +36,6 @@ void ColorBox::previousColor() {
 
 void ColorBox::selectColor() {
     selectedColorIndex = actualColorIndex;
+}
+
 }

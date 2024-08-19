@@ -9,17 +9,15 @@
 #include "ColorBox.h"
 #include "Color.h"
 
-class PaintDisplay {
 
-public:
-    PaintDisplay();
+namespace paintdisplay {
 
 /**
  * This method draws the whole canvas on the screen.
  * @brief Draw the canvas on the screen.
  * @param canvas the canvas to draw.
 */
-    void drawCanvas(Canvas& canvas);
+void drawCanvas(paint::Canvas& canvas);
 
 /**
  * This method draws a part of the canvas on the screen.
@@ -29,18 +27,15 @@ public:
  * @param widthPx the width of the part to draw.
  * @param heightPx the height of the part to draw.
 */
-    void drawCanvasPart(Canvas& canvas, Vector2D position, int widthPx, int heightPx);
+void drawCanvasPart(paint::Canvas& canvas, Vector2D position, int widthPx, int heightPx);
 
 /**
  * This method draws color boxes on the screen.
  * @brief Draw color boxes on the screen.
  * @param colorBoxes the color boxes to draw.
  */
-    void drawColorBox(ColorBox& colorBox);
-
-private:
-    Arduino_ILI9341* display = DigitalLCD::getInstance();
-};
+void drawColorBox(paint::ColorBox& colorBox);
+}
 
 
 #endif

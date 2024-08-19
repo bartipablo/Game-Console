@@ -5,6 +5,8 @@
 
 #include "Color.h"
 
+namespace paint {
+
 /**
  * @brief Class representing a color box.
  * The color box is a box that contains a set of colors.
@@ -50,16 +52,18 @@ private:
 
     int actualColorIndex;
 
-    std::vector<Color> colors = {
-        Color(Color::BLACK_), 
-        Color(Color::YELLOW_), 
-        Color(Color::BLUE_), 
-        Color(Color::GREEN_), 
-        Color(Color::RED_),
-        Color(Color::GRAY_), 
-        Color(Color::WHITE_)
+    const std::vector<Color> colors = {
+        Color{Color::BLACK_}, 
+        Color{Color::YELLOW_}, 
+        Color{Color::BLUE_}, 
+        Color{Color::GREEN_}, 
+        Color{Color::RED_},
+        Color{Color::GRAY_}, 
+        Color{Color::WHITE_}
     };
 };
+
+}
 
 
 #endif
