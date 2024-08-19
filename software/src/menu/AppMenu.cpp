@@ -38,7 +38,7 @@ void AppMenu::previousApplication() {
 void AppMenu::start() {
     if (appList.size() == 0) return;
 
-    std::shared_ptr<App> currentApplication = appList[currentApplicationIndex];
+    std::shared_ptr<App> currentApplication = appList.at(currentApplicationIndex);
 
     currentApplication->display();
     inputBlocking.startBlocking(20);
@@ -52,12 +52,14 @@ void AppMenu::start() {
 
         if (userInput->isPressedJoysticLeft()) {
             previousApplication();
+            currentApplication = appList.at(currentApplicationIndex);
             currentApplication->display();
             inputBlocking.startBlocking(10);
         }
 
         else if (userInput->isPressedJoysticRight()) {
             nextApplication();
+            currentApplication = appList.at(currentApplicationIndex);
             currentApplication->display();
             inputBlocking.startBlocking(10);
         }
