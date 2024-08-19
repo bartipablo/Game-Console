@@ -6,15 +6,14 @@ namespace paintdisplay {
 void drawCanvas(paint::Canvas& canvas) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
 
-    int* pixels = canvas.getPixels();
+    int** pixels = canvas.getPixels();
     int width = canvas.getWidth();
     int height = canvas.getHeight();
     int pixelSize = canvas.getPixelSize();
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
-            int color = *(pixels + y * width + x);
-            display->fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize, color);
+            display->fillRect(x * pixelSize, y * pixelSize, pixelSize, pixelSize, pixels[y][x]);
         }
     }
 }
@@ -23,7 +22,7 @@ void drawCanvas(paint::Canvas& canvas) {
 void drawCanvasPart(paint::Canvas& canvas, Vector2D position, int widthPx, int heightPx) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     
-    int* pixels = canvas.getPixels();
+    int** canvasPixels = canvas.getPixels();
     int canvasWidth = canvas.getWidth();
     int canvasHeight = canvas.getHeight();
     int canvasPixelSize = canvas.getPixelSize();
@@ -38,12 +37,10 @@ void drawCanvasPart(paint::Canvas& canvas, Vector2D position, int widthPx, int h
             if (x + j < 0 || x + j >= canvasWidth || y + i < 0 || y + i >= canvasHeight) {
                 continue;
             }
-            int color = *(pixels + y * width + x);
-            display->fillRect((x + j) * canvasPixelSize, (y + i) * canvasPixelSize, canvasPixelSize, canvasPixelSize, color);
+            display->fillRect((x + j) * canvasPixelSize, (y + i) * canvasPixelSize, canvasPixelSize, canvasPixelSize, canvasPixels[y + i][x + j]);
         }
     }
 }
-
 
 void drawColorBox(paint::ColorBox& colorBox) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();

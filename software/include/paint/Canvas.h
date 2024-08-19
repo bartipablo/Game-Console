@@ -16,13 +16,15 @@ public:
 
     Canvas();
 
+    ~Canvas();
+
 /**
  * @return the pixels of the canvas.
  * The pixels are represented by a matrix of integers.
  * Each integer represents a color.
  * The matrix is of size (width x height).
 */
-    int* getPixels();
+    int** getPixels();
 
 /**
  * @return the width of the canvas.
@@ -60,9 +62,7 @@ private:
     constexpr static int  HEIGHT {48};
     constexpr static int PIXEL_SIZE {5};
 
-    int pixels[HEIGHT][WIDTH]; /// represents colors!
-
-
+    int** pixels; /// represents colors!
 };
 
 }
