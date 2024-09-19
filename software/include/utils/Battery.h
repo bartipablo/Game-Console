@@ -2,6 +2,7 @@
 #define Battery_H
 
 #include "Adafruit_LC709203F.h"
+#include "ForbiddenOperation.h"
 
 
 class Battery {
@@ -11,7 +12,7 @@ public:
 
     void operator=(const Battery &) = delete;
 
-    static void init(int thermistorB, int PackSize);
+    static void init(int thermistorB, lc709203_adjustment_t packSize);
 
     static Battery *getInstance();
 
@@ -22,7 +23,9 @@ public:
     float getTemperature();
 
 private:
-    Battery(int thermistorB, int PackSize);
+    Battery(int thermistorB, lc709203_adjustment_t packSize);
+
+    static Battery *battery_;
 
     Adafruit_LC709203F lc;
 };
