@@ -13,6 +13,7 @@
 #include "PongApplication.h"
 #include "SnakeApplication.h"
 #include "MainMenuDisplay.h"
+#include "BatteryApplication.h"
 
 /**
  * The main menu of the console.
