@@ -4,6 +4,7 @@
 #include "MainMenu.h"
 #include "WiFiConnection.h"
 #include "UserInput.h"
+#include <Wire.h>
 
 
 namespace Peripheral {
@@ -18,7 +19,10 @@ namespace Peripheral {
     constexpr int RIGHT_BUTTON {15};
     constexpr int JOYSTIC_X {34};
     constexpr int JOYSTIC_Y {39};
-    constexpr int JOYSTIC_BUTTON {32};
+    constexpr int JOYSTIC_BUTTON {35};
+
+    constexpr int I2C_SDA {32};
+    constexpr int I2C_SCL {33};
 
     constexpr int DISPLAY_ROTATION {3};
 
@@ -28,6 +32,8 @@ namespace Peripheral {
 
 void setup() {
     using namespace Peripheral;
+
+    Wire.begin(I2C_SDA, I2C_SCL);
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
