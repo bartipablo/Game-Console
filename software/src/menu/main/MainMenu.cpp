@@ -9,6 +9,7 @@ MainMenu::MainMenu() {
     apps.push_back(std::make_shared<WiFiApplication>());
     apps.push_back(std::make_shared<PongApplication>());
     apps.push_back(std::make_shared<SnakeApplication>());
+    apps.push_back(std::make_shared<BatteryApplication>());
 
     appMenu = my_std::make_unique<AppMenu>(apps);
     appMenu->setBlockExit(true);
