@@ -14,6 +14,8 @@
 namespace batterydisplay {
 
     void drawLabeledValue(const char* label, float value, int x, int y, const char* unit);
+
+    void clearValues();
     
     void drawVoltage(float voltage);
 

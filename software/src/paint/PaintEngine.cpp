@@ -16,19 +16,19 @@ void PaintEngine::run() {
     while(!shutdown) {
         delay(50);
 
-        if (userInput->isPressedLeftButton() && userInput->isPressedRightButton() && userInput->isPressedJoysticButton()) {
+        if (userInput->isPressedLeftButton() && userInput->isPressedRightButton()) {
             delay(200);
-            if (userInput->isPressedLeftButton() && userInput->isPressedRightButton() && userInput->isPressedJoysticButton()) {
+            if (userInput->isPressedLeftButton() && userInput->isPressedRightButton()) {
                 shutdown = true;
                 break;
             }
         }
 
-        if (userInput->isPressedLeftButton() && !userInput->isPressedJoysticButton()) {
+        if (userInput->isPressedLeftButton()) {
             canvas.drawPixel(cursor.getPosition(), colorBox.getSelectedColor().getColorRGB565());
         }
 
-        if (userInput->isPressedRightButton() && !userInput->isPressedJoysticButton()) {
+        if (userInput->isPressedRightButton()) {
             runColorSelection();
             drawCanvas(canvas);
         }

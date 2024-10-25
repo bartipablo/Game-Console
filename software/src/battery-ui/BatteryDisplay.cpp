@@ -3,6 +3,13 @@
 namespace batterydisplay {
 
 
+void clearValues() {
+    Arduino_ILI9341* display = DigitalLCD::getInstance();
+
+    display->fillRect(160, 20, 100, 100, Color::BLACK_);
+}
+
+
 void drawLabeledValue(const char* label, float value, int x, int y, const char* unit) {
     Arduino_ILI9341* display = DigitalLCD::getInstance();
     
@@ -14,7 +21,7 @@ void drawLabeledValue(const char* label, float value, int x, int y, const char* 
     dtostrf(value, 5, 2, valueStr);
 
     display->print(label);
-    display->setCursor(x + 100, y); // Adjust X offset if needed
+    display->setCursor(x + 150, y); // Adjust X offset if needed
     display->print(valueStr);
     display->print(unit);
 }
@@ -28,7 +35,7 @@ void drawPercentage(float percentage) {
 }
 
 void drawTemperature(float temperature) {
-    drawLabeledValue("Temperature: ", temperature, 10, 80, " [°C]");
+    drawLabeledValue("Temperature: ", temperature, 10, 80, " [C]");
 }
 
 }
