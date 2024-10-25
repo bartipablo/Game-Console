@@ -2,8 +2,6 @@
 
 ###### Mobile gaming console with online multiplayer and rechargeable battery.
 
-### YouTube preview
-[click here](https://youtube.com)
 
 ### Applications
 
