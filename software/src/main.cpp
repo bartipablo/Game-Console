@@ -28,6 +28,8 @@ namespace Peripheral {
     constexpr int I2C_SDA {32};
     constexpr int I2C_SCL {33};
 
+    constexpr int LED_PIN {2};
+
     constexpr int BATTERY_THERMISTOR_B {3950};
     constexpr int DISPLAY_ROTATION {3};
 
@@ -40,11 +42,15 @@ void setup() {
 
     Wire.begin(I2C_SDA, I2C_SCL);
 
+    pinMode(LED_PIN, OUTPUT);
+
     Battery::init(BATTERY_THERMISTOR_B, LC709203F_APA_500MAH);
 
     UserInput::init(LEFT_BUTTON, RIGHT_BUTTON, JOYSTIC_X, JOYSTIC_Y, JOYSTIC_BUTTON);
 
     wifi::WiFiConnection::init();
+
+    delay(500);
 
     DigitalLCD::init(&bus, TFT_RESET);
 }

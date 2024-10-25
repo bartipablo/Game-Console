@@ -27,15 +27,16 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(${CMAKE_SOURCE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/../include/pong)
-include_directories(${CMAKE_SOURCE_DIR}/../include/utils/sockets)
-include_directories(${CMAKE_SOURCE_DIR}/../include/utils/streams)
+include_directories(${CMAKE_SOURCE_DIR}/../)
+include_directories(${CMAKE_SOURCE_DIR}/../../include/pong)
+include_directories(${CMAKE_SOURCE_DIR}/../../include/utils/sockets)
+include_directories(${CMAKE_SOURCE_DIR}/../../include/utils/streams)
 
 # Find all .cpp files in the src directories
 file(GLOB_RECURSE SRC_FILES
-    ../src/pong/*.cpp
-    ../src/utils/sockets/*.cpp
-    ../src/utils/streams/*.cpp
+    ../../src/pong/*.cpp
+    ../../src/utils/sockets/*.cpp
+    ../../src/utils/streams/*.cpp
     DesktopClient.cpp
 )
 

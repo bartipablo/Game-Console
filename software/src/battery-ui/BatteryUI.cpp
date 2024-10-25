@@ -2,7 +2,11 @@
 
 
 void BatteryUI::run() {
+    basicdisplay::clearScreen();
+    basicdisplay::drawBelowMessage("Press any key to exit");
+
     refreshReadings();
+    
     delay(500);
 
     while (true) {
@@ -29,11 +33,10 @@ void BatteryUI::refreshReadings() {
     float percentage = battery->getPercentCharged();
     float temperature = battery->getTemperature();
 
-    clearScreen();
+    clearValues();
 
     drawVoltage(voltage);
     drawPercentage(percentage);
     drawTemperature(temperature);
 
-    drawBelowMessage("Press any key to exit");
 }
