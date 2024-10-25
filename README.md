@@ -2,6 +2,8 @@
 
 ###### Mobile gaming console with online multiplayer and rechargeable battery.
 
+### YouTube preview
+![YouTube](https://www.youtube.com/watch?v=obrcG-_NG5s)
 
 ### Applications
 
@@ -14,22 +16,22 @@
 
 
 ##### Pong multiplayer by network
-![Snake](/assets/pong.jpg)
+![Pong](/assets/pong.jpg)
 
 
 ##### Paint
-![Snake](/assets/paint.jpg)
+![Paint](/assets/paint.jpg)
 
 
 ##### Notepad
-![Snake](/assets/notepad.jpg)
+![Notepad](/assets/notepad.jpg)
 
 
 ##### WiFi
-![Snake](/assets/wifi.jpg)
+![WiFi](/assets/wifi.jpg)
 
 ##### Battery level indicator
-![Snake](/assets/battery.jpg)
+![BatteryLvl](/assets/battery.jpg)
 
 
 ### Software
